@@ -16,7 +16,9 @@
             android:name=".MainActivity"
             android:exported="true"
             android:label="@string/app_name"
-            android:theme="@style/Theme.Explore_romania">
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.Explore_romania"
+            tools:ignore="DiscouragedApi">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

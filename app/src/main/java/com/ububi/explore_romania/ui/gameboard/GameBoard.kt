@@ -1,43 +1,30 @@
-package com.ububi.explore_romania
+package com.ububi.explore_romania.ui.gameboard
 
-import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.offset
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.*
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.draw.shadow
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.ububi.explore_romania.ui.gameboard.BoardScreen
-import com.ububi.explore_romania.ui.theme.Explore_romaniaTheme
 import kotlin.random.Random
 
-class MainActivity : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContent {
-            Explore_romaniaTheme {
-                AppRouter()
-            }
-        }
-    }
-}
-
 @Composable
-fun RomaniaPlateBoard(
+fun GameBoard(
     modifier: Modifier
 ) {
     Column(
@@ -45,14 +32,13 @@ fun RomaniaPlateBoard(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier.fillMaxSize()
     ) {
-        // TOP ROW - 5 plates
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.spacedBy(12.dp)
         ) {
             val topCounties = listOf("B", "CJ", "TM", "IS", "PH")
             topCounties.forEach { county ->
-                RomanianPlate(
+                BoardCard(
                     countyCode = county,
                     number = String.format("%02d", Random.nextInt(1, 100)),
                     modifier = Modifier.weight(1f)
@@ -72,8 +58,8 @@ fun RomaniaPlateBoard(
                 verticalArrangement = Arrangement.spacedBy(20.dp),
                 modifier = Modifier.fillMaxHeight()
             ) {
-                RomanianPlate(countyCode = "AG", number = "07", modifier = Modifier.weight(1f))
-                RomanianPlate(countyCode = "VL", number = "23", modifier = Modifier.weight(1f))
+                BoardCard(countyCode = "AG", number = "07", modifier = Modifier.weight(1f))
+                BoardCard(countyCode = "VL", number = "23", modifier = Modifier.weight(1f))
             }
 
             // CENTER - Main game area
@@ -134,8 +120,8 @@ fun RomaniaPlateBoard(
                 verticalArrangement = Arrangement.spacedBy(20.dp),
                 modifier = Modifier.fillMaxHeight()
             ) {
-                RomanianPlate(countyCode = "CT", number = "77", modifier = Modifier.weight(1f))
-                RomanianPlate(countyCode = "BR", number = "01", modifier = Modifier.weight(1f))
+                BoardCard(countyCode = "CT", number = "77", modifier = Modifier.weight(1f))
+                BoardCard(countyCode = "BR", number = "01", modifier = Modifier.weight(1f))
             }
         }
 
@@ -146,7 +132,7 @@ fun RomaniaPlateBoard(
         ) {
             val bottomCounties = listOf("IF", "GL", "HR", "SM", "BH")
             bottomCounties.forEach { county ->
-                RomanianPlate(
+                BoardCard(
                     countyCode = county,
                     number = String.format("%02d", Random.nextInt(1, 100)),
                     modifier = Modifier.weight(1f)
@@ -155,86 +141,3 @@ fun RomaniaPlateBoard(
         }
     }
 }
-
-// Authentic Romanian License Plate
-@Composable
-fun RomanianPlate(
-    countyCode: String,
-    number: String,
-    modifier: Modifier = Modifier
-) {
-    Card(
-        modifier = modifier
-            .aspectRatio(2.15f)
-            .shadow(16.dp, RoundedCornerShape(14.dp)),
-        shape = RoundedCornerShape(14.dp),
-        colors = CardDefaults.cardColors(containerColor = Color.White)
-    ) {
-        Row(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(horizontal = 10.dp),
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            // Blue EU strip with RO
-            Box(
-                modifier = Modifier
-                    .fillMaxHeight()
-                    .width(44.dp)
-                    .background(Color(0xFF003087))
-                    .padding(4.dp),
-                contentAlignment = Alignment.Center
-            ) {
-                Text(
-                    text = "RO",
-                    color = Color.Yellow,
-                    fontWeight = FontWeight.ExtraBold,
-                    fontSize = 18.sp
-                )
-            }
-
-            Spacer(modifier = Modifier.width(12.dp))
-
-            // County code + number
-            Row(
-                modifier = Modifier.weight(1f),
-                horizontalArrangement = Arrangement.Center
-            ) {
-                Text(
-                    text = countyCode,
-                    color = Color.Black,
-                    fontSize = 34.sp,
-                    fontWeight = FontWeight.ExtraBold
-                )
-                Spacer(modifier = Modifier.width(10.dp))
-                Text(
-                    text = number,
-                    color = Color.Black,
-                    fontSize = 44.sp,
-                    fontWeight = FontWeight.Black,
-                    letterSpacing = 3.sp
-                )
-            }
-        }
-    }
-}
-
-// Big letters in the center (T and G style)
-@Composable
-fun BigCenterLetter(letter: String) {
-    Box(
-        modifier = Modifier
-            .size(110.dp)
-            .background(Color(0xFF37474F), RoundedCornerShape(20.dp))
-            .border(8.dp, Color(0xFF546E7A), RoundedCornerShape(20.dp)),
-        contentAlignment = Alignment.Center
-    ) {
-        Text(
-            text = letter,
-            fontSize = 84.sp,
-            fontWeight = FontWeight.Black,
-            color = Color(0xFFEEEEEE)
-        )
-    }
-}
-
