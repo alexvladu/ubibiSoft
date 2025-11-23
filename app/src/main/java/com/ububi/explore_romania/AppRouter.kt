@@ -6,21 +6,32 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.ububi.explore_romania.ui.gameboard.BoardScreen
 import com.ububi.explore_romania.ui.home.HomeScreen
+import com.ububi.explore_romania.ui.home.OpeningScreen
 
 
 object Routes {
+    const val OPENING = "opening"
     const val HOME = "home"
     const val GAME_BOARD = "gameboard"
 }
-
 
 @Composable
 fun AppRouter() {
     val navController = rememberNavController()
 
-    NavHost(navController = navController, startDestination = Routes.HOME) {
+    NavHost(navController = navController, startDestination = Routes.OPENING) {
+        composable(Routes.OPENING) {
+            OpeningScreen(onFinished = {
+                navController.navigate(Routes.HOME) {
+                    popUpTo(Routes.OPENING) { inclusive = true }
+                }
+            })
+        }
+
         composable(Routes.HOME) {
-            HomeScreen(onStartClick = { navController.navigate(Routes.GAME_BOARD) })
+            HomeScreen(onPlayClick = { navController.navigate(Routes.GAME_BOARD) },
+                onCollectionClick = { navController.navigate(Routes.GAME_BOARD) },
+                onTreasureClick = { navController.navigate(Routes.GAME_BOARD) })
         }
         composable(Routes.GAME_BOARD) {
             BoardScreen(onBackClick = { navController.navigateUp() })
