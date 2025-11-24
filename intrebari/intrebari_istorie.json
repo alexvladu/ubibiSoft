@@ -4,7 +4,7 @@
         "intrebari": [
             {
                 "id": 1,
-                "text": "În ce oraș din județul Alba a fost înfăptuită Marea Unire din 1918",
+                "text": "Unde a fost înfăptuită Marea Unire din 1918",
                 "raspunsuri": [
                     "Alba Iulia",
                     "Blaj",
@@ -52,7 +52,7 @@
             },
             {
                 "id": 5,
-                "text": "În ce oraș din Alba se află Sala Unirii",
+                "text": "Unde se află Sala Unirii",
                 "raspunsuri": [
                     "Alba Iulia",
                     "Aiud"
@@ -67,20 +67,8 @@
         "judet": "Arad",
         "intrebari": [
             {
-                "id": 6,
-                "text": "Ce râu trece prin orașul Arad",
-                "raspunsuri": [
-                    "Mureș",
-                    "Dunărea",
-                    "Olt"
-                ],
-                "raspuns_corect": "Mureș",
-                "locatie": "Arad",
-                "hint": "Este unul dintre cele mai lungi râuri din România"
-            },
-            {
                 "id": 7,
-                "text": "Cum se numește cetatea istorică din Arad",
+                "text": "Cum se numește cetatea istorică in forma de stea",
                 "raspunsuri": [
                     "Cetatea Aradului",
                     "Cetatea Devei",
@@ -88,11 +76,11 @@
                 ],
                 "raspuns_corect": "Cetatea Aradului",
                 "locatie": "Arad",
-                "hint": "Este o cetate în formă de stea"
+                "hint": "Este o cetate în formă din Arad"
             },
             {
                 "id": 8,
-                "text": "De ce este cunoscut orașul Lipova din județul Arad",
+                "text": "De ce este cunoscut orașul Lipova?",
                 "raspunsuri": [
                     "Băile Lipova",
                     "Castelul Bran",
@@ -154,18 +142,6 @@
                 "raspuns_corect": "Mioveni",
                 "locatie": "Argeș",
                 "hint": "Aici se produc mașini"
-            },
-            {
-                "id": 13,
-                "text": "Ce râu important trece prin județul Argeș",
-                "raspunsuri": [
-                    "Argeș",
-                    "Olt",
-                    "Jiu"
-                ],
-                "raspuns_corect": "Argeș",
-                "locatie": "Argeș",
-                "hint": "Poartă același nume cu județul"
             }
         ]
     },
@@ -227,7 +203,7 @@
         "intrebari": [
             {
                 "id": 18,
-                "text": "În ce oraș din Bihor se află Cetatea Oradea",
+                "text": "În ce oraș se afla cetatea in forma de pentagon",
                 "raspunsuri": [
                     "Oradea",
                     "Beiuș",
@@ -279,20 +255,8 @@
         "judet": "Bistrița-Năsăud",
         "intrebari": [
             {
-                "id": 22,
-                "text": "Cum se numește orașul principal din Bistrița-Năsăud",
-                "raspunsuri": [
-                    "Bistrița",
-                    "Năsăud",
-                    "Sângeorz"
-                ],
-                "raspuns_corect": "Bistrița",
-                "locatie": "Bistrița-Năsăud",
-                "hint": "Are numele județului"
-            },
-            {
                 "id": 23,
-                "text": "Ce cetate medievală se află la Rodna",
+                "text": "Ce cetate medievală se află in Bistrița-Năsăud",
                 "raspunsuri": [
                     "Cetatea Rodnei",
                     "Cetatea Alba Carolina",
@@ -386,7 +350,7 @@
         "intrebari": [
             {
                 "id": 30,
-                "text": "Cum se numește biserica mare și neagră din Brașov",
+                "text": "Cum se numește biserica cea mai renumita din Brașov",
                 "raspunsuri": [
                     "Biserica Neagră",
                     "Biserica Albă",
@@ -430,7 +394,7 @@
                 ],
                 "raspuns_corect": "Tâmpa",
                 "locatie": "Brașov",
-                "hint": "Este în oraș"
+                "hint": "Arata ca la HOLLYWOOD"
             }
         ]
     },
@@ -439,7 +403,7 @@
         "intrebari": [
             {
                 "id": 34,
-                "text": "Ce râu mare trece prin Brăila",
+                "text": "Ce fluviu mare trece prin Brăila",
                 "raspunsuri": [
                     "Dunărea",
                     "Mureș",
@@ -450,20 +414,8 @@
                 "hint": "Este cel mai important fluviu al României"
             },
             {
-                "id": 35,
-                "text": "Cum se numește parcul mare din orașul Brăila",
-                "raspunsuri": [
-                    "Grădina Publică",
-                    "Parcul Carol",
-                    "Parcul Cetății"
-                ],
-                "raspuns_corect": "Grădina Publică",
-                "locatie": "Brăila",
-                "hint": "Este un loc de plimbare"
-            },
-            {
                 "id": 36,
-                "text": "Ce port important există în Brăila",
+                "text": "Ce port important există in Muntenia",
                 "raspunsuri": [
                     "Portul Brăila",
                     "Portul Constanța",
@@ -472,18 +424,6 @@
                 "raspuns_corect": "Portul Brăila",
                 "locatie": "Brăila",
                 "hint": "Este pe Dunăre"
-            },
-            {
-                "id": 37,
-                "text": "Ce insulă mare se află aproape de Brăila",
-                "raspunsuri": [
-                    "Insula Mare a Brăilei",
-                    "Insula Ovidiu",
-                    "Insula Ada Kaleh"
-                ],
-                "raspuns_corect": "Insula Mare a Brăilei",
-                "locatie": "Brăila",
-                "hint": "Este în mijlocul Dunării"
             }
         ]
     },
@@ -513,18 +453,6 @@
                 "raspuns_corect": "Mănăstirea Aluniș",
                 "locatie": "Buzău",
                 "hint": "Este ca o peșteră"
-            },
-            {
-                "id": 40,
-                "text": "Cum se numește fenomenul în care gazele ies singure din pământ",
-                "raspunsuri": [
-                    "Vulcanele noroioase",
-                    "Cutremurul",
-                    "Avalanșa"
-                ],
-                "raspuns_corect": "Vulcanele noroioase",
-                "locatie": "Buzău",
-                "hint": "Nu sunt cu lavă fierbinte"
             },
             {
                 "id": 41,
@@ -568,18 +496,6 @@
                 "hint": "Este o stațiune cu ape termale"
             },
             {
-                "id": 44,
-                "text": "Prin ce râu trece Băile Herculane",
-                "raspunsuri": [
-                    "Cerna",
-                    "Olt",
-                    "Siret"
-                ],
-                "raspuns_corect": "Cerna",
-                "locatie": "Caraș-Severin",
-                "hint": "Este un râu din sud-vestul României"
-            },
-            {
                 "id": 45,
                 "text": "Ce popor antic a construit băi în această zonă",
                 "raspunsuri": [
@@ -598,7 +514,7 @@
         "intrebari": [
             {
                 "id": 46,
-                "text": "Ce râu mare trece pe lângă orașul Călărași",
+                "text": "Ce fluviu mare trece pe lângă orașul Călărași",
                 "raspunsuri": [
                     "Dunărea",
                     "Argeș",
@@ -609,20 +525,8 @@
                 "hint": "Este cel mai lung fluviu din România"
             },
             {
-                "id": 47,
-                "text": "Ce lac se află în apropierea municipiului Călărași",
-                "raspunsuri": [
-                    "Lacul Bălțița",
-                    "Lacul Sfânta Ana",
-                    "Lacul Roșu"
-                ],
-                "raspuns_corect": "Lacul Bălțița",
-                "locatie": "Călărași",
-                "hint": "Este un loc pentru păsări și pești"
-            },
-            {
                 "id": 48,
-                "text": "Cum se numește grădina zoologică importantă din Călărași",
+                "text": "Cum se numește grădina zoologică importantă din Vestul tarii",
                 "raspunsuri": [
                     "Zoo Călărași",
                     "Zoo București",
@@ -651,11 +555,12 @@
         "intrebari": [
             {
                 "id": 50,
-                "text": "Cum se numește orașul reședință de județ din Cluj",
+                "text": "Cum se numește cel mai fain oraș din țara",
                 "raspunsuri": [
                     "Cluj-Napoca",
-                    "Dej",
-                    "Gherla"
+                    "București",
+                    "Timișoara",
+                    "Sibiu"
                 ],
                 "raspuns_corect": "Cluj-Napoca",
                 "locatie": "Cluj",
@@ -684,18 +589,6 @@
                 "raspuns_corect": "Castelul Bánffy",
                 "locatie": "Cluj",
                 "hint": "Aici se țin festivaluri mari"
-            },
-            {
-                "id": 53,
-                "text": "Ce formațiune carstică faimoasă se află în județul Cluj",
-                "raspunsuri": [
-                    "Cheile Turzii",
-                    "Peștera Urșilor",
-                    "Peștera Muierilor"
-                ],
-                "raspuns_corect": "Cheile Turzii",
-                "locatie": "Cluj",
-                "hint": "Sunt stânci și chei spectaculoase"
             }
         ]
     },
@@ -728,7 +621,7 @@
             },
             {
                 "id": 56,
-                "text": "Cum se numește portul din Constanța",
+                "text": "Cum se numește portul din estul țarii",
                 "raspunsuri": [
                     "Portul Constanța",
                     "Portul Galați",
@@ -740,13 +633,13 @@
             },
             {
                 "id": 57,
-                "text": "Cum se numește monumentul vechi din Constanța aflat pe malul mării",
+                "text": "Ce fel de monument vechi se afla in Constanța pe malul mării",
                 "raspunsuri": [
-                    "Cazinoul din Constanța",
-                    "Castelul Bran",
-                    "Mănăstirea Putna"
+                    "Cazino",
+                    "Castel",
+                    "Mănăstire"
                 ],
-                "raspuns_corect": "Cazinoul din Constanța",
+                "raspuns_corect": "Cazino",
                 "locatie": "Constanța",
                 "hint": "Este o clădire albă, în stil vechi"
             }
@@ -874,18 +767,6 @@
                 "hint": "Este un oraș mare din Oltenia"
             },
             {
-                "id": 67,
-                "text": "Ce râu trece prin Craiova",
-                "raspunsuri": [
-                    "Jiu",
-                    "Olt",
-                    "Prut"
-                ],
-                "raspuns_corect": "Jiu",
-                "locatie": "Dolj",
-                "hint": "Râu important din sudul României"
-            },
-            {
                 "id": 68,
                 "text": "Ce cinematograf vechi și cunoscut se află în Craiova",
                 "raspunsuri": [
@@ -914,18 +795,6 @@
     {
         "judet": "Galați",
         "intrebari": [
-            {
-                "id": 70,
-                "text": "Ce fluviu se află la Galați",
-                "raspunsuri": [
-                    "Dunărea",
-                    "Mureș",
-                    "Siret"
-                ],
-                "raspuns_corect": "Dunărea",
-                "locatie": "Galați",
-                "hint": "Cel mai important fluviu din România"
-            },
             {
                 "id": 71,
                 "text": "Ce mijloc de transport pe apă se găsește des în Galați",
@@ -967,18 +836,6 @@
     {
         "judet": "Giurgiu",
         "intrebari": [
-            {
-                "id": 74,
-                "text": "Giurgiu este situat pe râul",
-                "raspunsuri": [
-                    "Dunărea",
-                    "Olt",
-                    "Argeș"
-                ],
-                "raspuns_corect": "Dunărea",
-                "locatie": "Giurgiu",
-                "hint": "Este graniță cu Bulgaria"
-            },
             {
                 "id": 75,
                 "text": "Giurgiu este legat de Bulgaria prin",
@@ -1045,18 +902,6 @@
                 "hint": "Are un parc dedicat lui Brâncuși"
             },
             {
-                "id": 80,
-                "text": "Ce munți se află în județul Gorj",
-                "raspunsuri": [
-                    "Munții Parâng",
-                    "Munții Apuseni",
-                    "Munții Retezat"
-                ],
-                "raspuns_corect": "Munții Parâng",
-                "locatie": "Gorj",
-                "hint": "Fac parte din Carpații Meridionali"
-            },
-            {
                 "id": 81,
                 "text": "Cum se numește sculptura lui Brâncuși formată din scaune în cerc",
                 "raspunsuri": [
@@ -1074,30 +919,6 @@
         "judet": "Harghita",
         "intrebari": [
             {
-                "id": 82,
-                "text": "Ce lac vulcanic se află în Harghita",
-                "raspunsuri": [
-                    "Lacul Sfânta Ana",
-                    "Lacul Roșu",
-                    "Lacul Vidraru"
-                ],
-                "raspuns_corect": "Lacul Sfânta Ana",
-                "locatie": "Harghita",
-                "hint": "Este singurul lac vulcanic din România"
-            },
-            {
-                "id": 83,
-                "text": "Ce munți se află în județul Harghita",
-                "raspunsuri": [
-                    "Munții Harghita",
-                    "Munții Făgăraș",
-                    "Munții Rodnei"
-                ],
-                "raspuns_corect": "Munții Harghita",
-                "locatie": "Harghita",
-                "hint": "Au același nume ca județul"
-            },
-            {
                 "id": 84,
                 "text": "Ce băutură renumită se produce în Harghita",
                 "raspunsuri": [
@@ -1111,7 +932,7 @@
             },
             {
                 "id": 85,
-                "text": "Cum se numește zona Harghita Covasna pe care o vizitează turiștii pentru ape minerale",
+                "text": "Cum se numește zona Harghita Covasna pe care o vizitează turiștii",
                 "raspunsuri": [
                     "Ținutul apelor minerale",
                     "Valea vinului",
@@ -1190,18 +1011,6 @@
                 "raspuns_corect": "Slobozia",
                 "locatie": "Ialomița",
                 "hint": "Este un oraș din Bărăgan"
-            },
-            {
-                "id": 91,
-                "text": "Ialomița se află în Câmpia",
-                "raspunsuri": [
-                    "Bărăganului",
-                    "Transilvaniei",
-                    "Moldovei"
-                ],
-                "raspuns_corect": "Bărăganului",
-                "locatie": "Ialomița",
-                "hint": "Este o zonă cu mult grâu"
             },
             {
                 "id": 92,
@@ -1520,30 +1329,6 @@
                 "raspuns_corect": "Mănăstirea Neamț",
                 "locatie": "Neamț",
                 "hint": "Este una dintre cele mai vechi din Moldova"
-            },
-            {
-                "id": 116,
-                "text": "Cum se numește muntele din apropierea Piatra Neamț",
-                "raspunsuri": [
-                    "Ceahlău",
-                    "Bucegi",
-                    "Rodna"
-                ],
-                "raspuns_corect": "Ceahlău",
-                "locatie": "Neamț",
-                "hint": "Este un munte sacru pentru români"
-            },
-            {
-                "id": 117,
-                "text": "Ce lac frumos se află la poalele muntelui Ceahlău",
-                "raspunsuri": [
-                    "Lacul Bicaz",
-                    "Lacul Roșu",
-                    "Lacul Sfânta Ana"
-                ],
-                "raspuns_corect": "Lacul Bicaz",
-                "locatie": "Neamț",
-                "hint": "Este un lac de acumulare"
             }
         ]
     },
@@ -1573,18 +1358,6 @@
                 "raspuns_corect": "Olt",
                 "locatie": "Olt",
                 "hint": "Are același nume ca județul"
-            },
-            {
-                "id": 120,
-                "text": "Ce lac de acumulare important se află în Olt",
-                "raspunsuri": [
-                    "Lacul Vidraru",
-                    "Lacul Olt",
-                    "Lacul Roșu"
-                ],
-                "raspuns_corect": "Lacul Olt",
-                "locatie": "Olt",
-                "hint": "Se află pe râul Olt"
             },
             {
                 "id": 121,
@@ -1638,18 +1411,6 @@
                 "raspuns_corect": "Peleș",
                 "locatie": "Prahova",
                 "hint": "Este aproape de Sinaia"
-            },
-            {
-                "id": 125,
-                "text": "Ce râu traversează județul Prahova",
-                "raspunsuri": [
-                    "Prahova",
-                    "Olt",
-                    "Mureș"
-                ],
-                "raspuns_corect": "Prahova",
-                "locatie": "Prahova",
-                "hint": "Are același nume ca județul"
             }
         ]
     },
@@ -1667,18 +1428,6 @@
                     "raspuns_corect": "Satu Mare",
                     "locatie": "Satu Mare",
                     "hint": "Este un oraș din nord-vestul țării"
-                },
-                {
-                    "id": 127,
-                    "text": "Satu Mare se află aproape de granița cu",
-                    "raspunsuri": [
-                        "Ungaria",
-                        "Bulgaria",
-                        "Serbia"
-                    ],
-                    "raspuns_corect": "Ungaria",
-                    "locatie": "Satu Mare",
-                    "hint": "Se află la nord-vest"
                 },
                 {
                     "id": 128,
@@ -1881,18 +1630,6 @@
                     "hint": "Este un oraș din sudul României"
                 },
                 {
-                    "id": 143,
-                    "text": "Ce râu trece prin județul Teleorman",
-                    "raspunsuri": [
-                        "Vedea",
-                        "Mureș",
-                        "Jiu"
-                    ],
-                    "raspuns_corect": "Vedea",
-                    "locatie": "Teleorman",
-                    "hint": "Este un râu mai mic din sudul țării"
-                },
-                {
                     "id": 144,
                     "text": "Teleorman se află în",
                     "raspunsuri": [
@@ -1959,7 +1696,7 @@
                 },
                 {
                     "id": 149,
-                    "text": "Ce turn de apă celebru se află în Timișoara",
+                    "text": "Ce turn de apă celebru se află în Vestul tarii",
                     "raspunsuri": [
                         "Turnul de apă din Timișoara",
                         "Turnul Eiffel",
