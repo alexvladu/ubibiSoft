@@ -91,14 +91,14 @@ fun BoardCard(
 fun BigCenterLetter(letter: String) {
     Box(
         modifier = Modifier
-            .size(110.dp)
+            .size(175.dp)
             .background(Color(0xFF37474F), RoundedCornerShape(20.dp))
             .border(8.dp, Color(0xFF546E7A), RoundedCornerShape(20.dp)),
         contentAlignment = Alignment.Center
     ) {
         Text(
             text = letter,
-            fontSize = 84.sp,
+            fontSize = 30.sp,
             fontWeight = FontWeight.Black,
             color = Color(0xFFEEEEEE)
         )

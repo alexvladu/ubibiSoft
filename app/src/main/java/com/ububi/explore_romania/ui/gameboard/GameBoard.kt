@@ -79,8 +79,8 @@ fun GameBoard(
                 ) {
                     // Two big letters (like in your screenshot)
                     Row(horizontalArrangement = Arrangement.spacedBy(50.dp)) {
-                        BigCenterLetter("T")
-                        BigCenterLetter("G")
+                        BigCenterLetter("Istorie")
+                        BigCenterLetter("Geografie")
                     }
 
                     Text(
