@@ -25,7 +25,8 @@ import kotlin.random.Random
 
 @Composable
 fun GameBoard(
-    modifier: Modifier
+    modifier: Modifier,
+    onNavigateToQuiz: () -> Unit
 ) {
     Column(
         verticalArrangement = Arrangement.spacedBy(20.dp),
@@ -79,8 +80,8 @@ fun GameBoard(
                 ) {
                     // Two big letters (like in your screenshot)
                     Row(horizontalArrangement = Arrangement.spacedBy(50.dp)) {
-                        BigCenterLetter("Istorie")
-                        BigCenterLetter("Geografie")
+                        BigText("Istorie", onNavigateToQuiz)
+                        BigText("Geografie", onNavigateToQuiz)
                     }
 
                     Text(
