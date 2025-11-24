@@ -2,6 +2,8 @@ package com.ububi.explore_romania.ui.gameboard
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
@@ -13,10 +15,12 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
@@ -88,17 +92,22 @@ fun BoardCard(
 }
 
 @Composable
-fun BigCenterLetter(letter: String) {
+fun BigText(text: String,
+            onClick: ()-> Unit) {
     Box(
         modifier = Modifier
-            .size(110.dp)
+            .size(175.dp)
             .background(Color(0xFF37474F), RoundedCornerShape(20.dp))
+            .clickable(
+                onClick = onClick,
+                interactionSource = remember { MutableInteractionSource() }
+            )
             .border(8.dp, Color(0xFF546E7A), RoundedCornerShape(20.dp)),
         contentAlignment = Alignment.Center
     ) {
         Text(
-            text = letter,
-            fontSize = 84.sp,
+            text = text,
+            fontSize = 30.sp,
             fontWeight = FontWeight.Black,
             color = Color(0xFFEEEEEE)
         )

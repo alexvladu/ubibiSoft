@@ -6,11 +6,13 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.ububi.explore_romania.ui.gameboard.BoardScreen
 import com.ububi.explore_romania.ui.home.HomeScreen
+import com.ububi.explore_romania.ui.quiz.QuizScreen
 
 
 object Routes {
     const val HOME = "home"
     const val GAME_BOARD = "gameboard"
+    const val QUIZ = "quiz"
 }
 
 
@@ -23,7 +25,14 @@ fun AppRouter() {
             HomeScreen(onStartClick = { navController.navigate(Routes.GAME_BOARD) })
         }
         composable(Routes.GAME_BOARD) {
-            BoardScreen(onBackClick = { navController.navigateUp() })
+            BoardScreen(onBackClick = { navController.navigateUp() },
+                        onNavigateToQuiz = {navController.navigate(Routes.QUIZ)}
+                        )
+        }
+        composable(Routes.QUIZ) {
+            QuizScreen(
+                onBackToGameBoard = { navController.navigateUp() }
+            )
         }
     }
 }

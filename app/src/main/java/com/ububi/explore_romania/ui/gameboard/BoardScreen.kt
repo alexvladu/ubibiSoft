@@ -15,7 +15,7 @@ import androidx.compose.ui.unit.dp
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun BoardScreen(onBackClick: () -> Unit) {
+fun BoardScreen(onBackClick: () -> Unit, onNavigateToQuiz: ()-> Unit) {
     Box(modifier = Modifier.fillMaxSize()) {
         // Gradient background
         Box(
@@ -37,7 +37,8 @@ fun BoardScreen(onBackClick: () -> Unit) {
             modifier = Modifier
                 .fillMaxSize()
                 .padding(horizontal = 20.dp)  // ← Perfect side margins
-                .padding(top = 60.dp, bottom = 20.dp)
+                .padding(top = 60.dp, bottom = 20.dp),
+            onNavigateToQuiz
         )
 
         IconButton(
