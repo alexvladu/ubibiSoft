@@ -8,13 +8,11 @@ import com.ububi.explore_romania.ui.gameboard.BoardScreen
 import com.ububi.explore_romania.ui.home.HomeScreen
 import com.ububi.explore_romania.ui.quiz.QuizScreen
 
-
 object Routes {
     const val HOME = "home"
     const val GAME_BOARD = "gameboard"
     const val QUIZ = "quiz"
 }
-
 
 @Composable
 fun AppRouter() {
@@ -25,14 +23,10 @@ fun AppRouter() {
             HomeScreen(onStartClick = { navController.navigate(Routes.GAME_BOARD) })
         }
         composable(Routes.GAME_BOARD) {
-            BoardScreen(onBackClick = { navController.navigateUp() },
-                        onNavigateToQuiz = {navController.navigate(Routes.QUIZ)}
-                        )
+            BoardScreen(navController = navController)
         }
         composable(Routes.QUIZ) {
-            QuizScreen(
-                onBackToGameBoard = { navController.navigateUp() }
-            )
+            QuizScreen(navController = navController)
         }
     }
 }
