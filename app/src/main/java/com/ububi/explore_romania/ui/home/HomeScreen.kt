@@ -2,7 +2,9 @@ package com.ububi.explore_romania.ui.home
 
 import android.app.Activity
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -52,6 +54,7 @@ fun HomeScreen(
 
     var playerName by remember { mutableStateOf("") }
     var characterId by remember { mutableIntStateOf(1) }
+    var coins by remember { mutableIntStateOf(67) }
     var isNameLoaded by remember { mutableStateOf(false) }
 
     // Play home music when screen appears
@@ -72,6 +75,12 @@ fun HomeScreen(
     LaunchedEffect(Unit) {
         PlayerPreferences.getCharacterId(context).collect { saved ->
             characterId = saved
+        }
+    }
+
+    LaunchedEffect(Unit) {
+        PlayerPreferences.getCoins(context).collect { saved ->
+            coins = saved
         }
     }
 
@@ -216,6 +225,45 @@ fun HomeScreen(
                     )
                 }
             }
+        }
+
+        // Coin display in bottom-right corner
+        Row(
+            modifier = Modifier
+                .align(Alignment.BottomEnd)
+                .padding(bottom = 30.dp, end = 30.dp)
+                .background(
+                    color = Color(0xFFFFB74D),
+                    shape = RoundedCornerShape(20.dp)
+                )
+                .padding(horizontal = 16.dp, vertical = 10.dp),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(8.dp)
+        ) {
+            // Circle placeholder for coin image
+            Box(
+                modifier = Modifier
+                    .size(32.dp)
+                    .background(
+                        color = Color(0xFFF57C00),
+                        shape = CircleShape
+                    ),
+                contentAlignment = Alignment.Center
+            ) {
+                Text(
+                    text = "C",
+                    fontSize = 18.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = Color.White
+                )
+            }
+
+            Text(
+                text = coins.toString(),
+                fontSize = 24.sp,
+                fontWeight = FontWeight.Bold,
+                color = Color.Black
+            )
         }
     }
 }
