@@ -46,6 +46,8 @@ dependencies {
     implementation("com.google.dagger:hilt-android:2.51")
     kapt("com.google.dagger:hilt-android-compiler:2.51")  // NU "hilt-compiler"!
     implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
+    implementation("androidx.navigation:navigation-compose:2.8.5")
+    implementation("androidx.compose.animation:animation:1.7.5")
     implementation("androidx.datastore:datastore-preferences:1.2.0")
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)

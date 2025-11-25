@@ -16,16 +16,23 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.ububi.explore_romania.ui.components.CharacterSprite
+import com.ububi.explore_romania.ui.components.ConfettiAnimation
+import com.ububi.explore_romania.MusicManager
+import com.ububi.explore_romania.SoundEffect
 
 @Composable
 fun GameBoard(
     counties: List<County>,
     pawnPosition: Int,
+    characterId: Int = 1,
+    showConfetti: Boolean = false,
     onHistoryClick: () -> Unit,
     onGeographyClick: () -> Unit,
     modifier: Modifier = Modifier
@@ -35,6 +42,7 @@ fun GameBoard(
         val screenHeight = maxHeight
         val cellWidth = screenWidth / 6f
         val cellHeight = screenHeight / 4f
+        val density = LocalDensity.current
 
         Box(
             modifier = Modifier
@@ -53,7 +61,10 @@ fun GameBoard(
                         text = "ISTORIE",
                         baseColor = Color(0xFF8B4513),
                         rotation = -8f,
-                        onClick = onHistoryClick,
+                        onClick = {
+                            MusicManager.playSoundEffect(SoundEffect.BUTTON)
+                            onHistoryClick()
+                        },
                         width = 160.dp,
                         height = 90.dp,
                         fontSize = 18.sp
@@ -62,7 +73,10 @@ fun GameBoard(
                         text = "GEOGRAFIE",
                         baseColor = Color(0xFF2E8B57),
                         rotation = 8f,
-                        onClick = onGeographyClick,
+                        onClick = {
+                            MusicManager.playSoundEffect(SoundEffect.BUTTON)
+                            onGeographyClick()
+                        },
                         width = 160.dp,
                         height = 90.dp,
                         fontSize = 18.sp
@@ -95,24 +109,46 @@ fun GameBoard(
                 )
             }
 
-
+            // Pawn position - instant teleport (no animation)
             val displayPawnPos = if (pawnPosition >= 16) 15 else pawnPosition
             val (pawnCol, pawnRow) = calculateBoardPosition(displayPawnPos)
+
+            // Calculate position directly without animation
+            val pawnX = cellWidth * pawnCol
+            val pawnY = cellHeight * pawnRow
 
             Box(
                 modifier = Modifier
                     .width(cellWidth)
                     .height(cellHeight)
-                    .offset(x = cellWidth * pawnCol, y = cellHeight * pawnRow),
+                    .offset(x = pawnX, y = pawnY),
                 contentAlignment = Alignment.Center
             ) {
-                Box(
-                    modifier = Modifier
-                        .size(32.dp)
-                        .background(Color.Red, shape = CircleShape)
-                        .border(2.dp, Color.White, shape = CircleShape)
-                        .shadow(8.dp, CircleShape)
+                CharacterSprite(
+                    characterId = characterId,
+                    size = 64,
+                    modifier = Modifier.shadow(8.dp, CircleShape)
                 )
+            }
+
+            // Confetti animation overlay at character position
+            if (showConfetti) {
+                // Calculate center of character in dp then convert to pixels
+                val characterCenterXDp = pawnX.value + cellWidth.value / 2
+                val characterCenterYDp = pawnY.value + cellHeight.value / 2
+
+                // Convert to pixels using density
+                with(density) {
+                    val centerXPx = characterCenterXDp.dp.toPx()
+                    val centerYPx = characterCenterYDp.dp.toPx()
+
+                    ConfettiAnimation(
+                        isAnimating = showConfetti,
+                        centerX = centerXPx,
+                        centerY = centerYPx,
+                        modifier = Modifier.fillMaxSize()
+                    )
+                }
             }
         }
     }
@@ -151,6 +187,7 @@ private fun StackedButton(
         }
     }
 }
+
 
 fun calculateBoardPosition(index: Int): Pair<Int, Int> {
     return when (index) {
