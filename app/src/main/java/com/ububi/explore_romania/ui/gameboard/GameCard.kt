@@ -1,116 +1,61 @@
 package com.ububi.explore_romania.ui.gameboard
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.interaction.MutableInteractionSource
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.aspectRatio
-import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.ripple.rememberRipple
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
+import androidx.compose.foundation.layout.*
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun BoardCard(
-    countyCode: String,
-    number: String,
+fun GameCard(
+    county: County,
+    width: Dp,
+    height: Dp,
     modifier: Modifier = Modifier
 ) {
-    Card(
+    Box(
         modifier = modifier
-            .aspectRatio(2.15f)
-            .shadow(16.dp, RoundedCornerShape(14.dp)),
-        shape = RoundedCornerShape(14.dp),
-        colors = CardDefaults.cardColors(containerColor = Color.White)
+            .width(width)
+            .height(height)
+            .border(1.dp, Color.Black)
     ) {
-        Row(
+        // 1. Background image
+        if (county.image != null) {
+            Image(
+                bitmap = county.image,
+                contentDescription = county.name,
+                contentScale = ContentScale.Crop,
+                modifier = Modifier.fillMaxSize()
+            )
+        } else {
+            // Gray background if no image is available (fallback)
+            Box(modifier = Modifier.fillMaxSize().background(Color.Gray))
+        }
+
+        // 2. County name overlay
+        Box(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(horizontal = 10.dp),
-            verticalAlignment = Alignment.CenterVertically
+                .background(Color.White.copy(alpha = 0.5f)),
+            contentAlignment = Alignment.Center
         ) {
-            // Blue EU strip with RO
-            Box(
-                modifier = Modifier
-                    .fillMaxHeight()
-                    .width(44.dp)
-                    .background(Color(0xFF003087))
-                    .padding(4.dp),
-                contentAlignment = Alignment.Center
-            ) {
-                Text(
-                    text = "RO",
-                    color = Color.Yellow,
-                    fontWeight = FontWeight.ExtraBold,
-                    fontSize = 18.sp
-                )
-            }
-
-            Spacer(modifier = Modifier.width(12.dp))
-
-            // County code + number
-            Row(
-                modifier = Modifier.weight(1f),
-                horizontalArrangement = Arrangement.Center
-            ) {
-                Text(
-                    text = countyCode,
-                    color = Color.Black,
-                    fontSize = 34.sp,
-                    fontWeight = FontWeight.ExtraBold
-                )
-                Spacer(modifier = Modifier.width(10.dp))
-                Text(
-                    text = number,
-                    color = Color.Black,
-                    fontSize = 44.sp,
-                    fontWeight = FontWeight.Black,
-                    letterSpacing = 3.sp
-                )
-            }
+            Text(
+                text = county.name,
+                color = Color.Black,
+                fontWeight = FontWeight.Bold,
+                fontSize = 20.sp,
+                textAlign = TextAlign.Center
+            )
         }
     }
 }
-
-@Composable
-fun BigText(text: String,
-            onClick: ()-> Unit) {
-    Box(
-        modifier = Modifier
-            .size(175.dp)
-            .background(Color(0xFF37474F), RoundedCornerShape(20.dp))
-            .clickable(
-                onClick = onClick,
-                interactionSource = remember { MutableInteractionSource() }
-            )
-            .border(8.dp, Color(0xFF546E7A), RoundedCornerShape(20.dp)),
-        contentAlignment = Alignment.Center
-    ) {
-        Text(
-            text = text,
-            fontSize = 30.sp,
-            fontWeight = FontWeight.Black,
-            color = Color(0xFFEEEEEE)
-        )
-    }
-}
-
