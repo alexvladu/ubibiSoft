@@ -47,6 +47,8 @@ dependencies {
     implementation(libs.androidx.compose.foundation)
     kapt("com.google.dagger:hilt-android-compiler:2.51")  // NU "hilt-compiler"!
     implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
+    implementation("io.coil-kt:coil-compose:2.4.0") // faster sticker loading
+
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)

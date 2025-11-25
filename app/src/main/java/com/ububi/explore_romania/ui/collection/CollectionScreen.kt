@@ -29,9 +29,7 @@ fun CollectionScreen(
     rarityFilter: RarityFilter,
     onOwnershipFilterChange: (OwnershipFilter) -> Unit,
     onRarityFilterChange: (RarityFilter) -> Unit,
-    ownedIds: Set<String>,
-    images: Map<String, ImageBitmap?>,
-    grayImages: Map<String, ImageBitmap?>
+    ownedIds: Set<String>
 )
  {
     val MarioFont = FontFamily(Font(R.font.retromario))
@@ -63,9 +61,7 @@ fun CollectionScreen(
 
         StickerGrid(
             stickers = stickers,
-            ownedIds = ownedIds,
-            images = images,
-            grayImages = grayImages
+            ownedIds = ownedIds
         )
     }
 }

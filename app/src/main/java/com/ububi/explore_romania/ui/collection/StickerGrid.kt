@@ -16,10 +16,9 @@ import com.ububi.explore_romania.ui.stickers.Sticker
 fun StickerGrid(
     stickers: List<Sticker>,
     ownedIds: Set<String>,
-    images: Map<String, ImageBitmap?>,
-    grayImages: Map<String, ImageBitmap?>,
     modifier: Modifier = Modifier
-) {
+)
+ {
     LazyVerticalGrid(
         columns = GridCells.Fixed(4),
         verticalArrangement = Arrangement.spacedBy(24.dp),
@@ -32,10 +31,8 @@ fun StickerGrid(
             StickerCard(
                 name = if (owned) sticker.name else "???",
                 rarity = sticker.rarity,
-                imageBitmap = if (owned)
-                    images[sticker.id]
-                else
-                    grayImages[sticker.id],
+                imagePath = sticker.assetPath,
+                grayImagePath = sticker.grayAssetPath,
                 owned = owned
             )
         }

@@ -8,7 +8,6 @@ import androidx.compose.runtime.getValue
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.compose.ui.platform.LocalContext
 
-@RequiresApi(Build.VERSION_CODES.P)
 @Composable
 fun CollectionRoute() {
 
@@ -18,9 +17,7 @@ fun CollectionRoute() {
     val filteredStickers by vm.filteredStickers.collectAsState()
     val ownershipFilter by vm.ownershipFilter.collectAsState()
     val rarityFilter by vm.rarityFilter.collectAsState()
-    val images by vm.images.collectAsState()
     val ownedIds by vm.ownedIds.collectAsState()
-    val grayImages by vm.grayImages.collectAsState()
 
     CollectionScreen(
         stickers = filteredStickers,
@@ -29,7 +26,5 @@ fun CollectionRoute() {
         onOwnershipFilterChange = vm::setOwnershipFilter,
         onRarityFilterChange = vm::setRarityFilter,
         ownedIds = ownedIds,
-        images = images,
-        grayImages = grayImages
     )
 }

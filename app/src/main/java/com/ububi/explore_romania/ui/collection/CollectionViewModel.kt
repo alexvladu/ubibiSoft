@@ -20,7 +20,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import java.nio.ByteBuffer
 
-@RequiresApi(Build.VERSION_CODES.P)
+
 class CollectionViewModel(
     private val repo: StickerRepository,
     private val context: Context
@@ -31,12 +31,6 @@ class CollectionViewModel(
 
     private val _ownedIds = MutableStateFlow<Set<String>>(emptySet())
     val ownedIds: StateFlow<Set<String>> = _ownedIds
-
-    private val _images = MutableStateFlow<Map<String, ImageBitmap?>>(emptyMap())
-    val images: StateFlow<Map<String, ImageBitmap?>> = _images
-
-    private val _grayImages = MutableStateFlow<Map<String, ImageBitmap?>>(emptyMap())
-    val grayImages: StateFlow<Map<String, ImageBitmap?>> = _grayImages
 
     enum class OwnershipFilter { OWNED, MISSING, ALL }
     enum class RarityFilter { ALL, COMMON, RARE, EPIC, LEGENDARY }
@@ -53,9 +47,17 @@ class CollectionViewModel(
     init {
         viewModelScope.launch {
 
-            // pentru testare
             repo.addSticker("common_Ananas", StickerRarity.COMMON)
+            repo.addSticker("common_Chitară", StickerRarity.COMMON)
+            repo.addSticker("common_Stea_Strălucitoare", StickerRarity.COMMON)
+            repo.addSticker("common_Onigiri", StickerRarity.COMMON)
             repo.addSticker("rare_Axolotl", StickerRarity.RARE)
+            repo.addSticker("rare_Diplodocus", StickerRarity.RARE)
+            repo.addSticker("rare_Cufăr", StickerRarity.RARE)
+            repo.addSticker("rare_Fan_k-pop", StickerRarity.RARE)
+            repo.addSticker("epic_ElGato", StickerRarity.EPIC)
+            repo.addSticker("epic_Omul_Păianjen", StickerRarity.EPIC)
+            repo.addSticker("legendary_Ballerina_Cappuccina", StickerRarity.LEGENDARY)
 
             val all = repo.loadAllStickers()
             _stickers.value = all
@@ -63,55 +65,7 @@ class CollectionViewModel(
             val owned = repo.loadOwnedStickers().keys
             _ownedIds.value = owned
 
-            preloadImages()
-
             updateFilter()
-        }
-    }
-
-    @RequiresApi(Build.VERSION_CODES.P)
-    private fun decodeImage(bytes: ByteArray): ImageBitmap? {
-        return try {
-            val source = ImageDecoder.createSource(ByteBuffer.wrap(bytes))
-            ImageDecoder.decodeBitmap(source).asImageBitmap()
-        } catch (e: Exception) {
-            Log.e("DECODE", "Failed decoding", e)
-            null
-        }
-    }
-
-
-    @RequiresApi(Build.VERSION_CODES.P)
-    private fun preloadImages() {
-        viewModelScope.launch(Dispatchers.IO) {
-
-            val map = mutableMapOf<String, ImageBitmap?>()
-            val grayMap = mutableMapOf<String, ImageBitmap?>()
-
-            for (s in _stickers.value) {
-                Log.d("LOAD_PATHS", "normal=${s.assetPath}  gray=${s.grayAssetPath}")
-
-                val bmpNormal = try {
-                    val bytes = context.assets.open(s.assetPath).use { it.readBytes() }
-                    decodeImage(bytes)
-                } catch (e: Exception) {
-                    null
-                }
-
-                val bmpGray = try {
-                    val bytes = context.assets.open(s.grayAssetPath).use { it.readBytes() }
-                    decodeImage(bytes)
-                } catch (e: Exception) {
-                    null
-                }
-
-
-                map[s.id] = bmpNormal
-                grayMap[s.id] = bmpGray
-            }
-
-            _images.value = map
-            _grayImages.value = grayMap
         }
     }
 
@@ -156,9 +110,9 @@ class CollectionViewModel(
 
 
 
+
 @Suppress("UNCHECKED_CAST")
 class CollectionVMFactory(private val context: Context) : ViewModelProvider.Factory {
-    @RequiresApi(Build.VERSION_CODES.P)
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         val repo = StickerRepository(context)
         return CollectionViewModel(repo, context) as T

@@ -14,11 +14,14 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import coil.compose.AsyncImage
+import coil.request.ImageRequest
 import com.ububi.explore_romania.R
 import com.ububi.explore_romania.ui.stickers.StickerRarity
 import com.ububi.explore_romania.ui.theme.*
@@ -29,10 +32,12 @@ import com.ububi.explore_romania.ui.theme.*
 fun StickerCard(
     name: String,
     rarity: StickerRarity,
-    imageBitmap: ImageBitmap?,
-    owned: Boolean,
-    modifier: Modifier = Modifier
+    imagePath: String,
+    grayImagePath: String,
+    owned: Boolean
 ) {
+    val finalPath = if (owned) imagePath else grayImagePath
+
     val outlineColor = when (rarity) {
         StickerRarity.COMMON -> CommonOutline
         StickerRarity.RARE -> RareOutline
@@ -40,18 +45,13 @@ fun StickerCard(
         StickerRarity.LEGENDARY -> LegendaryOutline
     }
 
-    val RobloxFont = FontFamily(Font(R.font.roblox))
-    val NameFont = FontFamily.Default
-
     Card(
-        modifier = modifier
+        modifier = Modifier
             .width(180.dp)
             .height(220.dp),
         shape = RoundedCornerShape(16.dp),
         border = BorderStroke(4.dp, outlineColor),
-        colors = CardDefaults.cardColors(
-            containerColor = CardBackground
-        )
+        colors = CardDefaults.cardColors(containerColor = CardBackground)
     ) {
         Column(
             modifier = Modifier
@@ -60,31 +60,27 @@ fun StickerCard(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.SpaceBetween
         ) {
-            // Imagine
+
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(150.dp),
                 contentAlignment = Alignment.Center
             ) {
-                if (imageBitmap != null) {
-                    Image(
-                        bitmap = imageBitmap,
-                        contentDescription = name,
-                        contentScale = ContentScale.Fit,
-                        modifier = Modifier.fillMaxSize()
-                    )
-                }
-                if (imageBitmap == null) {
-                    Text("NO IMAGE", color = Color.Red)
-                }
+                AsyncImage(
+                    model = ImageRequest.Builder(LocalContext.current)
+                        .data("file:///android_asset/$finalPath")
+                        .crossfade(true)
+                        .build(),
+                    contentDescription = name,
+                    contentScale = ContentScale.Fit,
+                    modifier = Modifier.fillMaxSize()
+                )
             }
 
-            // Nume sticker
             Text(
                 text = name,
                 fontSize = 18.sp,
-                fontFamily = NameFont,
                 textAlign = TextAlign.Center
             )
         }
