@@ -2,7 +2,6 @@ package com.ububi.explore_romania.ui.home
 
 import android.app.Activity
 import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
@@ -11,17 +10,15 @@ import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
-import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.Font
@@ -32,10 +29,14 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.ububi.explore_romania.PlayerPreferences
+import com.ububi.explore_romania.ui.components.CharacterCarousel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import com.ububi.explore_romania.R
+import com.ububi.explore_romania.MusicManager
+import com.ububi.explore_romania.MusicTrack
+import com.ububi.explore_romania.SoundEffect
 
 @Composable
 fun HomeScreen(
@@ -43,9 +44,6 @@ fun HomeScreen(
     onCollectionClick: () -> Unit,
     onTreasureClick: () -> Unit,
 ) {
-    val RobloxFont = FontFamily(
-        Font(R.font.roblox)
-    )
     val MarioFont = FontFamily(
         Font(R.font.retromario)
     )
@@ -53,10 +51,27 @@ fun HomeScreen(
     val activity = context as? Activity
 
     var playerName by remember { mutableStateOf("") }
+    var characterId by remember { mutableIntStateOf(1) }
+    var isNameLoaded by remember { mutableStateOf(false) }
 
+    // Play home music when screen appears
+    LaunchedEffect(Unit) {
+        MusicManager.playTrack(MusicTrack.HOME)
+    }
+
+    // Load player name only once on initial load
     LaunchedEffect(Unit) {
         PlayerPreferences.getPlayerName(context).collect { saved ->
-            playerName = saved
+            if (!isNameLoaded) {
+                playerName = saved
+                isNameLoaded = true
+            }
+        }
+    }
+
+    LaunchedEffect(Unit) {
+        PlayerPreferences.getCharacterId(context).collect { saved ->
+            characterId = saved
         }
     }
 
@@ -107,13 +122,18 @@ fun HomeScreen(
                             verticalAlignment = Alignment.CenterVertically
                         ) {
                             HomeButton("Play") {
+                                MusicManager.playSoundEffect(SoundEffect.BUTTON)
                                 CoroutineScope(Dispatchers.IO).launch {
                                     PlayerPreferences.savePlayerName(context, playerName)
+                                    PlayerPreferences.saveCharacterId(context, characterId)
                                 }
                                 onPlayClick()
                             }
 
-                            HomeButton("Collection", onCollectionClick)
+                            HomeButton("Collection") {
+                                MusicManager.playSoundEffect(SoundEffect.BUTTON)
+                                onCollectionClick()
+                            }
                         }
 
                         Row(
@@ -121,12 +141,17 @@ fun HomeScreen(
                             verticalAlignment = Alignment.CenterVertically
                         ) {
 
-                            HomeButton("Treasure", onTreasureClick)
+                            HomeButton("Treasure") {
+                                MusicManager.playSoundEffect(SoundEffect.BUTTON)
+                                onTreasureClick()
+                            }
 
 
                             HomeButton("Exit") {
+                                MusicManager.playSoundEffect(SoundEffect.BUTTON)
                                 CoroutineScope(Dispatchers.IO).launch {
                                     PlayerPreferences.savePlayerName(context, playerName)
+                                    PlayerPreferences.saveCharacterId(context, characterId)
                                 }
                                 activity?.finishAffinity()
                             }
@@ -144,9 +169,10 @@ fun HomeScreen(
 
                 Column(
                     horizontalAlignment = Alignment.CenterHorizontally,
-                    verticalArrangement = Arrangement.Center
+                    verticalArrangement = Arrangement.spacedBy(30.dp)
                 ) {
 
+                    // Name input field - now with transparent gray background
                     OutlinedTextField(
                         value = playerName,
                         onValueChange = { playerName = it },
@@ -169,8 +195,8 @@ fun HomeScreen(
                         colors = OutlinedTextFieldDefaults.colors(
                             focusedBorderColor = Color.White,
                             unfocusedBorderColor = Color.White,
-                            focusedContainerColor = Color.White,
-                            unfocusedContainerColor = Color.White,
+                            focusedContainerColor = Color(0x99CCCCCC),
+                            unfocusedContainerColor = Color(0x99CCCCCC),
                             cursorColor = Color.Black
                         ),
                         modifier = Modifier
@@ -178,10 +204,16 @@ fun HomeScreen(
                             .height(60.dp)
                     )
 
-                    //Aici sub vine character creation. Cred ca cel mai usor mod sa salvezi avatarul
-                    //i sa te folosesti de PlayerPreferences si sa salvezi doua int-uri
-                    //la fel cum am salvat player name cand apesi pe play si exit
-                    //si sa le incarci inapoi cand se deschide aplicatia sau mergem pe tabla
+                    // Character carousel selector
+                    CharacterCarousel(
+                        characterId = characterId,
+                        onCharacterChange = { newId ->
+                            characterId = newId
+                            CoroutineScope(Dispatchers.IO).launch {
+                                PlayerPreferences.saveCharacterId(context, newId)
+                            }
+                        }
+                    )
                 }
             }
         }

@@ -28,14 +28,19 @@ fun AppRouter() {
                 }
             })
         }
+
         composable(Routes.HOME) {
-            HomeScreen(onPlayClick = { navController.navigate(Routes.GAME_BOARD) },
+            HomeScreen(
+                onPlayClick = { navController.navigate(Routes.GAME_BOARD) },
                 onCollectionClick = { navController.navigate(Routes.GAME_BOARD) },
-                onTreasureClick = { navController.navigate(Routes.GAME_BOARD) })
+                onTreasureClick = { navController.navigate(Routes.GAME_BOARD) }
+            )
         }
+
         composable(Routes.GAME_BOARD) {
             BoardScreen(navController = navController)
         }
+
         composable(Routes.QUIZ) {
             QuizScreen(navController = navController)
         }

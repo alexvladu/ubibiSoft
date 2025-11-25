@@ -14,8 +14,12 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.ububi.explore_romania.PlayerPreferences
 import com.ububi.explore_romania.Routes
+import com.ububi.explore_romania.MusicManager
+import com.ububi.explore_romania.MusicTrack
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext
 
 @Composable
@@ -27,6 +31,19 @@ fun BoardScreen(navController: NavController) {
     var isLoading by remember { mutableStateOf(true) }
 
     var pawnPosition by rememberSaveable { mutableIntStateOf(0) }
+    var characterId by remember { mutableIntStateOf(1) }
+    var showConfetti by remember { mutableStateOf(false) }
+
+    // Play board music when screen appears
+    LaunchedEffect(Unit) {
+        MusicManager.playTrack(MusicTrack.BOARD)
+    }
+
+    LaunchedEffect(Unit) {
+        PlayerPreferences.getCharacterId(context).collect { saved ->
+            characterId = saved
+        }
+    }
 
     val currentBackStackEntry = navController.currentBackStackEntry
     val quizTimestampState = currentBackStackEntry?.savedStateHandle
@@ -34,12 +51,26 @@ fun BoardScreen(navController: NavController) {
         ?.collectAsState()
     val quizTimestamp = quizTimestampState?.value ?: 0L
 
+    val quizCorrectState = currentBackStackEntry?.savedStateHandle
+        ?.getStateFlow<Boolean>("quiz_answer_correct", false)
+        ?.collectAsState()
+    val wasAnswerCorrect = quizCorrectState?.value ?: false
+
     LaunchedEffect(quizTimestamp) {
         if (quizTimestamp != 0L) {
             if (pawnPosition < 16) {
+                // Show confetti only if answer was correct
+                if (wasAnswerCorrect) {
+                    showConfetti = true
+                }
                 pawnPosition++
+
+                // Reset confetti after animation
+                delay(1500)
+                showConfetti = false
             }
             currentBackStackEntry?.savedStateHandle?.remove<Long>("quiz_result_timestamp")
+            currentBackStackEntry?.savedStateHandle?.remove<Boolean>("quiz_answer_correct")
         }
     }
 
@@ -70,6 +101,8 @@ fun BoardScreen(navController: NavController) {
                 GameBoard(
                     counties = countiesOnBoard,
                     pawnPosition = pawnPosition,
+                    characterId = characterId,
+                    showConfetti = showConfetti,
                     onHistoryClick = { navController.navigate(Routes.QUIZ) },
                     onGeographyClick = { navController.navigate(Routes.QUIZ) },
                     modifier = Modifier.fillMaxSize()
