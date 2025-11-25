@@ -1,144 +1,212 @@
 package com.ububi.explore_romania.ui.gameboard
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.offset
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.rotate
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import kotlin.random.Random
 
 @Composable
 fun GameBoard(
-    modifier: Modifier,
-    onNavigateToQuiz: () -> Unit
+    counties: List<County>,
+    pawnPosition: Int,
+    onHistoryClick: () -> Unit,
+    onGeographyClick: () -> Unit,
+    modifier: Modifier = Modifier
 ) {
-    Column(
-        verticalArrangement = Arrangement.spacedBy(20.dp),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = Modifier.fillMaxSize()
-    ) {
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.spacedBy(12.dp)
+    BoxWithConstraints(modifier = modifier) {
+        // --- GRID DIMENSIONS ---
+        val screenWidth = maxWidth
+        val screenHeight = maxHeight
+        val cellWidth = screenWidth / 6f
+        val cellHeight = screenHeight / 4f
+
+        // --- CENTER AREA ---
+        Box(
+            modifier = Modifier
+                .width(cellWidth * 4)
+                .height(cellHeight * 2)
+                .align(Alignment.Center),
+            contentAlignment = Alignment.Center
         ) {
-            val topCounties = listOf("B", "CJ", "TM", "IS", "PH")
-            topCounties.forEach { county ->
-                BoardCard(
-                    countyCode = county,
-                    number = String.format("%02d", Random.nextInt(1, 100)),
-                    modifier = Modifier.weight(1f)
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceEvenly,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                // --- HISTORY STACKED BUTTON ---
+                StackedButton(
+                    text = "HISTORY",
+                    baseColor = Color(0xFF8B4513), // Brown
+                    rotation = -12f,
+                    onClick = onHistoryClick,
+                    width = 220.dp,
+                    height = 120.dp,
+                    fontSize = 20.sp
+                )
+
+                // --- GEOGRAPHY STACKED BUTTON ---
+                StackedButton(
+                    text = "GEOGRAPHY",
+                    baseColor = Color(0xFF2E8B57), // Green
+                    rotation = 12f,
+                    onClick = onGeographyClick,
+                    width = 220.dp,
+                    height = 120.dp,
+                    fontSize = 18.sp
                 )
             }
         }
 
-        // MIDDLE: Left + Center + Right
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .weight(1f),
-            horizontalArrangement = Arrangement.spacedBy(20.dp)
-        ) {
-            // LEFT column (2 plates)
-            Column(
-                verticalArrangement = Arrangement.spacedBy(20.dp),
-                modifier = Modifier.fillMaxHeight()
-            ) {
-                BoardCard(countyCode = "AG", number = "07", modifier = Modifier.weight(1f))
-                BoardCard(countyCode = "VL", number = "23", modifier = Modifier.weight(1f))
+        // --- DRAW CARDS ON EDGES ---
+        if (counties.size >= 16) {
+            for (index in 0 until 16) {
+                val county = counties[index]
+                val (col, row) = calculateBoardPosition(index)
+                GameCard(
+                    county = county,
+                    width = cellWidth,
+                    height = cellHeight,
+                    modifier = Modifier.offset(x = cellWidth * col, y = cellHeight * row)
+                )
             }
-
-            // CENTER - Main game area
+            // --- PAWN ---
+            val (pawnCol, pawnRow) = calculateBoardPosition(pawnPosition)
             Box(
                 modifier = Modifier
-                    .weight(1f)
-                    .fillMaxHeight()
-                    .clip(RoundedCornerShape(32.dp))
-                    .background(Color(0xFF212121))
-                    .border(8.dp, Color(0xFF424242), RoundedCornerShape(32.dp))
-                    .padding(32.dp),
+                    .width(cellWidth)
+                    .height(cellHeight)
+                    .offset(x = cellWidth * pawnCol, y = cellHeight * pawnRow),
                 contentAlignment = Alignment.Center
             ) {
-                Column(
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                    verticalArrangement = Arrangement.spacedBy(40.dp)
-                ) {
-                    // Two big letters (like in your screenshot)
-                    Row(horizontalArrangement = Arrangement.spacedBy(50.dp)) {
-                        BigText("Istorie", onNavigateToQuiz)
-                        BigText("Geografie", onNavigateToQuiz)
-                    }
-
-                    Text(
-                        text = "EXPLORE ROMANIA",
-                        fontSize = 52.sp,
-                        fontWeight = FontWeight.Black,
-                        color = Color.White,
-                        letterSpacing = 6.sp
-                    )
-
-                    Text(
-                        text = "Colectează județe • Călătorește • Descoperă",
-                        fontSize = 22.sp,
-                        fontWeight = FontWeight.Medium,
-                        color = Color(0xFFB0BEC5)
-                    )
-
-                    // Bonus: Player name bubble like in your pic
-                    Box(
-                        modifier = Modifier
-                            .offset(x = 80.dp, y = 20.dp)
-                            .background(Color(0xFFE91E63), RoundedCornerShape(30.dp))
-                            .padding(horizontal = 20.dp, vertical = 10.dp)
-                    ) {
-                        Text(
-                            text = "ALEXANDRA-ISA...",
-                            color = Color.White,
-                            fontWeight = FontWeight.Bold,
-                            fontSize = 16.sp
-                        )
-                    }
-                }
-            }
-
-            // RIGHT column (2 plates)
-            Column(
-                verticalArrangement = Arrangement.spacedBy(20.dp),
-                modifier = Modifier.fillMaxHeight()
-            ) {
-                BoardCard(countyCode = "CT", number = "77", modifier = Modifier.weight(1f))
-                BoardCard(countyCode = "BR", number = "01", modifier = Modifier.weight(1f))
-            }
-        }
-
-        // BOTTOM ROW - 5 plates
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.spacedBy(12.dp)
-        ) {
-            val bottomCounties = listOf("IF", "GL", "HR", "SM", "BH")
-            bottomCounties.forEach { county ->
-                BoardCard(
-                    countyCode = county,
-                    number = String.format("%02d", Random.nextInt(1, 100)),
-                    modifier = Modifier.weight(1f)
+                Box(
+                    modifier = Modifier
+                        .size(30.dp)
+                        .background(Color.Red, shape = CircleShape)
+                        .border(3.dp, Color.White, shape = CircleShape)
+                        .shadow(6.dp, CircleShape)
                 )
             }
         }
+    }
+}
+
+@Composable
+private fun StackedButton(
+    text: String,
+    baseColor: Color,
+    rotation: Float,
+    onClick: () -> Unit,
+    width: Dp,
+    height: Dp,
+    fontSize: androidx.compose.ui.unit.TextUnit
+) {
+    val shape = RoundedCornerShape(16.dp)
+    val darkerColor = baseColor.copy(alpha = 0.8f)
+
+    Box(
+        modifier = Modifier
+            .width(width + 12.dp)
+            .height(height + 12.dp)
+            .rotate(rotation),
+        contentAlignment = Alignment.TopStart
+    ) {
+        // --- "Cartea" de jos (Cea mai din spate) ---
+        Surface(
+            modifier = Modifier
+                .offset(x = 12.dp, y = 12.dp) // Offset mare
+                .width(width)
+                .height(height),
+            color = darkerColor,
+            shape = shape,
+            border = BorderStroke(1.dp, Color.White.copy(alpha = 0.5f)),
+            shadowElevation = 2.dp
+        ) {}
+
+        // --- "Cartea" din mijloc ---
+        Surface(
+            modifier = Modifier
+                .offset(x = 6.dp, y = 6.dp) // Offset mediu
+                .width(width)
+                .height(height),
+            color = darkerColor,
+            shape = shape,
+            border = BorderStroke(1.dp, Color.White.copy(alpha = 0.7f)),
+            shadowElevation = 4.dp
+        ) {}
+
+        // --- Butonul principal (Deasupra) ---
+        Button(
+            onClick = onClick,
+            colors = ButtonDefaults.buttonColors(containerColor = baseColor),
+            shape = shape,
+            border = BorderStroke(2.dp, Color.White),
+            elevation = ButtonDefaults.buttonElevation(
+                defaultElevation = 8.dp,
+                pressedElevation = 4.dp
+            ),
+            modifier = Modifier
+                .width(width)
+                .height(height)
+        ) {
+            Text(
+                text = text,
+                fontSize = fontSize,
+                fontWeight = FontWeight.ExtraBold,
+                textAlign = TextAlign.Center,
+                color = Color.White,
+                style = MaterialTheme.typography.labelLarge.copy(
+                    shadow = androidx.compose.ui.graphics.Shadow(
+                        color = Color.Black.copy(alpha = 0.6f),
+                        offset = androidx.compose.ui.geometry.Offset(2f, 2f),
+                        blurRadius = 4f
+                    )
+                )
+            )
+        }
+    }
+}
+
+// --- LOGIC FOR POSITIONING (6x4 Grid) ---
+// (Neschimbată)
+fun calculateBoardPosition(index: Int): Pair<Int, Int> {
+    return when (index) {
+        0 -> 0 to 0
+        1 -> 1 to 0
+        2 -> 2 to 0
+        3 -> 3 to 0
+        4 -> 4 to 0
+        5 -> 5 to 0
+        6 -> 5 to 1
+        7 -> 5 to 2
+        8 -> 5 to 3
+        9 -> 4 to 3
+        10 -> 3 to 3
+        11 -> 2 to 3
+        12 -> 1 to 3
+        13 -> 0 to 3
+        14 -> 0 to 2
+        15 -> 0 to 1
+        else -> 0 to 0
     }
 }
