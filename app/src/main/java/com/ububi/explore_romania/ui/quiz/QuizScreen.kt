@@ -103,6 +103,7 @@ fun QuizScreen(navController: NavController) {
 
             delay(1500)
 
+            // Send back quiz result with timestamp
             navController.previousBackStackEntry
                 ?.savedStateHandle
                 ?.set("quiz_result_timestamp", System.currentTimeMillis())

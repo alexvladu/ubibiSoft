@@ -33,6 +33,7 @@ fun GameBoard(
     pawnPosition: Int,
     characterId: Int = 1,
     showConfetti: Boolean = false,
+    pendingCoins: Int = 0,
     onHistoryClick: () -> Unit,
     onGeographyClick: () -> Unit,
     modifier: Modifier = Modifier
@@ -83,15 +84,33 @@ fun GameBoard(
                     )
                 }
             } else {
-                Text(
-                    text = "JOC TERMINAT!\nFELICITĂRI!",
-                    fontSize = 32.sp,
-                    fontWeight = FontWeight.Black,
-                    color = Color.Black,
-                    textAlign = TextAlign.Center
-                )
+                Column(
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Text(
+                        text = "JOC TERMINAT!\nFELICITĂRI!",
+                        fontSize = 32.sp,
+                        fontWeight = FontWeight.Black,
+                        color = Color.Black,
+                        textAlign = TextAlign.Center
+                    )
+                    if (pendingCoins > 0) {
+                        Spacer(modifier = Modifier.height(16.dp))
+                        Text(
+                            text = "Ai câștigat $pendingCoins coin-uri! 🪙",
+                            fontSize = 24.sp,
+                            fontWeight = FontWeight.Bold,
+                            color = Color(0xFFFFD700),
+                            textAlign = TextAlign.Center,
+                            modifier = Modifier
+                                .background(Color.Black.copy(alpha = 0.7f), RoundedCornerShape(12.dp))
+                                .padding(16.dp)
+                        )
+                    }
+                }
             }
         }
+
 
         if (counties.size >= 16) {
             for (index in 0 until 16) {
