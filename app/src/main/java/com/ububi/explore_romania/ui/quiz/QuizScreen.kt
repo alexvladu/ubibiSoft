@@ -15,6 +15,9 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.ububi.explore_romania.MusicManager
+import com.ububi.explore_romania.MusicTrack
+import com.ububi.explore_romania.SoundEffect
 import kotlinx.coroutines.delay
 
 data class Question(
@@ -25,6 +28,11 @@ data class Question(
 
 @Composable
 fun QuizScreen(navController: NavController) {
+    // Play question music when screen appears
+    LaunchedEffect(Unit) {
+        MusicManager.playTrack(MusicTrack.QUESTION)
+    }
+
     val questions = remember {
         listOf(
             // Geography questions adapted with 4 options (added one incorrect where needed)
@@ -90,11 +98,19 @@ fun QuizScreen(navController: NavController) {
     // 2. LOGICA DE NAVIGARE ȘI MUTARE PION
     LaunchedEffect(selectedAnswer) {
         if (selectedAnswer != -1) {
+            val currentQuestion = questions.getOrNull(currentQuestionIndex) ?: questions[0]
+            val isCorrect = selectedAnswer == currentQuestion.correctIndex
+
             delay(1500)
 
+            // Send back quiz result with timestamp
             navController.previousBackStackEntry
                 ?.savedStateHandle
                 ?.set("quiz_result_timestamp", System.currentTimeMillis())
+
+            navController.previousBackStackEntry
+                ?.savedStateHandle
+                ?.set("quiz_answer_correct", isCorrect)
 
             navController.popBackStack()
         }
@@ -139,6 +155,12 @@ fun QuizScreen(navController: NavController) {
                     .border(2.dp, Color(0xFF616161), RoundedCornerShape(16.dp))
                     .clickable(enabled = selectedAnswer == -1) {
                         selectedAnswer = index
+                        // Play sound effect immediately
+                        if (index == currentQuestion.correctIndex) {
+                            MusicManager.playSoundEffect(SoundEffect.CORRECT)
+                        } else {
+                            MusicManager.playSoundEffect(SoundEffect.WRONG)
+                        }
                     }
                     .padding(16.dp),
                 contentAlignment = Alignment.Center
