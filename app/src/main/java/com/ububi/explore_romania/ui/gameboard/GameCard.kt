@@ -1,107 +1,79 @@
 package com.ububi.explore_romania.ui.gameboard
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.aspectRatio
-import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun BoardCard(
-    countyCode: String,
-    number: String,
+fun GameCard(
+    county: County,
+    width: Dp,
+    height: Dp,
+    isRevealed: Boolean,
     modifier: Modifier = Modifier
 ) {
-    Card(
+    val cardShape = RoundedCornerShape(12.dp)
+
+    Box(
         modifier = modifier
-            .aspectRatio(2.15f)
-            .shadow(16.dp, RoundedCornerShape(14.dp)),
-        shape = RoundedCornerShape(14.dp),
-        colors = CardDefaults.cardColors(containerColor = Color.White)
+            .width(width)
+            .height(height)
+            .clip(cardShape)
+            .border(2.dp, Color.White, cardShape)
     ) {
-        Row(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(horizontal = 10.dp),
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            // Blue EU strip with RO
+        // Imaginea de fundal
+        if (county.image != null) {
+            Image(
+                bitmap = county.image,
+                contentDescription = county.name,
+                contentScale = ContentScale.Crop,
+                modifier = Modifier.fillMaxSize(),
+                alpha = if (isRevealed) 1.0f else 0.6f
+            )
+        } else {
+            Box(modifier = Modifier.fillMaxSize().background(Color.Gray))
+        }
+
+        // Strat "ceata"
+        if (!isRevealed) {
             Box(
                 modifier = Modifier
-                    .fillMaxHeight()
-                    .width(44.dp)
-                    .background(Color(0xFF003087))
-                    .padding(4.dp),
+                    .fillMaxSize()
+                    .background(Color.White.copy(alpha = 0.4f))
+            )
+        }
+
+        // Nume judet
+        if (isRevealed) {
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .background(Color.White.copy(alpha = 0.2f)),
                 contentAlignment = Alignment.Center
             ) {
                 Text(
-                    text = "RO",
-                    color = Color.Yellow,
+                    text = county.name,
+                    color = Color.Black,
                     fontWeight = FontWeight.ExtraBold,
-                    fontSize = 18.sp
-                )
-            }
-
-            Spacer(modifier = Modifier.width(12.dp))
-
-            // County code + number
-            Row(
-                modifier = Modifier.weight(1f),
-                horizontalArrangement = Arrangement.Center
-            ) {
-                Text(
-                    text = countyCode,
-                    color = Color.Black,
-                    fontSize = 34.sp,
-                    fontWeight = FontWeight.ExtraBold
-                )
-                Spacer(modifier = Modifier.width(10.dp))
-                Text(
-                    text = number,
-                    color = Color.Black,
-                    fontSize = 44.sp,
-                    fontWeight = FontWeight.Black,
-                    letterSpacing = 3.sp
+                    fontSize = 20.sp,
+                    textAlign = TextAlign.Center,
+                    lineHeight = 16.sp
                 )
             }
         }
     }
 }
-
-@Composable
-fun BigCenterLetter(letter: String) {
-    Box(
-        modifier = Modifier
-            .size(110.dp)
-            .background(Color(0xFF37474F), RoundedCornerShape(20.dp))
-            .border(8.dp, Color(0xFF546E7A), RoundedCornerShape(20.dp)),
-        contentAlignment = Alignment.Center
-    ) {
-        Text(
-            text = letter,
-            fontSize = 84.sp,
-            fontWeight = FontWeight.Black,
-            color = Color(0xFFEEEEEE)
-        )
-    }
-}
-

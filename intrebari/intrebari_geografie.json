@@ -1,0 +1,1515 @@
+﻿[
+	{
+		"judet": "Alba",
+		"intrebari": [
+	 		 {
+      "id": 1,
+      "text": "În ce regiune istorică din centrul României se află Alba",
+      "raspunsuri": ["Transilvania", "Banat", "Oltenia"],
+      "raspuns_corect": "Transilvania",
+      "locatie": "Alba",
+      "hint": "Este cunoscut pentru Alba Iulia și cetăți istorice"
+    },
+    {
+      "id": 2,
+      "text": "Ce munți se află în nordul județului Alba și sunt cunoscuți pentru peșteri",
+      "raspunsuri": ["Munții Apuseni", "Munții Rodnei", "Munții Făgăraș"],
+      "raspuns_corect": "Munții Apuseni",
+      "locatie": "Alba",
+      "hint": "Munții au chei și trasee de drumeții"
+    },
+    {
+      "id": 3,
+      "text": "Ce râu trece prin Alba Iulia și traversează județul Alba",
+      "raspunsuri": ["Mureș", "Olt", "Someș"],
+      "raspuns_corect": "Mureș",
+      "locatie": "Alba",
+      "hint": "Râul este important pentru agricultură și orașe"
+    },
+    {
+      "id": 4,
+      "text": "Ce activitate agricolă se desfășoară pe câmpiile și dealurile județului Alba",
+      "raspunsuri": ["Culturile de cereale și creșterea animalelor", "Viticultura", "Pomicultura"],
+      "raspuns_corect": "Culturile de cereale și creșterea animalelor",
+      "locatie": "Alba",
+      "hint": "Zona rurală este predominantă și fertile"
+    }]
+	},
+	{
+		"judet": "Arad",
+		"intrebari": [
+			 {
+      "id": 5,
+      "text": "În ce regiune istorică din vestul României se află județul Arad",
+      "raspunsuri": ["Banat", "Crișana", "Transilvania"],
+      "raspuns_corect": "Arad",
+      "locatie": "Arad",
+      "hint": "Este aproape de granița cu Ungaria"
+    },
+    {
+      "id": 6,
+      "text": "Ce munți mici se află la estul județului Arad",
+      "raspunsuri": ["Munții Codru-Moma", "Munții Apuseni", "Munții Făgăraș"],
+      "raspuns_corect": "Munții Codru-Moma",
+      "locatie": "Arad",
+      "hint": "Zona este deluroasă și împădurită"
+    },
+    {
+      "id": 7,
+      "text": "Ce râu important trece prin județul Arad și se varsă în Tisa",
+      "raspunsuri": ["Mureș", "Olt", "Siret"],
+      "raspuns_corect": "Mureș",
+      "locatie": "Arad",
+      "hint": "Râul trece și prin orașul Arad"
+    },
+    {
+      "id": 8,
+      "text": "Ce activitate se desfășoară pe câmpiile județului Arad",
+      "raspunsuri": ["Agricultura cerealelor", "Silvicultura", "Creșterea oilor"],
+      "raspuns_corect": "Agricultura cerealelor",
+      "locatie": "Arad",
+      "hint": "Câmpiile sunt fertile și mari"
+    }
+  ]
+	},
+	{
+		"judet": "Argeș",
+		"intrebari": [
+			 {
+      "id": 9,
+      "text": "În ce regiune istorică din sudul României se află județul Argeș",
+      "raspunsuri": ["Muntenia", "Oltenia", "Transilvania"],
+      "raspuns_corect": "Muntenia",
+      "locatie": "Argeș",
+      "hint": "Este cunoscut pentru orașul Curtea de Argeș și munții din nord"
+    },
+    {
+      "id": 10,
+      "text": "Ce munți înalți se află în partea nordică a județului Argeș",
+      "raspunsuri": ["Munții Făgăraș", "Munții Apuseni", "Munții Rodnei"],
+      "raspuns_corect": "Munții Făgăraș",
+      "locatie": "Argeș",
+      "hint": "Acești munți au vârfuri de peste 2.500 m"
+    },
+    {
+      "id": 11,
+      "text": "Ce râu mare traversează județul Argeș și ajunge în Dunăre",
+      "raspunsuri": ["Argeș", "Olt", "Siret"],
+      "raspuns_corect": "Argeș",
+      "locatie": "Argeș",
+      "hint": "Râul trece prin orașul Pitești"
+    },
+    {
+      "id": 12,
+      "text": "Ce activitate turistică se poate face în munții județului Argeș",
+      "raspunsuri": ["Drumeții și schi", "Înot în mare", "Surf pe râu"],
+      "raspuns_corect": "Drumeții și schi",
+      "locatie": "Argeș",
+      "hint": "Munții oferă trasee montane și pârtii de schi"
+    }]
+	},
+	{
+		"judet": "Bacău",
+		"intrebari": [
+			{
+      "id": 13,
+      "text": "În ce regiune istorică din estul României se află județul Bacău",
+      "raspunsuri": ["Moldova", "Transilvania", "Muntenia"],
+      "raspuns_corect": "Moldova",
+      "locatie": "Bacău",
+      "hint": "Este situat aproape de Carpații Orientali și are orașul Bacău"
+    },
+    {
+      "id": 14,
+      "text": "Ce munți se află la vestul județului Bacău",
+      "raspunsuri": ["Carpații Orientali", "Munții Apuseni", "Munții Făgăraș"],
+      "raspuns_corect": "Carpații Orientali",
+      "locatie": "Bacău",
+      "hint": "Zona montană oferă păduri și trasee de drumeții"
+    },
+    {
+      "id": 15,
+      "text": "Ce râu important traversează județul Bacău și curge spre Siret",
+      "raspunsuri": ["Bistrița", "Olt", "Someș"],
+      "raspuns_corect": "Bistrița",
+      "locatie": "Bacău",
+      "hint": "Râul trece prin zone împădurite și are baraje"
+    },
+    {
+      "id": 16,
+      "text": "Ce activitate economică se practică pe câmpiile județului Bacău",
+      "raspunsuri": ["Agricultura cerealelor și creșterea animalelor", "Silvicultura", "Pomicultura intensivă"],
+      "raspuns_corect": "Agricultura cerealelor și creșterea animalelor",
+      "locatie": "Bacău",
+      "hint": "Câmpiile sunt fertile și utilizate pentru agricultură"
+    }]
+	},
+	{
+		"judet": "Bihor",
+		"intrebari": [
+			{
+      "id": 17,
+      "text": "În ce regiune istorică din vestul României se află județul Bihor",
+      "raspunsuri": ["Crișana", "Banat", "Transilvania"],
+      "raspuns_corect": "Crișana",
+      "locatie": "Bihor",
+      "hint": "Este aproape de granița cu Ungaria și are orașul Oradea"
+    },
+    {
+      "id": 18,
+      "text": "Ce munți se află în partea estică a județului Bihor",
+      "raspunsuri": ["Munții Apuseni", "Munții Codru-Moma", "Munții Făgăraș"],
+      "raspuns_corect": "Munții Apuseni",
+      "locatie": "Bihor",
+      "hint": "Zona montană este cunoscută pentru peșteri și chei"
+    },
+    {
+      "id": 19,
+      "text": "Ce râu mare traversează județul Bihor și curge spre Crișuri",
+      "raspunsuri": ["Crișul Repede", "Mureș", "Someș"],
+      "raspuns_corect": "Crișul Repede",
+      "locatie": "Bihor",
+      "hint": "Râul trece prin orașul Oradea și câteva orașe mici"
+    },
+    {
+      "id": 20,
+      "text": "Ce activitate se desfășoară în zonele de deal și câmpie din județul Bihor",
+      "raspunsuri": ["Agricultura cerealelor și creșterea animalelor", "Silvicultura", "Viticultura"],
+      "raspuns_corect": "Agricultura cerealelor și creșterea animalelor",
+      "locatie": "Bihor",
+      "hint": "Câmpiile sunt fertile, iar zona este predominant rurală"
+    }]
+	},
+	{
+		"judet": "Bistrița-Năsăud",
+		"intrebari": [
+			{
+      "id": 21,
+      "text": "În ce regiune istorică din nordul României se află județul Bistrița-Năsăud",
+      "raspunsuri": ["Transilvania", "Moldova", "Maramureș"],
+      "raspuns_corect": "Transilvania",
+      "locatie": "Bistrița-Năsăud",
+      "hint": "Este cunoscut pentru orașul Bistrița și munții din nord"
+    },
+    {
+      "id": 22,
+      "text": "Ce munți se află în partea nordică a județului Bistrița-Năsăud",
+      "raspunsuri": ["Munții Rodnei", "Munții Apuseni", "Munții Făgăraș"],
+      "raspuns_corect": "Munții Rodnei",
+      "locatie": "Bistrița-Năsăud",
+      "hint": "Acești munți au vârfuri înalte și păduri întinse"
+    },
+    {
+      "id": 23,
+      "text": "Ce râu important străbate județul Bistrița-Năsăud",
+      "raspunsuri": ["Someșul Mare", "Mureș", "Olt"],
+      "raspuns_corect": "Someșul Mare",
+      "locatie": "Bistrița-Năsăud",
+      "hint": "Râul trece prin mai multe orașe și sate din județ"
+    },
+    {
+      "id": 24,
+      "text": "Ce activitate se desfășoară în depresiuni și văi din județul Bistrița-Năsăud",
+      "raspunsuri": ["Agricultura și creșterea animalelor", "Silvicultura", "Viticultura"],
+      "raspuns_corect": "Agricultura și creșterea animalelor",
+      "locatie": "Bistrița-Năsăud",
+      "hint": "Zona rurală este predominantă și terenurile sunt fertile"
+    }]
+	},
+	{
+		"judet": "Botoșani",
+		"intrebari": [
+			{
+      "id": 25,
+      "text": "În ce regiune istorică din nord-estul României se află județul Botoșani",
+      "raspunsuri": ["Moldova", "Transilvania", "Muntenia"],
+      "raspuns_corect": "Moldova",
+      "locatie": "Botoșani",
+      "hint": "Este cunoscut pentru orașul Botoșani și zonele agricole întinse"
+    },
+    {
+      "id": 26,
+      "text": "Ce râu important traversează județul Botoșani",
+      "raspunsuri": ["Prut", "Siret", "Mureș"],
+      "raspuns_corect": "Prut",
+      "locatie": "Botoșani",
+      "hint": "Râul formează granița cu Republica Moldova"
+    },
+    {
+      "id": 27,
+      "text": "Ce animal este întâlnit frecvent în pădurile județului Botoșani",
+      "raspunsuri": ["Cerbi", "Urs brun", "Vulpe roșie"],
+      "raspuns_corect": "Cerbi",
+      "locatie": "Botoșani",
+      "hint": "Este un animal elegant, cu coarne mari"
+    },
+    {
+      "id": 28,
+      "text": "Care este un oraș important din județul Botoșani cunoscut pentru cultură și tradiții",
+      "raspunsuri": ["Botoșani", "Dorohoi", "Iași"],
+      "raspuns_corect": "Botoșani",
+      "locatie": "Botoșani",
+      "hint": "Este reședința județului"
+    }]
+	},
+	{
+		"judet": "Brașov",
+		"intrebari": [
+			 {
+      "id": 1,
+      "text": "În ce regiune istorică se află județul Brașov",
+      "raspunsuri": ["Transilvania", "Muntenia", "Oltenia"],
+      "raspuns_corect": "Transilvania",
+      "locatie": "Brașov",
+      "hint": "Brașov este cunoscut pentru orașul cu același nume și cetăți medievale"
+    },
+    {
+      "id": 2,
+      "text": "Ce munți înalți traversează județul Brașov și sunt populari pentru trasee montane și schi",
+      "raspunsuri": ["Carpații Făgăraș", "Munții Apuseni", "Munții Rodnei"],
+      "raspuns_corect": "Carpații Făgăraș",
+      "locatie": "Brașov",
+      "hint": "Vârfurile depășesc 2.500 de metri"
+    },
+    {
+      "id": 3,
+      "text": "Ce lac natural sau baraj se află în județul Brașov",
+      "raspunsuri": ["Lacul Sfânta Ana", "Lacul Bicaz", "Lacul Oașa"],
+      "raspuns_corect": "Lacul Sfânta Ana",
+      "locatie": "Brașov",
+      "hint": "Este singurul lac vulcanic din România"
+    },
+    {
+      "id": 4,
+      "text": "Ce oraș din județul Brașov este renumit pentru centrul său medieval și Biserica Neagră",
+      "raspunsuri": ["Brașov", "Săcele", "Făgăraș"],
+      "raspuns_corect": "Brașov",
+      "locatie": "Brașov",
+      "hint": "Este reședința județului și un oraș turistic important"
+    }]
+	},
+	{
+		"judet": "Brăila",
+		"intrebari": [
+			{
+      "id": 5,
+      "text": "În ce regiune istorică din sud-estul României se află județul Brăila",
+      "raspunsuri": ["Muntenia", "Dobrogea", "Oltenia"],
+      "raspuns_corect": "Muntenia",
+      "locatie": "Brăila",
+      "hint": "Brăila este un oraș important de pe malul Dunării"
+    },
+    {
+      "id": 6,
+      "text": "Ce râu mare străbate județul Brăila și ajunge în Marea Neagră",
+      "raspunsuri": ["Dunărea", "Siret", "Olt"],
+      "raspuns_corect": "Dunărea",
+      "locatie": "Brăila",
+      "hint": "Râul formează granița sudică a județului"
+    },
+    {
+      "id": 7,
+      "text": "Ce activitate economică este specifică câmpiilor județului Brăila",
+      "raspunsuri": ["Agricultura cerealelor", "Silvicultura", "Exploatarea minereurilor"],
+      "raspuns_corect": "Agricultura cerealelor",
+      "locatie": "Brăila",
+      "hint": "Zona este cunoscută pentru solurile fertile și terenurile întinse"
+    },
+    {
+      "id": 8,
+      "text": "Ce rezervație naturală protejează păsările din județul Brăila",
+      "raspunsuri": ["Balta Mică a Brăilei", "Delta Dunării", "Lacul Roșu"],
+      "raspuns_corect": "Balta Mică a Brăilei",
+      "locatie": "Brăila",
+      "hint": "Este o zonă cu păsări migratoare și apă dulce"
+    }]
+	},
+	{
+		"judet": "Buzău",
+		"intrebari": [
+			 {
+      "id": 9,
+      "text": "În ce regiune istorică din sud-estul României se află județul Buzău",
+      "raspunsuri": ["Muntenia", "Dobrogea", "Moldova"],
+      "raspuns_corect": "Muntenia",
+      "locatie": "Buzău",
+      "hint": "Orașul Buzău este reședința județului"
+    },
+    {
+      "id": 10,
+      "text": "Ce dealuri sau zone colinare se află în nordul județului Buzău",
+      "raspunsuri": ["Dealurile Subcarpatice", "Câmpia Română", "Depresiunea Brașovului"],
+      "raspuns_corect": "Dealurile Subcarpatice",
+      "locatie": "Buzău",
+      "hint": "Zona este împădurită și folosită pentru agricultură"
+    },
+    {
+      "id": 11,
+      "text": "Ce animal sau pasăre poate fi întâlnit frecvent în pădurile județului Buzău",
+      "raspunsuri": ["Urs brun", "Cerb", "Vulturul codalb"],
+      "raspuns_corect": "Urs brun",
+      "locatie": "Buzău",
+      "hint": "Trăiește în zone împădurite și muntoase"
+    },
+    {
+      "id": 12,
+      "text": "Ce obiectiv turistic natural este renumit în județul Buzău",
+      "raspunsuri": ["Babele și Sfinxul din Buzău", "Lacul Roșu", "Cheile Bicazului"],
+      "raspuns_corect": "Babele și Sfinxul din Buzău",
+      "locatie": "Buzău",
+      "hint": "Forme stâncoase spectaculoase, sculptate de vânt și apă"
+    }]
+	},
+	{
+		"judet": "Caraș-Severin",
+		"intrebari": [
+			{
+      "id": 17,
+      "text": "În ce regiune istorică din vestul României se află județul Caraș-Severin",
+      "raspunsuri": ["Banat", "Crișana", "Transilvania"],
+      "raspuns_corect": "Banat",
+      "locatie": "Caraș-Severin",
+      "hint": "Este un județ montan cunoscut pentru orașul Reșița"
+    },
+    {
+      "id": 18,
+      "text": "Ce munți traversează județul Caraș-Severin",
+      "raspunsuri": ["Carpații Meridionali și Munții Banatului", "Munții Apuseni", "Munții Rodnei"],
+      "raspuns_corect": "Carpații Meridionali și Munții Banatului",
+      "locatie": "Caraș-Severin",
+      "hint": "Zona montană este bogată în păduri și trasee de drumeții"
+    },
+    {
+      "id": 19,
+      "text": "Ce râu important străbate județul Caraș-Severin și curge spre Dunăre",
+      "raspunsuri": ["Caraș", "Timiș", "Mureș"],
+      "raspuns_corect": "Caraș",
+      "locatie": "Caraș-Severin",
+      "hint": "Râul dă și numele județului"
+    },
+    {
+      "id": 20,
+      "text": "Ce obiectiv turistic natural este renumit în județul Caraș-Severin",
+      "raspunsuri": ["Cheile Nerei și Cascada Bigăr", "Lacul Roșu", "Delta Dunării"],
+      "raspuns_corect": "Cheile Nerei și Cascada Bigăr",
+      "locatie": "Caraș-Severin",
+      "hint": "Forme de relief spectaculoase, vizitate de turiști"
+    }]
+	},
+	{
+		"judet": "Călărași",
+		"intrebari": [
+			{
+      "id": 13,
+      "text": "În ce regiune istorică din sudul României se află județul Călărași",
+      "raspunsuri": ["Muntenia", "Dobrogea", "Oltenia"],
+      "raspuns_corect": "Muntenia",
+      "locatie": "Călărași",
+      "hint": "Județul se află aproape de Dunăre"
+    },
+    {
+      "id": 14,
+      "text": "Ce râu mare trece prin județul Călărași",
+      "raspunsuri": ["Dunărea", "Olt", "Argeș"],
+      "raspuns_corect": "Dunărea",
+      "locatie": "Călărași",
+      "hint": "Este cel mai lung fluviu din România"
+    },
+    {
+      "id": 15,
+      "text": "Ce activitate economică este predominantă pe câmpiile județului Călărași",
+      "raspunsuri": ["Agricultura cerealelor", "Silvicultura", "Viticultura"],
+      "raspuns_corect": "Agricultura cerealelor",
+      "locatie": "Călărași",
+      "hint": "Câmpiile sunt fertile și întinse"
+    },
+    {
+      "id": 16,
+      "text": "Ce păsări sau animale se pot observa în zonele umede din județul Călărași",
+      "raspunsuri": ["Lebede și rațe sălbatice", "Vulpi și cerbi", "Urs brun și lupi"],
+      "raspuns_corect": "Lebede și rațe sălbatice",
+      "locatie": "Călărași",
+      "hint": "Zonele umede sunt habitat pentru păsări acvatice"
+    }]
+	},
+	{
+		"judet": "Cluj",
+		"intrebari": [
+			 {
+      "id": 21,
+      "text": "Ce oraș din județul Cluj este cunoscut pentru universitate și centrul său cultural",
+      "raspunsuri": ["Cluj-Napoca", "Turda", "Gherla"],
+      "raspuns_corect": "Cluj-Napoca",
+      "locatie": "Cluj",
+      "hint": "Este reședința județului și cel mai mare oraș"
+    },
+    {
+      "id": 22,
+      "text": "Ce obiectiv natural spectaculos se află în județul Cluj și este popular pentru drumeții",
+      "raspunsuri": ["Cheile Turzii", "Lacul Roșu", "Delta Dunării"],
+      "raspuns_corect": "Cheile Turzii",
+      "locatie": "Cluj",
+      "hint": "Este o rezervație cu stânci și chei"
+    },
+    {
+      "id": 23,
+      "text": "Ce activitate economică sau agricultură este răspândită în județul Cluj",
+      "raspunsuri": ["Cultura cerealelor și legumelor", "Exploatarea petrolului", "Viticultura"],
+      "raspuns_corect": "Cultura cerealelor și legumelor",
+      "locatie": "Cluj",
+      "hint": "Zonele rurale au terenuri fertile pentru agricultură"
+    },
+    {
+      "id": 24,
+      "text": "Ce râu străbate județul Cluj și trece prin orașe importante",
+      "raspunsuri": ["Someșul Mic", "Mureș", "Olt"],
+      "raspuns_corect": "Someșul Mic",
+      "locatie": "Cluj",
+      "hint": "Râul trece prin Cluj-Napoca și mai multe comune"
+    }]
+	},
+	{
+		"judet": "Constanța",
+		"intrebari": [
+			{
+      "id": 25,
+      "text": "Ce oraș din județul Constanța este cunoscut pentru portul său și plajele de la Marea Neagră",
+      "raspunsuri": ["Constanța", "Mangalia", "Năvodari"],
+      "raspuns_corect": "Constanța",
+      "locatie": "Constanța",
+      "hint": "Este reședința județului și cel mai mare oraș de la malul mării"
+    },
+    {
+      "id": 26,
+      "text": "Ce lac sau rezervație de apă sărată se află în județul Constanța",
+      "raspunsuri": ["Lacul Techirghiol", "Lacul Roșu", "Delta Dunării"],
+      "raspuns_corect": "Lacul Techirghiol",
+      "locatie": "Constanța",
+      "hint": "Este cunoscut pentru nămolul său terapeutic"
+    },
+    {
+      "id": 27,
+      "text": "Ce activitate economică este importantă în județul Constanța",
+      "raspunsuri": ["Port și pescuit", "Agricultură cerealelor", "Silvicultură"],
+      "raspuns_corect": "Port și pescuit",
+      "locatie": "Constanța",
+      "hint": "Orașul are un port mare la Marea Neagră"
+    },
+    {
+      "id": 28,
+      "text": "Ce păsări migratoare pot fi observate în rezervațiile din județul Constanța",
+      "raspunsuri": ["Pelicani și lebede", "Urs brun și cerbi", "Vulturi și cioare"],
+      "raspuns_corect": "Pelicani și lebede",
+      "locatie": "Constanța",
+      "hint": "Zona include lacuri și zone umede pentru păsări"
+    }]
+	},
+	{
+		"judet": "Covasna",
+		"intrebari": [
+			{
+      "id": 29,
+      "text": "Ce oraș din județul Covasna este cunoscut pentru băile termale și turism",
+      "raspunsuri": ["Covasna", "Sfântu Gheorghe", "Târgu Secuiesc"],
+      "raspuns_corect": "Covasna",
+      "locatie": "Covasna",
+      "hint": "Este faimos pentru izvoarele minerale și stațiunile balneare"
+    },
+    {
+      "id": 30,
+      "text": "Ce munți se află în județul Covasna și oferă trasee pentru drumeții",
+      "raspunsuri": ["Munții Baraolt și Ciuc", "Munții Apuseni", "Munții Rodnei"],
+      "raspuns_corect": "Munții Baraolt și Ciuc",
+      "locatie": "Covasna",
+      "hint": "Munții acoperiți de păduri oferă și zone de iarnă"
+    },
+    {
+      "id": 31,
+      "text": "Ce rezervație naturală protejează păsările și plantele din județul Covasna",
+      "raspunsuri": ["Rezervația Lacul Mierlei", "Delta Dunării", "Cheile Turzii"],
+      "raspuns_corect": "Rezervația Lacul Mierlei",
+      "locatie": "Covasna",
+      "hint": "Este o zonă umedă cu specii rare de păsări și plante"
+    },
+    {
+      "id": 32,
+      "text": "Ce activitate economică tradițională se practică în județul Covasna",
+      "raspunsuri": ["Pomicultura și creșterea animalelor", "Silvicultura", "Exploatarea petrolului"],
+      "raspuns_corect": "Pomicultura și creșterea animalelor",
+      "locatie": "Covasna",
+      "hint": "Zonele rurale sunt fertile și au livezi și pășuni"
+    }]
+	},
+	{
+		"judet": "Dâmbovița",
+		"intrebari": [
+			{
+      "id": 33,
+      "text": "Ce oraș din județul Dâmbovița este cunoscut pentru istoria sa și cetățile medievale",
+      "raspunsuri": ["Târgoviște", "Moreni", "Pucioasa"],
+      "raspuns_corect": "Târgoviște",
+      "locatie": "Dâmbovița",
+      "hint": "A fost reședința domnitorilor Valahiei"
+    },
+    {
+      "id": 34,
+      "text": "Ce munți sau dealuri se află în nordul județului Dâmbovița",
+      "raspunsuri": ["Carpații Meridionali", "Dealurile Subcarpatice", "Munții Apuseni"],
+      "raspuns_corect": "Carpații Meridionali",
+      "locatie": "Dâmbovița",
+      "hint": "Zona oferă păduri și trasee montane"
+    },
+    {
+      "id": 35,
+      "text": "Ce activitate economică sau agricultură este răspândită în județul Dâmbovița",
+      "raspunsuri": ["Cultivarea cerealelor și legumelor", "Silvicultura", "Exploatarea cărbunelui"],
+      "raspuns_corect": "Cultivarea cerealelor și legumelor",
+      "locatie": "Dâmbovița",
+      "hint": "Câmpiile fertile sunt folosite pentru agricultură"
+    },
+    {
+      "id": 36,
+      "text": "Ce râu important traversează județul Dâmbovița",
+      "raspunsuri": ["Dâmbovița", "Olt", "Argeș"],
+      "raspuns_corect": "Dâmbovița",
+      "locatie": "Dâmbovița",
+      "hint": "Râul dă numele județului și trece prin Târgoviște"
+    }]
+	},
+	{
+		"judet": "Dolj",
+		"intrebari": [
+			{
+      "id": 37,
+      "text": "Ce oraș din județul Dolj este reședința județului și un important centru cultural",
+      "raspunsuri": ["Craiova", "Băilești", "Calafat"],
+      "raspuns_corect": "Craiova",
+      "locatie": "Dolj",
+      "hint": "Este cel mai mare oraș din județ și are universitate"
+    },
+    {
+      "id": 38,
+      "text": "Ce câmpie se întinde în mare parte pe teritoriul județului Dolj",
+      "raspunsuri": ["Câmpia Română", "Câmpia Transilvaniei", "Câmpia Moldovei"],
+      "raspuns_corect": "Câmpia Română",
+      "locatie": "Dolj",
+      "hint": "Este zona favorabilă agriculturii cerealelor"
+    },
+    {
+      "id": 39,
+      "text": "Ce activitate economică este specifică județului Dolj",
+      "raspunsuri": ["Agricultura cerealelor și legumelor", "Silvicultura", "Industria minieră"],
+      "raspuns_corect": "Agricultura cerealelor și legumelor",
+      "locatie": "Dolj",
+      "hint": "Teritoriul plan favorizează cultura plantelor"
+    },
+    {
+      "id": 40,
+      "text": "Ce râu important străbate județul Dolj și se varsă în Dunăre",
+      "raspunsuri": ["Jiu", "Olt", "Argeș"],
+      "raspuns_corect": "Jiu",
+      "locatie": "Dolj",
+      "hint": "Râul curge prin Craiova și mai multe localități"
+    }]
+	},
+	{
+		"judet": "Galați",
+		"intrebari": [
+			{
+      "id": 41,
+      "text": "Ce oraș din județul Galați este reședința județului și un important centru economic și cultural",
+      "raspunsuri": ["Galați", "Tecuci", "Târgu Bujor"],
+      "raspuns_corect": "Galați",
+      "locatie": "Galați",
+      "hint": "Este situat pe malul Dunării și are port important"
+    },
+    {
+      "id": 42,
+      "text": "Ce mare fluviu trece prin județul Galați și formează granița cu țara vecină",
+      "raspunsuri": ["Dunărea", "Prut", "Siret"],
+      "raspuns_corect": "Dunărea",
+      "locatie": "Galați",
+      "hint": "Este cel mai lung fluviu din România și Europa"
+    },
+    {
+      "id": 43,
+      "text": "Ce activitate economică este specifică județului Galați",
+      "raspunsuri": ["Port și industrie siderurgică", "Silvicultura", "Viticultura"],
+      "raspuns_corect": "Port și industrie siderurgică",
+      "locatie": "Galați",
+      "hint": "Orașul Galați este cunoscut pentru combinatul siderurgic"
+    },
+    {
+      "id": 44,
+      "text": "Ce rezervație naturală protejează păsările în județul Galați",
+      "raspunsuri": ["Lacul Brateș", "Cheile Turzii", "Lacul Roșu"],
+      "raspuns_corect": "Lacul Brateș",
+      "locatie": "Galați",
+      "hint": "Este o zonă umedă cu multe specii de păsări"
+    }]
+	},
+	{
+		"judet": "Giurgiu",
+		"intrebari": [
+			{
+      "id": 45,
+      "text": "Ce oraș din județul Giurgiu este reședința județului și un important port fluvial",
+      "raspunsuri": ["Giurgiu", "Bolintin-Vale", "Mihăilești"],
+      "raspuns_corect": "Giurgiu",
+      "locatie": "Giurgiu",
+      "hint": "Orașul se află pe malul Dunării și are pod peste fluviu"
+    },
+    {
+      "id": 46,
+      "text": "Ce mare fluviu trece prin județul Giurgiu",
+      "raspunsuri": ["Dunărea", "Argeș", "Olt"],
+      "raspuns_corect": "Dunărea",
+      "locatie": "Giurgiu",
+      "hint": "Este cel mai lung fluviu din România și Europa"
+    },
+    {
+      "id": 47,
+      "text": "Ce activitate economică este răspândită în județul Giurgiu",
+      "raspunsuri": ["Agricultura cerealelor", "Silvicultura", "Industria minieră"],
+      "raspuns_corect": "Agricultura cerealelor",
+      "locatie": "Giurgiu",
+      "hint": "Județul are câmpii fertile și terenuri agricole"
+    },
+    {
+      "id": 48,
+      "text": "Ce tip de păsări sau animale pot fi întâlnite în zonele umede din județul Giurgiu",
+      "raspunsuri": ["Lebede și rațe sălbatice", "Vulpi și cerbi", "Urs brun și lupi"],
+      "raspuns_corect": "Lebede și rațe sălbatice",
+      "locatie": "Giurgiu",
+      "hint": "Zonele umede sunt habitat pentru păsări acvatice"
+    }]
+	},
+	{
+		"judet": "Gorj",
+		"intrebari": [
+			{
+      "id": 49,
+      "text": "Ce oraș din județul Gorj este reședința județului și are importante monumente istorice",
+      "raspunsuri": ["Târgu Jiu", "Motru", "Rovinari"],
+      "raspuns_corect": "Târgu Jiu",
+      "locatie": "Gorj",
+      "hint": "Orașul este cunoscut pentru ansamblul de sculpturi al lui Constantin Brâncuși"
+    },
+    {
+      "id": 50,
+      "text": "Ce munți străbat județul Gorj",
+      "raspunsuri": ["Parâng și Vâlcan", "Apuseni", "Rodnei"],
+      "raspuns_corect": "Parâng și Vâlcan",
+      "locatie": "Gorj",
+      "hint": "Munții oferă păduri și trasee montane"
+    },
+    {
+      "id": 51,
+      "text": "Ce râu important trece prin județul Gorj",
+      "raspunsuri": ["Jiu", "Olt", "Mureș"],
+      "raspuns_corect": "Jiu",
+      "locatie": "Gorj",
+      "hint": "Râul trece prin Târgu Jiu și alte localități"
+    },
+    {
+      "id": 52,
+      "text": "Ce activitate economică este specifică județului Gorj",
+      "raspunsuri": ["Cărbune și energie electrică", "Agricultura cerealelor", "Viticultura"],
+      "raspuns_corect": "Cărbune și energie electrică",
+      "locatie": "Gorj",
+      "hint": "Zona este cunoscută pentru exploatarea cărbunelui și termocentrale"
+    }]
+	},
+	{
+		"judet": "Harghita",
+		"intrebari": [
+			{
+      "id": 53,
+      "text": "Ce oraș din județul Harghita este reședința județului și centru cultural important",
+      "raspunsuri": ["Miercurea Ciuc", "Odorheiu Secuiesc", "Toplița"],
+      "raspuns_corect": "Miercurea Ciuc",
+      "locatie": "Harghita",
+      "hint": "Este cunoscut pentru tradițiile și cultura maghiară din zonă"
+    },
+    {
+      "id": 54,
+      "text": "Ce munți străbat județul Harghita și oferă trasee de drumeții și sporturi de iarnă",
+      "raspunsuri": ["Carpații Orientali", "Apuseni", "Parâng"],
+      "raspuns_corect": "Carpații Orientali",
+      "locatie": "Harghita",
+      "hint": "Zona montană are păduri dese și stațiuni pentru sporturi de iarnă"
+    },
+    {
+      "id": 55,
+      "text": "Ce lacuri vulcanice se găsesc în județul Harghita",
+      "raspunsuri": ["Lacul Sfânta Ana", "Lacul Roșu", "Lacul Techirghiol"],
+      "raspuns_corect": "Lacul Sfânta Ana",
+      "locatie": "Harghita",
+      "hint": "Este singurul lac vulcanic din România"
+    },
+    {
+      "id": 56,
+      "text": "Ce activitate economică tradițională se practică în județul Harghita",
+      "raspunsuri": ["Pomicultura și creșterea animalelor", "Industria petrolieră", "Silvicultura"],
+      "raspuns_corect": "Pomicultura și creșterea animalelor",
+      "locatie": "Harghita",
+      "hint": "Zona montană oferă terenuri pentru livezi și pășuni"
+    }]
+	},
+	{
+		"judet": "Hunedoara",
+		"intrebari": [
+			{
+      "id": 57,
+      "text": "Ce oraș din județul Hunedoara este cunoscut pentru castelul său medieval și istorie",
+      "raspunsuri": ["Hunedoara", "Deva", "Brad"],
+      "raspuns_corect": "Hunedoara",
+      "locatie": "Hunedoara",
+      "hint": "Aici se află celebrul Castel Corvinilor"
+    },
+    {
+      "id": 58,
+      "text": "Ce munți se află în județul Hunedoara și oferă trasee montane și cascade",
+      "raspunsuri": ["Retezat și Poiana Ruscă", "Apuseni", "Carpații Orientali"],
+      "raspuns_corect": "Retezat și Poiana Ruscă",
+      "locatie": "Hunedoara",
+      "hint": "Munții au parcuri naționale și vârfuri înalte"
+    },
+    {
+      "id": 59,
+      "text": "Ce râu traversează județul Hunedoara și trece prin Deva",
+      "raspunsuri": ["Mureș", "Jiu", "Olt"],
+      "raspuns_corect": "Mureș",
+      "locatie": "Hunedoara",
+      "hint": "Râul trece prin mai multe orașe și văi largi"
+    },
+    {
+      "id": 60,
+      "text": "Ce activitate economică este specifică județului Hunedoara",
+      "raspunsuri": ["Industria minieră și siderurgică", "Agricultura cerealelor", "Pomicultura"],
+      "raspuns_corect": "Industria minieră și siderurgică",
+      "locatie": "Hunedoara",
+      "hint": "Zona este cunoscută pentru minerit și combinate metalurgice"
+    }]
+	},
+	{
+		"judet": "Ialomița",
+		"intrebari": [
+			{
+      "id": 61,
+      "text": "Ce oraș din județul Ialomița este reședința județului și are clădiri importante pentru administrație",
+      "raspunsuri": ["Slobozia", "Fetești", "Urziceni"],
+      "raspuns_corect": "Slobozia",
+      "locatie": "Ialomița",
+      "hint": "Este cel mai mare oraș din județ și centru administrativ"
+    },
+    {
+      "id": 62,
+      "text": "Ce râu trece prin județul Ialomița și dă numele județului",
+      "raspunsuri": ["Ialomița", "Argeș", "Dunărea"],
+      "raspuns_corect": "Ialomița",
+      "locatie": "Ialomița",
+      "hint": "Râul curge prin mai multe comune și orașe"
+    },
+    {
+      "id": 63,
+      "text": "Ce activitate economică se practică mult în județul Ialomița",
+      "raspunsuri": ["Agricultura cerealelor și legumelor", "Industria grea", "Silvicultura"],
+      "raspuns_corect": "Agricultura cerealelor și legumelor",
+      "locatie": "Ialomița",
+      "hint": "Câmpiile întinse sunt folosite pentru culturile agricole"
+    },
+    {
+      "id": 64,
+      "text": "Ce lac sau zonă umedă din județul Ialomița atrage păsări și animale sălbatice",
+      "raspunsuri": ["Lacul Amara", "Lacul Roșu", "Delta Dunării"],
+      "raspuns_corect": "Lacul Amara",
+      "locatie": "Ialomița",
+      "hint": "Este un lac mic și popular pentru observarea păsărilor"
+    }]
+	},
+	{
+		"judet": "Iași",
+		"intrebari": [
+			 {
+      "id": 65,
+      "text": "Ce oraș din județul Iași este reședința județului și un important centru cultural și universitar",
+      "raspunsuri": ["Iași", "Pașcani", "Hârlău"],
+      "raspuns_corect": "Iași",
+      "locatie": "Iași",
+      "hint": "Este cunoscut pentru universități și clădiri istorice"
+    },
+    {
+      "id": 66,
+      "text": "Ce râu trece prin județul Iași și prin orașul Iași",
+      "raspunsuri": ["Bahlui", "Prut", "Siret"],
+      "raspuns_corect": "Bahlui",
+      "locatie": "Iași",
+      "hint": "Râul trece prin mai multe cartiere și zone ale orașului"
+    },
+    {
+      "id": 67,
+      "text": "Ce munți sau dealuri se află în județul Iași",
+      "raspunsuri": ["Dealurile Moldovei", "Munții Carpați", "Dealurile Subcarpatice"],
+      "raspuns_corect": "Dealurile Moldovei",
+      "locatie": "Iași",
+      "hint": "Zonele nu sunt foarte înalte și sunt acoperite cu păduri și livezi"
+    },
+    {
+      "id": 68,
+      "text": "Ce activitate economică se practică mult în județul Iași",
+      "raspunsuri": ["Agricultura și creșterea animalelor", "Industria grea", "Exploatarea petrolului"],
+      "raspuns_corect": "Agricultura și creșterea animalelor",
+      "locatie": "Iași",
+      "hint": "Teritoriul județului are câmpii și zone fertile pentru agricultură"
+    }]
+	},
+	{
+		"judet": "Ilfov",
+		"intrebari": [
+			{
+      "id": 69,
+      "text": "Ce oraș sau localitate din județul Ilfov este important pentru aproprierea de București",
+      "raspunsuri": ["Otopeni", "Popești-Leordeni", "Măgurele"],
+      "raspuns_corect": "Otopeni",
+      "locatie": "Ilfov",
+      "hint": "Aici se află aeroportul principal al capitalei"
+    },
+    {
+      "id": 70,
+      "text": "Ce râu sau canal trece prin județul Ilfov",
+      "raspunsuri": ["Dâmbovița", "Argeș", "Ialomița"],
+      "raspuns_corect": "Dâmbovița",
+      "locatie": "Ilfov",
+      "hint": "Râul trece și prin București"
+    },
+    {
+      "id": 71,
+      "text": "Ce activitate economică este răspândită în județul Ilfov",
+      "raspunsuri": ["Agricultura și creșterea animalelor", "Industria minieră", "Silvicultura"],
+      "raspuns_corect": "Agricultura și creșterea animalelor",
+      "locatie": "Ilfov",
+      "hint": "Teritoriul județului este mai mult rural și folosit pentru ferme"
+    },
+    {
+      "id": 72,
+      "text": "Ce păduri sau zone verzi sunt importante în județul Ilfov",
+      "raspunsuri": ["Pădurea Snagov", "Pădurea Băneasa", "Pădurea Făget"],
+      "raspuns_corect": "Pădurea Snagov",
+      "locatie": "Ilfov",
+      "hint": "Este o pădure mare, cu lac și trasee pentru plimbări"
+    }]
+	},
+	{
+		"judet": "Maramureș",
+		"intrebari": [
+			{
+      "id": 73,
+      "text": "Ce oraș din județul Maramureș este cunoscut pentru bisericile de lemn și tradiții",
+      "raspunsuri": ["Baia Mare", "Sighetu Marmației", "Borșa"],
+      "raspuns_corect": "Baia Mare",
+      "locatie": "Maramureș",
+      "hint": "Este cel mai mare oraș din județ și centru administrativ"
+    },
+    {
+      "id": 74,
+      "text": "Ce munți se află în județul Maramureș și oferă trasee pentru drumeții",
+      "raspunsuri": ["Munții Rodnei", "Munții Apuseni", "Munții Parâng"],
+      "raspuns_corect": "Munții Rodnei",
+      "locatie": "Maramureș",
+      "hint": "Aici se află cele mai înalte vârfuri din județ"
+    },
+    {
+      "id": 75,
+      "text": "Ce râu important străbate județul Maramureș și are peisaje frumoase",
+      "raspunsuri": ["Tisa", "Someș", "Mureș"],
+      "raspuns_corect": "Someș",
+      "locatie": "Maramureș",
+      "hint": "Râul trece prin orașe și comune ale județului"
+    },
+    {
+      "id": 76,
+      "text": "Ce activitate economică sau tradiție meșteșugărească este specifică județului Maramureș",
+      "raspunsuri": ["Prelucrarea lemnului și meșteșuguri tradiționale", "Industria minieră", "Agricultura cerealelor"],
+      "raspuns_corect": "Prelucrarea lemnului și meșteșuguri tradiționale",
+      "locatie": "Maramureș",
+      "hint": "Județul este cunoscut pentru porți de lemn și biserici de lemn"
+    }]
+	},
+	{
+		"judet": "Mehedinți",
+		"intrebari": [
+			{
+      "id": 77,
+      "text": "Ce oraș din județul Mehedinți este reședința județului și se află aproape de Dunăre",
+      "raspunsuri": ["Drobeta-Turnu Severin", "Orșova", "Strehaia"],
+      "raspuns_corect": "Drobeta-Turnu Severin",
+      "locatie": "Mehedinți",
+      "hint": "Orașul are vestigii romane și poduri peste Dunăre"
+    },
+    {
+      "id": 78,
+      "text": "Ce râu mare trece prin județul Mehedinți și formează granița cu țara vecină",
+      "raspunsuri": ["Dunărea", "Jiu", "Olt"],
+      "raspuns_corect": "Dunărea",
+      "locatie": "Mehedinți",
+      "hint": "Este cel mai lung fluviu din România și Europa"
+    },
+    {
+      "id": 79,
+      "text": "Ce munți se află în nordul județului Mehedinți",
+      "raspunsuri": ["Munții Mehedinți", "Munții Parâng", "Munții Apuseni"],
+      "raspuns_corect": "Munții Mehedinți",
+      "locatie": "Mehedinți",
+      "hint": "Munții au păduri și peisaje frumoase pentru drumeții"
+    },
+    {
+      "id": 80,
+      "text": "Ce activitate economică este răspândită în județul Mehedinți",
+      "raspunsuri": ["Agricultura și creșterea animalelor", "Industria siderurgică", "Silvicultura"],
+      "raspuns_corect": "Agricultura și creșterea animalelor",
+      "locatie": "Mehedinți",
+      "hint": "Câmpiile și dealurile sunt folosite pentru ferme și culturi"
+    }]
+	},
+	{
+		"judet": "Mureș",
+		"intrebari": [
+			{
+      "id": 81,
+      "text": "Ce oraș din județul Mureș este reședința județului și centru cultural important",
+      "raspunsuri": ["Târgu Mureș", "Reghin", "Sighișoara"],
+      "raspuns_corect": "Târgu Mureș",
+      "locatie": "Mureș",
+      "hint": "Orașul este cunoscut pentru Palatul Culturii și universități"
+    },
+    {
+      "id": 82,
+      "text": "Ce râu trece prin județul Mureș și dă numele județului",
+      "raspunsuri": ["Mureș", "Târnava Mare", "Târnava Mică"],
+      "raspuns_corect": "Mureș",
+      "locatie": "Mureș",
+      "hint": "Râul curge prin orașe și sate și este navigabil pe unele porțiuni"
+    },
+    {
+      "id": 83,
+      "text": "Ce dealuri sau munți se află în județul Mureș",
+      "raspunsuri": ["Dealurile Transilvaniei", "Munții Rodnei", "Munții Apuseni"],
+      "raspuns_corect": "Dealurile Transilvaniei",
+      "locatie": "Mureș",
+      "hint": "Sunt zone domoale, cu păduri și terenuri agricole"
+    },
+    {
+      "id": 84,
+      "text": "Ce activitate economică este specifică județului Mureș",
+      "raspunsuri": ["Agricultura și creșterea animalelor", "Industria petrolieră", "Silvicultura"],
+      "raspuns_corect": "Agricultura și creșterea animalelor",
+      "locatie": "Mureș",
+      "hint": "Câmpurile și pășunile sunt folosite pentru ferme și culturi"
+    }]
+	},
+	{
+		"judet": "Neamț",
+		"intrebari": [
+			{
+      "id": 85,
+      "text": "Ce oraș din județul Neamț este reședința județului și are clădiri istorice și muzee",
+      "raspunsuri": ["Piatra Neamț", "Roman", "Târgu Neamț"],
+      "raspuns_corect": "Piatra Neamț",
+      "locatie": "Neamț",
+      "hint": "Este un oraș cunoscut pentru Turnul lui Ștefan și Cetatea Neamțului"
+    },
+    {
+      "id": 86,
+      "text": "Ce munți se află în județul Neamț și oferă trasee de drumeții",
+      "raspunsuri": ["Carpații Orientali", "Apuseni", "Parâng"],
+      "raspuns_corect": "Carpații Orientali",
+      "locatie": "Neamț",
+      "hint": "Munții au păduri și vârfuri accesibile pentru excursii"
+    },
+    {
+      "id": 87,
+      "text": "Ce râu trece prin județul Neamț și orașul Roman",
+      "raspunsuri": ["Moldova", "Siret", "Bistrița"],
+      "raspuns_corect": "Moldova",
+      "locatie": "Neamț",
+      "hint": "Râul trece prin mai multe localități și văi largi"
+    },
+    {
+      "id": 88,
+      "text": "Ce activitate economică se practică mult în județul Neamț",
+      "raspunsuri": ["Agricultura și creșterea animalelor", "Industria grea", "Silvicultura"],
+      "raspuns_corect": "Agricultura și creșterea animalelor",
+      "locatie": "Neamț",
+      "hint": "Terenurile fertile și pășunile sunt folosite pentru ferme"
+    }]
+	},
+	{
+		"judet": "Olt",
+		"intrebari": [
+			{
+      "id": 89,
+      "text": "Ce oraș din județul Olt este cunoscut pentru muzeele sale și clădirile istorice",
+      "raspunsuri": ["Slatina", "Caracal", "Corabia"],
+      "raspuns_corect": "Slatina",
+      "locatie": "Olt",
+      "hint": "Este reședința județului și cel mai mare oraș"
+    },
+    {
+      "id": 90,
+      "text": "Ce râu mare străbate județul Olt și este folosit pentru irigații",
+      "raspunsuri": ["Olt", "Dunărea", "Jiu"],
+      "raspuns_corect": "Olt",
+      "locatie": "Olt",
+      "hint": "Râul dă numele județului"
+    },
+    {
+      "id": 91,
+      "text": "Ce păsări sau animale sălbatice pot fi întâlnite în zonele naturale ale județului Olt",
+      "raspunsuri": ["Lebede și rațe sălbatice", "Urs brun și lup", "Vulpe roșie"],
+      "raspuns_corect": "Lebede și rațe sălbatice",
+      "locatie": "Olt",
+      "hint": "Se găsesc mai ales lângă lacuri și bălți"
+    },
+    {
+      "id": 92,
+      "text": "Ce tradiție sau sărbătoare locală este celebrată în județul Olt",
+      "raspunsuri": ["Festivalul Culturii Oltului", "Festivalul de la Maramureș", "Sărbătoarea Castanelor"],
+      "raspuns_corect": "Festivalul Culturii Oltului",
+      "locatie": "Olt",
+      "hint": "Este un eveniment cu spectacole și tradiții locale"
+    }]
+	},
+	{
+		"judet": "Prahova",
+		"intrebari": [
+			{
+      "id": 93,
+      "text": "Ce oraș din județul Prahova este reședința județului și are muzee și clădiri istorice",
+      "raspunsuri": ["Ploiești", "Câmpina", "Sinaia"],
+      "raspuns_corect": "Ploiești",
+      "locatie": "Prahova",
+      "hint": "Este cel mai mare oraș din județ și centru administrativ"
+    },
+    {
+      "id": 94,
+      "text": "Ce munți sau dealuri se află în județul Prahova și sunt vizitate pentru drumeții",
+      "raspunsuri": ["Carpații de Curbură", "Apuseni", "Parâng"],
+      "raspuns_corect": "Carpații de Curbură",
+      "locatie": "Prahova",
+      "hint": "Sunt munți mai joși și frumoși pentru excursii și natură"
+    },
+    {
+      "id": 95,
+      "text": "Ce lacuri sau zone naturale din județul Prahova sunt locuri de recreere",
+      "raspunsuri": ["Lacul Bolboci și Cheile Tătarului", "Delta Dunării", "Lacul Roșu"],
+      "raspuns_corect": "Lacul Bolboci și Cheile Tătarului",
+      "locatie": "Prahova",
+      "hint": "Locurile sunt populare pentru plimbări și picnic"
+    },
+    {
+      "id": 96,
+      "text": "Ce tradiție sau sărbătoare locală este celebrată în județul Prahova",
+      "raspunsuri": ["Festivalul Castanelor", "Festivalul Culturii Oltului", "Festivalul Maramureșului"],
+      "raspuns_corect": "Festivalul Castanelor",
+      "locatie": "Prahova",
+      "hint": "Este o sărbătoare populară în toamnă, cu muzică și târguri"
+    }]
+	},
+	{
+		"judet": "Satu Mare",
+		"intrebari": [
+			{
+      "id": 97,
+      "text": "Ce oraș din județul Satu Mare este reședința județului și are clădiri istorice și muzee",
+      "raspunsuri": ["Satu Mare", "Carei", "Negrești-Oaș"],
+      "raspuns_corect": "Satu Mare",
+      "locatie": "Satu Mare",
+      "hint": "Este cel mai mare oraș și centru administrativ al județului"
+    },
+    {
+      "id": 98,
+      "text": "Ce râu trece prin județul Satu Mare și formează văi frumoase",
+      "raspunsuri": ["Someș", "Tisa", "Mureș"],
+      "raspuns_corect": "Someș",
+      "locatie": "Satu Mare",
+      "hint": "Râul trece prin orașe și sate și este important pentru agricultură"
+    },
+    {
+      "id": 99,
+      "text": "Ce păduri sau zone naturale protejate se află în județul Satu Mare",
+      "raspunsuri": ["Pădurea Oașului", "Delta Dunării", "Munții Rodnei"],
+      "raspuns_corect": "Pădurea Oașului",
+      "locatie": "Satu Mare",
+      "hint": "Este o pădure mare, cu zone pentru plimbări și observarea animalelor"
+    },
+    {
+      "id": 100,
+      "text": "Ce tradiție sau obicei specific se păstrează în județul Satu Mare",
+      "raspunsuri": ["Sărbătoarea Călușului", "Festivalul Castanelor", "Festivalul Maramureșului"],
+      "raspuns_corect": "Sărbătoarea Călușului",
+      "locatie": "Satu Mare",
+      "hint": "Este un obicei popular cu dansuri și costume tradiționale"
+    }]
+	},
+	{
+		"judet": "Sălaj",
+		"intrebari": [
+			{
+      "id": 101,
+      "text": "Ce râu trece prin județul Sălaj și formează văi cu peisaje frumoase",
+      "raspunsuri": ["Someș", "Mureș", "Tisa"],
+      "raspuns_corect": "Someș",
+      "locatie": "Sălaj",
+      "hint": "Râul curge prin localități și este important pentru agricultură"
+    },
+    {
+      "id": 102,
+      "text": "Ce păduri sau zone naturale protejate se află în județul Sălaj",
+      "raspunsuri": ["Pădurea Hida", "Pădurea Oașului", "Pădurea Snagov"],
+      "raspuns_corect": "Pădurea Hida",
+      "locatie": "Sălaj",
+      "hint": "Este o pădure mare, cu vegetație bogată și animale sălbatice"
+    },
+    {
+      "id": 103,
+      "text": "Ce tradiție sau festival specific județului Sălaj este cunoscut",
+      "raspunsuri": ["Festivalul Folcloric Sălaj", "Festivalul Castanelor", "Sărbătoarea Călușului"],
+      "raspuns_corect": "Festivalul Folcloric Sălaj",
+      "locatie": "Sălaj",
+      "hint": "Este un festival cu muzică, dans și costume tradiționale"
+    },
+    {
+      "id": 104,
+      "text": "Ce activitate economică sau ocupație tradițională se practică în județul Sălaj",
+      "raspunsuri": ["Agricultura și creșterea animalelor", "Industria petrolieră", "Prelucrarea lemnului"],
+      "raspuns_corect": "Agricultura și creșterea animalelor",
+      "locatie": "Sălaj",
+      "hint": "Terenurile sunt folosite pentru ferme și culturi"
+    }]
+	},
+	{
+		"judet": "Sibiu",
+		"intrebari": [
+			{
+      "id": 105,
+      "text": "Ce oraș din județul Sibiu este reședința județului și are centrul vechi cu turnuri și piețe",
+      "raspunsuri": ["Sibiu", "Mediaș", "Agnita"],
+      "raspuns_corect": "Sibiu",
+      "locatie": "Sibiu",
+      "hint": "Este cunoscut pentru Turnul Sfatului și Piața Mare"
+    },
+    {
+      "id": 106,
+      "text": "Ce munți străbat județul Sibiu și oferă trasee pentru drumeții și sporturi de iarnă",
+      "raspunsuri": ["Munții Făgăraș", "Munții Rodnei", "Munții Apuseni"],
+      "raspuns_corect": "Munții Făgăraș",
+      "locatie": "Sibiu",
+      "hint": "Aici se află cele mai înalte vârfuri din România"
+    },
+    {
+      "id": 107,
+      "text": "Ce obiectiv turistic natural din județul Sibiu este cunoscut pentru peșteri și chei",
+      "raspunsuri": ["Cheile Râului", "Delta Dunării", "Cheile Bicazului"],
+      "raspuns_corect": "Cheile Râului",
+      "locatie": "Sibiu",
+      "hint": "Este o zonă cu stânci spectaculoase și peisaje frumoase"
+    },
+    {
+      "id": 108,
+      "text": "Ce activitate tradițională sau meșteșug se păstrează în județul Sibiu",
+      "raspunsuri": ["Olăritul și prelucrarea lemnului", "Prelucrarea cărnii", "Fabricarea textilelor"],
+      "raspuns_corect": "Olăritul și prelucrarea lemnului",
+      "locatie": "Sibiu",
+      "hint": "Se găsesc ateliere și târguri cu obiecte din ceramică și lemn"
+    }]
+	},
+	{
+		"judet": "Suceava",
+		"intrebari": [
+			{
+      "id": 109,
+      "text": "Ce oraș din județul Suceava este reședința județului și are muzee și clădiri istorice",
+      "raspunsuri": ["Suceava", "Fălticeni", "Rădăuți"],
+      "raspuns_corect": "Suceava",
+      "locatie": "Suceava",
+      "hint": "Este orașul unde a fost Cetatea de Scaun a Moldovei"
+    },
+    {
+      "id": 110,
+      "text": "Ce mănăstiri celebre se află în județul Suceava și sunt incluse în patrimoniul UNESCO",
+      "raspunsuri": ["Mănăstirile pictate din Bucovina", "Mănăstirile din Maramureș", "Mănăstirile din Muntenia"],
+      "raspuns_corect": "Mănăstirile pictate din Bucovina",
+      "locatie": "Suceava",
+      "hint": "Sunt cunoscute pentru frescele exterioare și culorile vii"
+    },
+    {
+      "id": 111,
+      "text": "Ce păduri sau animale sălbatice se găsesc în județul Suceava",
+      "raspunsuri": ["Urs brun și cerb", "Lebede și rațe", "Vulpe polară"],
+      "raspuns_corect": "Urs brun și cerb",
+      "locatie": "Suceava",
+      "hint": "Munții și pădurile oferă adăpost animalelor sălbatice"
+    },
+    {
+      "id": 112,
+      "text": "Ce tradiție sau festival local se organizează în județul Suceava",
+      "raspunsuri": ["Festivalul Medieval de la Suceava", "Festivalul Castanelor", "Festivalul Maramureșului"],
+      "raspuns_corect": "Festivalul Medieval de la Suceava",
+      "locatie": "Suceava",
+      "hint": "Este un eveniment cu costume medievale, spectacole și târguri"
+    }]
+	},
+	{
+		"judet": "Teleorman",
+		"intrebari": [
+			 {
+      "id": 113,
+      "text": "Ce oraș din județul Teleorman este reședința județului și centru administrativ",
+      "raspunsuri": ["Alexandria", "Roșiorii de Vede", "Turnu Măgurele"],
+      "raspuns_corect": "Alexandria",
+      "locatie": "Teleorman",
+      "hint": "Este cel mai mare oraș din județ și locul unde se află autoritățile locale"
+    },
+    {
+      "id": 114,
+      "text": "Ce râu străbate județul Teleorman și traversează orașe importante",
+      "raspunsuri": ["Vedea", "Olt", "Dunărea"],
+      "raspuns_corect": "Vedea",
+      "locatie": "Teleorman",
+      "hint": "Râul trece prin mai multe localități și ajută la irigații"
+    },
+    {
+      "id": 115,
+      "text": "Ce tip de teren sau peisaj domină județul Teleorman",
+      "raspunsuri": ["Câmpii întinse și terenuri agricole", "Munți înalți", "Dealuri abrupte"],
+      "raspuns_corect": "Câmpii întinse și terenuri agricole",
+      "locatie": "Teleorman",
+      "hint": "Zona este folosită pentru cultivarea cerealelor și legumelor"
+    },
+    {
+      "id": 116,
+      "text": "Ce tradiție sau sărbătoare populară se păstrează în județul Teleorman",
+      "raspunsuri": ["Festivalul Culturii Teleormanului", "Festivalul Medieval Suceava", "Festivalul Maramureșului"],
+      "raspuns_corect": "Festivalul Culturii Teleormanului",
+      "locatie": "Teleorman",
+      "hint": "Eveniment cu muzică, dansuri și obiceiuri locale"
+    }]
+	},
+	{
+		"judet": "Timiș",
+		"intrebari": [
+			{
+      "id": 117,
+      "text": "Ce oraș din județul Timiș este reședința județului și are clădiri istorice și muzee",
+      "raspunsuri": ["Timișoara", "Lugoj", "Recaș"],
+      "raspuns_corect": "Timișoara",
+      "locatie": "Timiș",
+      "hint": "Este cunoscută ca orașul cu numeroase piețe și clădiri vechi"
+    },
+    {
+      "id": 118,
+      "text": "Ce râu mare traversează județul Timiș și ajută la irigații",
+      "raspunsuri": ["Timiș", "Bega", "Mureș"],
+      "raspuns_corect": "Timiș",
+      "locatie": "Timiș",
+      "hint": "Râul dă numele județului și străbate câmpii fertile"
+    },
+    {
+      "id": 119,
+      "text": "Ce păsări sau animale se pot observa în zonele naturale din județul Timiș",
+      "raspunsuri": ["Lebede și rațe sălbatice", "Urs brun și cerb", "Vulpe polară"],
+      "raspuns_corect": "Lebede și rațe sălbatice",
+      "locatie": "Timiș",
+      "hint": "Se întâlnesc mai ales pe lacuri și canale"
+    },
+    {
+      "id": 120,
+      "text": "Ce tradiție sau festival local este celebrat în județul Timiș",
+      "raspunsuri": ["Festivalul Florilor din Timișoara", "Festivalul Castanelor", "Festivalul Medieval Suceava"],
+      "raspuns_corect": "Festivalul Florilor din Timișoara",
+      "locatie": "Timiș",
+      "hint": "Este un eveniment colorat cu flori și spectacole pentru copii"
+    }]
+	},
+	{
+		"judet": "Tulcea",
+		"intrebari": [
+			{
+      "id": 121,
+      "text": "Ce oraș din județul Tulcea este reședința județului și are port important pe Dunăre",
+      "raspunsuri": ["Tulcea", "Măcin", "Babadag"],
+      "raspuns_corect": "Tulcea",
+      "locatie": "Tulcea",
+      "hint": "Este orașul principal și punct de plecare spre Delta Dunării"
+    },
+    {
+      "id": 122,
+      "text": "Ce deltă faimoasă se află în județul Tulcea și este habitat pentru multe păsări",
+      "raspunsuri": ["Delta Dunării", "Delta Oltului", "Delta Mureșului"],
+      "raspuns_corect": "Delta Dunării",
+      "locatie": "Tulcea",
+      "hint": "Este o zonă protejată cu canale, lacuri și păsări sălbatice"
+    },
+    {
+      "id": 123,
+      "text": "Ce tip de pește sau animale acvatice pot fi găsite în apele județului Tulcea",
+      "raspunsuri": ["Sturion și pelican", "Somn și lebădă", "Crap și rață polară"],
+      "raspuns_corect": "Sturion și pelican",
+      "locatie": "Tulcea",
+      "hint": "Sunt specifice Deltei Dunării"
+    },
+    {
+      "id": 124,
+      "text": "Ce tradiție sau festival specific se organizează în județul Tulcea",
+      "raspunsuri": ["Festivalul Pescarilor din Tulcea", "Festivalul Castanelor", "Festivalul Medieval Suceava"],
+      "raspuns_corect": "Festivalul Pescarilor din Tulcea",
+      "locatie": "Tulcea",
+      "hint": "Este un eveniment cu concursuri de pescuit și muzică tradițională"
+    }]
+	},
+	{
+		"judet": "Vaslui",
+		"intrebari": [
+			{
+      "id": 125,
+      "text": "Ce oraș din județul Vaslui este reședința județului și are clădiri istorice și muzee",
+      "raspunsuri": ["Vaslui", "Huși", "Bârlad"],
+      "raspuns_corect": "Vaslui",
+      "locatie": "Vaslui",
+      "hint": "Este centrul administrativ și cel mai mare oraș din județ"
+    },
+    {
+      "id": 126,
+      "text": "Ce râu traversează județul Vaslui și ajută la irigații",
+      "raspunsuri": ["Bârlad", "Siret", "Prut"],
+      "raspuns_corect": "Bârlad",
+      "locatie": "Vaslui",
+      "hint": "Râul dă numele unui oraș important și curge prin câmpii fertile"
+    },
+    {
+      "id": 127,
+      "text": "Ce păsări sau animale sălbatice pot fi întâlnite în pădurile județului Vaslui",
+      "raspunsuri": ["Vulpi și cerbi", "Lebede și rațe", "Urs polar și reni"],
+      "raspuns_corect": "Vulpi și cerbi",
+      "locatie": "Vaslui",
+      "hint": "Se găsesc în pădurile și zonele naturale din județ"
+    },
+    {
+      "id": 128,
+      "text": "Ce tradiție sau festival local este cunoscut în județul Vaslui",
+      "raspunsuri": ["Festivalul Folcloric Vaslui", "Festivalul Castanelor", "Festivalul Medieval Suceava"],
+      "raspuns_corect": "Festivalul Folcloric Vaslui",
+      "locatie": "Vaslui",
+      "hint": "Eveniment cu muzică și dansuri populare, costume tradiționale"
+    }]
+	},
+	{
+		"judet": "Vâlcea",
+		"intrebari": [
+			{
+      "id": 129,
+      "text": "Ce stațiune renumită din județul Vâlcea este cunoscută pentru apele termale și băile sănătoase",
+      "raspunsuri": ["Călimănești-Căciulata", "Băile Olănești", "Sibiu"],
+      "raspuns_corect": "Călimănești-Căciulata",
+      "locatie": "Vâlcea",
+      "hint": "Este o destinație populară pentru tratamente și relaxare"
+    },
+    {
+      "id": 130,
+      "text": "Ce produs tradițional sau aliment specific se produce în județul Vâlcea",
+      "raspunsuri": ["Brânza de burduf", "Salamul de Sibiu", "Mierea de albine din Maramureș"],
+      "raspuns_corect": "Brânza de burduf",
+      "locatie": "Vâlcea",
+      "hint": "Este un produs din lapte, cu gust puternic și tradiție locală"
+    },
+    {
+      "id": 131,
+      "text": "Ce obiectiv turistic important se află în județul Vâlcea și atrage vizitatori pentru arhitectura veche",
+      "raspunsuri": ["Mănăstirea Cozia", "Cetatea Alba Carolina", "Castelul Peleș"],
+      "raspuns_corect": "Mănăstirea Cozia",
+      "locatie": "Vâlcea",
+      "hint": "Este cunoscută pentru picturile și arhitectura sa din secolul XIV"
+    },
+    {
+      "id": 132,
+      "text": "Ce tradiție sau festival local se organizează în județul Vâlcea",
+      "raspunsuri": ["Festivalul Cetății Râmnicului", "Festivalul Castanelor", "Festivalul Medieval Suceava"],
+      "raspuns_corect": "Festivalul Cetății Râmnicului",
+      "locatie": "Vâlcea",
+      "hint": "Include muzică, dans și obiceiuri tradiționale locale"
+    }]
+	},
+	{
+		"judet": "Vrancea",
+		"intrebari": [
+			{
+      "id": 133,
+      "text": "Ce oraș din județul Vrancea este cunoscut pentru festivaluri și parcuri frumoase",
+      "raspunsuri": ["Focșani", "Adjud", "Mărășești"],
+      "raspuns_corect": "Focșani",
+      "locatie": "Vrancea",
+      "hint": "Este cel mai mare oraș din județ și centru administrativ"
+    },
+    {
+      "id": 134,
+      "text": "Ce pod sau obiectiv de pe Dunăre sau afluent se poate vedea în județul Vrancea",
+      "raspunsuri": ["Podul de la Focșani", "Podul de la Galați", "Podul de la Brăila"],
+      "raspuns_corect": "Podul de la Focșani",
+      "locatie": "Vrancea",
+      "hint": "Leagă orașul și este folosit zilnic de localnici"
+    },
+    {
+      "id": 135,
+      "text": "Ce festival sau sărbătoare locală implică strângerea strugurilor și vinul tradițional din Vrancea",
+      "raspunsuri": ["Festivalul Vinului", "Festivalul Castanelor", "Festivalul Medieval Suceava"],
+      "raspuns_corect": "Festivalul Vinului",
+      "locatie": "Vrancea",
+      "hint": "Se organizează în toamnă și sărbătorește recolta strugurilor"
+    },
+    {
+      "id": 136,
+      "text": "Ce traseu natural sau rezervație din Vrancea este potrivit pentru plimbări și observarea păsărilor",
+      "raspunsuri": ["Rezervația păsărilor de la Milcov", "Delta Dunării", "Cheile Bicazului"],
+      "raspuns_corect": "Rezervația păsărilor de la Milcov",
+      "locatie": "Vrancea",
+      "hint": "Este o zonă cu multe specii de păsări și plante sălbatice"
+    }]
+	},
+	{
+		"judet": "București",
+		"intrebari": [
+			{
+      "id": 137,
+      "text": "Ce clădire celebră din București este reședința președintelui și poate fi vizitată ocazional",
+      "raspunsuri": ["Palatul Cotroceni", "Palatul Parlamentului", "Muzeul Național de Istorie"],
+      "raspuns_corect": "Palatul Cotroceni",
+      "locatie": "București",
+      "hint": "Aici locuiește oficial președintele României și are grădini frumoase"
+    },
+    {
+      "id": 138,
+      "text": "Ce parc mare din București este potrivit pentru plimbări, sport și joacă",
+      "raspunsuri": ["Parcul Herăstrău", "Parcul Cișmigiu", "Parcul Carol"],
+      "raspuns_corect": "Parcul Herăstrău",
+      "locatie": "București",
+      "hint": "Este situat în nordul orașului și are lac, piste de bicicletă și locuri de joacă"
+    },
+    {
+      "id": 139,
+      "text": "Ce muzeu din București prezintă istoria naturală și este interesant pentru copii",
+      "raspunsuri": ["Muzeul Antipa", "Muzeul Național de Artă", "Muzeul Satului"],
+      "raspuns_corect": "Muzeul Antipa",
+      "locatie": "București",
+      "hint": "Are expoziții cu animale, schelete de dinozauri și activități interactive"
+    },
+    {
+      "id": 140,
+      "text": "Ce festival sau eveniment cultural se organizează anual în București și atrage mulți vizitatori",
+      "raspunsuri": ["Festivalul Luminii și Artelor", "Festivalul Castanelor", "Festivalul Medieval Suceava"],
+      "raspuns_corect": "Festivalul Luminii și Artelor",
+      "locatie": "București",
+      "hint": "Eveniment cu lumini colorate, spectacole și instalații artistice"
+    }]
+	}
+]
