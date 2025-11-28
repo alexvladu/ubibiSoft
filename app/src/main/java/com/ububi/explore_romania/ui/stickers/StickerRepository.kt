@@ -73,4 +73,27 @@ class StickerRepository(private val context: Context) {
         val current = loadOwnedStickers()
         return current.containsKey(id)
     }
+    suspend fun getUnownedStickers(targetRarity: StickerRarity? = null): List<Sticker> {
+        val allStickers = loadAllStickers()
+
+        val ownedIds = loadOwnedStickers().keys
+
+        return allStickers.filter { sticker ->
+            val isNotOwned = !ownedIds.contains(sticker.id)
+
+            val matchesRarity = targetRarity == null || sticker.rarity == targetRarity
+
+            isNotOwned && matchesRarity
+        }
+    }
+
+    suspend fun getRandomUnownedSticker(rarity: StickerRarity): Sticker? {
+        val unowned = getUnownedStickers(rarity)
+
+        if (unowned.isEmpty()) {
+            return null
+        }
+
+        return unowned.random()
+    }
 }
