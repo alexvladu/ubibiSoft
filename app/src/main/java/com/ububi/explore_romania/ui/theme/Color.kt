@@ -16,4 +16,10 @@ val EpicOutline = Color(0xFFBA68C8)
 val LegendaryOutline = Color(0xFFFFD54F)
 
 val CardBackground = Color(0xFFF5F5F5)
-val ScreenBackground = Color(0xFF212121)
+val ScreenBackground = Color(0xFF2A2B64)
+
+val BackButtonColor = Color(0xFF2C2C2C)
+
+val FilterButtonColor = Color(0xFF3A3A3A)
+
+val FilterDropdownColor = Color(0xFF2F2F2F)

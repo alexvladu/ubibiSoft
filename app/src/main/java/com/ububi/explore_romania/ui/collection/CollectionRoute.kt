@@ -9,7 +9,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.compose.ui.platform.LocalContext
 
 @Composable
-fun CollectionRoute() {
+fun CollectionRoute(onBackClick: () -> Unit) {
 
     val context = LocalContext.current
     val vm: CollectionViewModel = viewModel(factory = CollectionVMFactory(context))
@@ -26,5 +26,6 @@ fun CollectionRoute() {
         onOwnershipFilterChange = vm::setOwnershipFilter,
         onRarityFilterChange = vm::setRarityFilter,
         ownedIds = ownedIds,
+        onBackClick = onBackClick
     )
 }

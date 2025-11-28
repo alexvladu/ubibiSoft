@@ -39,7 +39,9 @@ fun AppRouter() {
             BoardScreen(onBackClick = { navController.navigateUp() })
         }
         composable(Routes.COLLECTION) {
-            CollectionRoute()
+            CollectionRoute(
+                onBackClick = { navController.navigate(Routes.HOME) }
+            )
         }
     }
 }
