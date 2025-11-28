@@ -1,5 +1,6 @@
 package com.ububi.explore_romania.ui.chest
 import android.R
+import android.graphics.Paint
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -24,8 +25,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavController
-import kotlin.random.Random
+
 
 @Composable
 fun ChestItemCard(
@@ -40,44 +40,70 @@ fun ChestItemCard(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = modifier
             .background(Color(0xFF333333), RoundedCornerShape(12.dp))
-            .padding(6.dp) // Reduced padding slightly
+            .padding(6.dp)
     ) {
-        // 1. The Image (Made shorter)
+        // 1. Image
         Image(
             painter = painterResource(id = chest.imageRes),
             contentDescription = null,
             contentScale = ContentScale.Crop,
             modifier = Modifier
                 .fillMaxWidth()
-                // --- KEY CHANGE: Aspect Ratio > 1.0 makes it wider than it is tall ---
                 .aspectRatio(1.5f)
                 .clip(RoundedCornerShape(8.dp))
         )
 
-        // Reduced Spacer
-        Spacer(modifier = Modifier.height(4.dp))
+        Spacer(modifier = Modifier.height(6.dp))
 
-        // 2. The Title
+        // 2. Name
         Text(
             text = chest.name,
             color = chest.color,
-            fontSize = 13.sp, // Slightly smaller font
+            fontSize = 13.sp,
             fontWeight = FontWeight.Bold,
             maxLines = 1,
             textAlign = TextAlign.Center
         )
 
-        // 3. The Cost Label
-        Text(
-            text = "${chest.cost} pts",
-            color = Color.Gray,
-            fontSize = 11.sp
-        )
-
-        // Reduced Spacer
         Spacer(modifier = Modifier.height(4.dp))
 
-        // 4. The Button (Made shorter)
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(4.dp),
+            modifier = Modifier
+                .background(Color(0xFFFFB74D), RoundedCornerShape(12.dp))
+                .padding(horizontal = 8.dp, vertical = 2.dp)
+        ) {
+            Box(
+                contentAlignment = Alignment.Center,
+                modifier = Modifier
+                    .size(16.dp)
+                    .background(Color(0xFFF57C00), CircleShape)
+            ) {
+                Text(
+                    text = "C",
+                    fontSize = 10.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = Color.White,
+                    textAlign = TextAlign.Center,
+                    style = androidx.compose.ui.text.TextStyle(
+                        platformStyle = androidx.compose.ui.text.PlatformTextStyle(
+                            includeFontPadding = false
+                        )
+                    )
+                )
+            }
+
+            Text(
+                text = chest.cost.toString(),
+                color = Color.Black,
+                fontWeight = FontWeight.Bold,
+                fontSize = 14.sp
+            )
+        }
+
+        Spacer(modifier = Modifier.height(6.dp))
+
         Button(
             onClick = onOpen,
             enabled = canAfford,
@@ -88,9 +114,9 @@ fun ChestItemCard(
             ),
             modifier = Modifier
                 .fillMaxWidth()
-                .height(32.dp) // --- KEY CHANGE: Reduced button height ---
+                .height(32.dp)
         ) {
-            Text(text = "Open", color = Color.White, fontSize = 11.sp)
+            Text(text = "Deschide", color = Color.White, fontSize = 11.sp)
         }
     }
 }
