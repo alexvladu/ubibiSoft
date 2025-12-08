@@ -14,36 +14,59 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.ububi.explore_romania.PlayerPreferences
 import com.ububi.explore_romania.Routes
+import com.ububi.explore_romania.MusicManager
+import com.ububi.explore_romania.MusicTrack
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.withContext
 
 @Composable
 fun BoardScreen(navController: NavController) {
     val context = LocalContext.current
-    var boardCountyIds by rememberSaveable { mutableStateOf<List<Int>>(emptyList()) }
 
+    var boardCountyIds by rememberSaveable { mutableStateOf<List<Int>>(emptyList()) }
     var countiesOnBoard by remember { mutableStateOf<List<County>>(emptyList()) }
     var isLoading by remember { mutableStateOf(true) }
 
     var pawnPosition by rememberSaveable { mutableIntStateOf(0) }
+    var characterId by remember { mutableIntStateOf(1) }
+    var showConfetti by remember { mutableStateOf(false) }
 
-    val currentBackStackEntry = navController.currentBackStackEntry
-    val quizTimestampState = currentBackStackEntry?.savedStateHandle
-        ?.getStateFlow<Long>("quiz_result_timestamp", 0L)
-        ?.collectAsState()
-    val quizTimestamp = quizTimestampState?.value ?: 0L
+    var coinsEarnedThisGame by rememberSaveable { mutableIntStateOf(0) }
 
-    LaunchedEffect(quizTimestamp) {
-        if (quizTimestamp != 0L) {
-            if (pawnPosition < 16) {
-                pawnPosition++
-            }
-            currentBackStackEntry?.savedStateHandle?.remove<Long>("quiz_result_timestamp")
+    var sessionResetDone by rememberSaveable { mutableStateOf(false) }
+
+    LaunchedEffect(Unit) {
+        MusicManager.playTrack(MusicTrack.HOME)
+    }
+
+    LaunchedEffect(Unit) {
+        PlayerPreferences.getCharacterId(context).collect { saved ->
+            characterId = saved
         }
     }
 
     LaunchedEffect(Unit) {
+        if (!sessionResetDone) {
+            withContext(Dispatchers.IO) {
+                PlayerPreferences.resetGameSession(context)
+                coinsEarnedThisGame = 0
+            }
+            sessionResetDone = true
+        } else {
+            withContext(Dispatchers.IO) {
+                val currentPending = PlayerPreferences.getPendingCoins(context).first()
+                withContext(Dispatchers.Main) {
+                    coinsEarnedThisGame = currentPending
+                }
+            }
+        }
+    }
+
+   LaunchedEffect(Unit) {
         withContext(Dispatchers.IO) {
             val loadedData = loadBoardData(
                 context,
@@ -60,6 +83,74 @@ fun BoardScreen(navController: NavController) {
         }
     }
 
+    val currentBackStackEntry = navController.currentBackStackEntry
+    val quizTimestampState = currentBackStackEntry?.savedStateHandle
+        ?.getStateFlow<Long>("quiz_result_timestamp", 0L)
+        ?.collectAsState()
+    val quizTimestamp = quizTimestampState?.value ?: 0L
+
+    val quizResultTypeState = currentBackStackEntry?.savedStateHandle
+        ?.getStateFlow<String?>("quiz_result_type", null)
+        ?.collectAsState()
+    val quizResultType = quizResultTypeState?.value
+
+    LaunchedEffect(quizTimestamp) {
+        if (quizTimestamp != 0L && quizResultType != null) {
+
+            withContext(Dispatchers.IO) {
+                var addedCoins = 0
+                when (quizResultType) {
+                    "PERFECT" -> {
+                        val currentStreakValue = PlayerPreferences.getCurrentStreak(context).first()
+                        val newStreak = currentStreakValue + 1
+                        addedCoins = 2 + (newStreak / 2)
+
+                        PlayerPreferences.saveCurrentStreak(context, newStreak)
+                        withContext(Dispatchers.Main) { showConfetti = true }
+                    }
+                    "RECOVERY" -> {
+                        PlayerPreferences.saveCurrentStreak(context, 0)
+                        addedCoins = 1
+                        withContext(Dispatchers.Main) { showConfetti = true }
+                    }
+                    else -> {
+                        PlayerPreferences.saveCurrentStreak(context, 0)
+                        addedCoins = 0
+                    }
+                }
+
+                if (addedCoins > 0) {
+                    val currentPendingCoins = PlayerPreferences.getPendingCoins(context).first()
+                    val newPendingTotal = currentPendingCoins + addedCoins
+                    PlayerPreferences.savePendingCoins(context, newPendingTotal)
+
+                    withContext(Dispatchers.Main) {
+                        coinsEarnedThisGame = newPendingTotal
+                    }
+                }
+            }
+
+            pawnPosition++
+
+            delay(1500)
+            showConfetti = false
+
+            if (countiesOnBoard.isNotEmpty() && pawnPosition >= countiesOnBoard.size) {
+
+                withContext(Dispatchers.IO) {
+                    PlayerPreferences.finalizePendingCoins(context)
+                }
+
+                navController.navigate(Routes.CHEST) {
+                    popUpTo(Routes.GAME_BOARD) { inclusive = true }
+                }
+            }
+
+            currentBackStackEntry?.savedStateHandle?.remove<Long>("quiz_result_timestamp")
+            currentBackStackEntry?.savedStateHandle?.remove<String>("quiz_result_type")
+        }
+    }
+
     if (isLoading) {
         Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
             CircularProgressIndicator()
@@ -67,11 +158,25 @@ fun BoardScreen(navController: NavController) {
     } else {
         Box(modifier = Modifier.fillMaxSize()) {
             if (countiesOnBoard.isNotEmpty()) {
+                val safeIndex = pawnPosition % countiesOnBoard.size
+                val currentCounty = countiesOnBoard[safeIndex]
+
                 GameBoard(
                     counties = countiesOnBoard,
                     pawnPosition = pawnPosition,
-                    onHistoryClick = { navController.navigate(Routes.QUIZ) },
-                    onGeographyClick = { navController.navigate(Routes.QUIZ) },
+                    characterId = characterId,
+                    showConfetti = showConfetti,
+                    pendingCoins = coinsEarnedThisGame,
+                    onHistoryClick = {
+                        navController.currentBackStackEntry?.savedStateHandle?.set("selected_county", currentCounty.name)
+                        navController.currentBackStackEntry?.savedStateHandle?.set("selected_category", "istorie")
+                        navController.navigate(Routes.QUIZ)
+                    },
+                    onGeographyClick = {
+                        navController.currentBackStackEntry?.savedStateHandle?.set("selected_county", currentCounty.name)
+                        navController.currentBackStackEntry?.savedStateHandle?.set("selected_category", "geografie")
+                        navController.navigate(Routes.QUIZ)
+                    },
                     modifier = Modifier.fillMaxSize()
                 )
             } else {
