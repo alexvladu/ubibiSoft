@@ -47,17 +47,17 @@ class CollectionViewModel(
     init {
         viewModelScope.launch {
 
-            repo.addSticker("common_Ananas", StickerRarity.COMMON)
-            repo.addSticker("common_Chitară", StickerRarity.COMMON)
-            repo.addSticker("common_Stea_Strălucitoare", StickerRarity.COMMON)
-            repo.addSticker("common_Onigiri", StickerRarity.COMMON)
-            repo.addSticker("rare_Axolotl", StickerRarity.RARE)
-            repo.addSticker("rare_Diplodocus", StickerRarity.RARE)
-            repo.addSticker("rare_Cufăr", StickerRarity.RARE)
-            repo.addSticker("rare_Fan_k-pop", StickerRarity.RARE)
-            repo.addSticker("epic_ElGato", StickerRarity.EPIC)
-            repo.addSticker("epic_Omul_Păianjen", StickerRarity.EPIC)
-            repo.addSticker("legendary_Ballerina_Cappuccina", StickerRarity.LEGENDARY)
+//            repo.addSticker("common_Ananas", StickerRarity.COMMON)
+//            repo.addSticker("common_Chitară", StickerRarity.COMMON)
+//            repo.addSticker("common_Stea_Strălucitoare", StickerRarity.COMMON)
+//            repo.addSticker("common_Onigiri", StickerRarity.COMMON)
+//            repo.addSticker("rare_Axolotl", StickerRarity.RARE)
+//            repo.addSticker("rare_Diplodocus", StickerRarity.RARE)
+//            repo.addSticker("rare_Cufăr", StickerRarity.RARE)
+//            repo.addSticker("rare_Fan_k-pop", StickerRarity.RARE)
+//            repo.addSticker("epic_ElGato", StickerRarity.EPIC)
+//            repo.addSticker("epic_Omul_Păianjen", StickerRarity.EPIC)
+//            repo.addSticker("legendary_Ballerina_Cappuccina", StickerRarity.LEGENDARY)
 
             val all = repo.loadAllStickers()
             _stickers.value = all
