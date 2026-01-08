@@ -132,7 +132,7 @@ fun HomeScreen(
                             horizontalArrangement = Arrangement.spacedBy(26.dp),
                             verticalAlignment = Alignment.CenterVertically
                         ) {
-                            HomeButton("Play") {
+                            HomeButton("Start Joc") {
                                 MusicManager.playSoundEffect(SoundEffect.BUTTON)
                                 CoroutineScope(Dispatchers.IO).launch {
                                     PlayerPreferences.savePlayerName(context, playerName)
@@ -141,7 +141,7 @@ fun HomeScreen(
                                 onPlayClick()
                             }
 
-                            HomeButton("Collection") {
+                            HomeButton("Colecție") {
                                 MusicManager.playSoundEffect(SoundEffect.BUTTON)
                                 onCollectionClick()
                             }
@@ -152,13 +152,13 @@ fun HomeScreen(
                             verticalAlignment = Alignment.CenterVertically
                         ) {
 
-                            HomeButton("Treasure") {
+                            HomeButton("Cufere") {
                                 MusicManager.playSoundEffect(SoundEffect.BUTTON)
                                 onTreasureClick()
                             }
 
 
-                            HomeButton("Exit") {
+                            HomeButton("Ieșire") {
                                 MusicManager.playSoundEffect(SoundEffect.BUTTON)
                                 CoroutineScope(Dispatchers.IO).launch {
                                     PlayerPreferences.savePlayerName(context, playerName)
@@ -189,7 +189,7 @@ fun HomeScreen(
                         onValueChange = { playerName = it },
                         placeholder = {
                             Text(
-                                "Who am I?",
+                                "Nume",
                                 fontSize = 20.sp,
                                 color = Color.Gray,
                                 textAlign = TextAlign.Center,
