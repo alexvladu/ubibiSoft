@@ -41,7 +41,7 @@
 			 {
       "id": 5,
       "text": "În ce regiune istorică din vestul României se află județul Arad",
-      "raspunsuri": ["Banat", "Crișana", "Transilvania"],
+      "raspunsuri": ["Banat", "Crișana", "Transilvania", "Arad"],
       "raspuns_corect": "Arad",
       "locatie": "Arad",
       "hint": "Este aproape de granița cu Ungaria"
@@ -907,7 +907,7 @@
       "id": 73,
       "text": "Ce oraș din județul Maramureș este cunoscut pentru bisericile de lemn și tradiții",
       "raspunsuri": ["Baia Mare", "Sighetu Marmației", "Borșa"],
-      "raspuns_corect": "Baia Mare",
+      "raspuns_corect": "Sighetu Marmației",
       "locatie": "Maramureș",
       "hint": "Este cel mai mare oraș din județ și centru administrativ"
     },
@@ -1210,8 +1210,8 @@
     {
       "id": 107,
       "text": "Ce obiectiv turistic natural din județul Sibiu este cunoscut pentru peșteri și chei",
-      "raspunsuri": ["Cheile Râului", "Delta Dunării", "Cheile Bicazului"],
-      "raspuns_corect": "Cheile Râului",
+      "raspunsuri": ["Cheile Cibinului", "Delta Dunării", "Cheile Bicazului"],
+      "raspuns_corect": "Cheile Cibinului",
       "locatie": "Sibiu",
       "hint": "Este o zonă cu stânci spectaculoase și peisaje frumoase"
     },
@@ -1418,7 +1418,7 @@
     {
       "id": 130,
       "text": "Ce produs tradițional sau aliment specific se produce în județul Vâlcea",
-      "raspunsuri": ["Brânza de burduf", "Salamul de Sibiu", "Mierea de albine din Maramureș"],
+      "raspunsuri": ["Brânza de burduf", "Salamul de Sibiu", "Mierea de albine"],
       "raspuns_corect": "Brânza de burduf",
       "locatie": "Vâlcea",
       "hint": "Este un produs din lapte, cu gust puternic și tradiție locală"
