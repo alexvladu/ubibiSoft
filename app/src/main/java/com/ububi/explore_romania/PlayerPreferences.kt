@@ -1,6 +1,7 @@
 package com.ububi.explore_romania
 
 import android.content.Context
+import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.intPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
@@ -15,9 +16,11 @@ object PlayerPreferences {
     private val KEY_COINS = intPreferencesKey("player_coins")
     private val KEY_CURRENT_STREAK = intPreferencesKey("current_streak")
     private val KEY_PENDING_COINS = intPreferencesKey("pending_coins")
-    //asta nu e folosit nicaieri deocamdata
     private val MAX_STREAK = intPreferencesKey("maximum_streak")
 
+    private val KEY_SEEN_RULES_TUTORIAL = booleanPreferencesKey("seen_rules_tutorial")
+    private val KEY_SEEN_COUNTY_INFO_TUTORIAL = booleanPreferencesKey("seen_county_info_tutorial")
+    private val KEY_SEEN_CHEST_TUTORIAL = booleanPreferencesKey("seen_chest_tutorial")
 
     fun getPlayerName(context: Context) =
         context.dataStore.data.map { prefs ->
@@ -72,7 +75,6 @@ object PlayerPreferences {
         }
 
     suspend fun savePendingCoins(context: Context, coins: Int) {
-        android.util.Log.d("PlayerPreferences", "Salvare pending coins: $coins")
         context.dataStore.edit { prefs ->
             prefs[KEY_PENDING_COINS] = coins
         }
@@ -82,17 +84,48 @@ object PlayerPreferences {
         context.dataStore.edit { prefs ->
             val currentTotal = prefs[KEY_COINS] ?: 0
             val pending = prefs[KEY_PENDING_COINS] ?: 0
-            android.util.Log.d("PlayerPreferences", "   Total curent: $currentTotal, Pending: $pending")
             prefs[KEY_COINS] = currentTotal + pending
             prefs[KEY_PENDING_COINS] = 0
         }
     }
 
     suspend fun resetGameSession(context: Context) {
-        android.util.Log.d("PlayerPreferences", "🔄 RESET GAME SESSION")
         context.dataStore.edit { prefs ->
             prefs[KEY_CURRENT_STREAK] = 0
             prefs[KEY_PENDING_COINS] = 0
+        }
+    }
+
+    fun getSeenRulesTutorial(context: Context) =
+        context.dataStore.data.map { prefs ->
+            prefs[KEY_SEEN_RULES_TUTORIAL] ?: false
+        }
+
+    suspend fun setSeenRulesTutorial(context: Context, seen: Boolean) {
+        context.dataStore.edit { prefs ->
+            prefs[KEY_SEEN_RULES_TUTORIAL] = seen
+        }
+    }
+
+    fun getSeenCountyInfoTutorial(context: Context) =
+        context.dataStore.data.map { prefs ->
+            prefs[KEY_SEEN_COUNTY_INFO_TUTORIAL] ?: false
+        }
+
+    suspend fun setSeenCountyInfoTutorial(context: Context, seen: Boolean) {
+        context.dataStore.edit { prefs ->
+            prefs[KEY_SEEN_COUNTY_INFO_TUTORIAL] = seen
+        }
+    }
+
+    fun getSeenChestTutorial(context: Context) =
+        context.dataStore.data.map { prefs ->
+            prefs[KEY_SEEN_CHEST_TUTORIAL] ?: false
+        }
+
+    suspend fun setSeenChestTutorial(context: Context, seen: Boolean) {
+        context.dataStore.edit { prefs ->
+            prefs[KEY_SEEN_CHEST_TUTORIAL] = seen
         }
     }
 }

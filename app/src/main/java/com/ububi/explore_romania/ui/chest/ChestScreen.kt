@@ -49,11 +49,11 @@ import com.ububi.explore_romania.PlayerPreferences
 import com.ububi.explore_romania.ui.stickers.StickerRarity
 import com.ububi.explore_romania.ui.stickers.StickerRepository
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.io.IOException
 
-// 1. Data Models
 data object Rarity {
     const val COMUN = 10
     const val RAR = 20
@@ -74,6 +74,7 @@ fun ChestScreen(navController: NavController) {
     val context = LocalContext.current
     val scope = rememberCoroutineScope()
     val repo = StickerRepository(context)
+
     var showDialog by remember { mutableStateOf(false) }
     var rewardTitle by remember { mutableStateOf("") }
     var rewardColor by remember { mutableStateOf(Color.White) }
@@ -81,9 +82,19 @@ fun ChestScreen(navController: NavController) {
     var points by remember { mutableIntStateOf(0) }
     var rewardStickerBitmap by remember { mutableStateOf<ImageBitmap?>(null) }
     var rewardFallbackRes by remember { mutableIntStateOf(0) }
+
+    var showTutorialDialog by remember { mutableStateOf(false) }
+
     LaunchedEffect(Unit) {
         PlayerPreferences.getCoins(context).collect { savedCoins ->
             points = savedCoins
+        }
+    }
+
+    LaunchedEffect(Unit) {
+        val seenTutorial = PlayerPreferences.getSeenChestTutorial(context).first()
+        if (!seenTutorial) {
+            showTutorialDialog = true
         }
     }
 
@@ -117,6 +128,7 @@ fun ChestScreen(navController: NavController) {
             com.ububi.explore_romania.R.drawable.chest
         )
     )
+
     suspend fun loadBitmapFromAssets(context: Context, path: String): ImageBitmap? {
         return withContext(Dispatchers.IO) {
             try {
@@ -129,6 +141,7 @@ fun ChestScreen(navController: NavController) {
             }
         }
     }
+
     fun openChest(chest: ChestModel) {
         if (points >= chest.cost) {
             val previousPoints = points
@@ -174,8 +187,6 @@ fun ChestScreen(navController: NavController) {
         }
     }
 
-
-    // --- MAIN CONTAINER ---
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -190,8 +201,6 @@ fun ChestScreen(navController: NavController) {
             ),
         contentAlignment = Alignment.Center
     ) {
-
-        // Back Button
         IconButton(
             onClick = { navController.navigateUp() },
             modifier = Modifier
@@ -274,7 +283,6 @@ fun ChestScreen(navController: NavController) {
                             fontSize = 18.sp
                         )
 
-
                         if (rewardStickerBitmap != null) {
                             Image(
                                 bitmap = rewardStickerBitmap!!,
@@ -306,6 +314,47 @@ fun ChestScreen(navController: NavController) {
                 }
             )
         }
+
+        if (showTutorialDialog) {
+            AlertDialog(
+                onDismissRequest = {
+                    showTutorialDialog = false
+                    scope.launch(Dispatchers.IO) {
+                        PlayerPreferences.setSeenChestTutorial(context, true)
+                    }
+                },
+                containerColor = Color(0xFFEEEEEE),
+                title = {
+                    Text(
+                        text = "Recompense",
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 22.sp,
+                        color = Color(0xFF311B92)
+                    )
+                },
+                text = {
+                    Text(
+                        text = "Folosește acum punctele acumulate pentru a deschide cuferele și a obține stickere sau joacă în continuare și adună mai multe puncte.\n\nPoți găsi stickerele tale la secțiunea \"Colecție\" din pagina de start.",
+                        fontSize = 16.sp,
+                        color = Color.Black,
+                        textAlign = TextAlign.Justify
+                    )
+                },
+                confirmButton = {
+                    Button(
+                        onClick = {
+                            showTutorialDialog = false
+                            scope.launch(Dispatchers.IO) {
+                                PlayerPreferences.setSeenChestTutorial(context, true)
+                            }
+                        },
+                        colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF311B92))
+                    ) {
+                        Text("Am înțeles", color = Color.White)
+                    }
+                }
+            )
+        }
     }
 }
 @Preview(
@@ -318,4 +367,3 @@ fun ChestScreen(navController: NavController) {
 fun PreviewChestScreenTablet() {
     ChestScreen(navController = rememberNavController())
 }
-

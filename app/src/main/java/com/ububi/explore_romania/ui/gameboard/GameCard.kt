@@ -71,7 +71,7 @@ fun GameCard(
                     text = county.name,
                     color = Color.Black,
                     fontWeight = FontWeight.ExtraBold,
-                    fontSize = 30.sp,
+                    fontSize = 28.sp,
                     textAlign = TextAlign.Center,
                     lineHeight = 16.sp
                 )
