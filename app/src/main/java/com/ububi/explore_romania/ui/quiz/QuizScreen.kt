@@ -1,15 +1,24 @@
 package com.ububi.explore_romania.ui.quiz
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -18,157 +27,224 @@ import androidx.navigation.NavController
 import com.ububi.explore_romania.MusicManager
 import com.ububi.explore_romania.MusicTrack
 import com.ububi.explore_romania.SoundEffect
+import com.ububi.explore_romania.PlayerPreferences
+import com.ububi.explore_romania.R
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.withContext
 
+// Asigură-te că ai clasa Question definită (probabil în Repository sau Model),
+// Dacă nu e importată, o poți decomenta pe cea simplă de mai jos, dar probabil o ai deja în proiect:
+/*
 data class Question(
     val text: String,
     val answers: List<String>,
-    val correctIndex: Int
+    val correctIndex: Int,
+    val hint: String? = null
 )
+*/
 
 @Composable
 fun QuizScreen(navController: NavController) {
-    // Play question music when screen appears
+    val context = LocalContext.current
+
+    val previousStack = navController.previousBackStackEntry
+    val countyName = previousStack?.savedStateHandle?.get<String>("selected_county") ?: "București"
+    val category = previousStack?.savedStateHandle?.get<String>("selected_category") ?: "geografie"
+
+    var currentQuestion by remember { mutableStateOf<Question?>(null) }
+    var isLoading by remember { mutableStateOf(true) }
+
+    var pendingCoins by remember { mutableIntStateOf(0) }
+
+    // Incarcam banutii castigati pana acum in sesiune pentru afisare
+    LaunchedEffect(Unit) {
+        withContext(Dispatchers.IO) {
+            val coins = PlayerPreferences.getPendingCoins(context).first()
+            withContext(Dispatchers.Main) {
+                pendingCoins = coins
+            }
+        }
+    }
+
+    var selectedAnswerIndex by remember { mutableIntStateOf(-1) }
+    val wrongAnswers = remember { mutableStateListOf<Int>() }
+    var attempts by remember { mutableIntStateOf(0) }
+    var quizFinished by remember { mutableStateOf(false) }
+
+    // Incarcam intrebarea specifica judetului si categoriei
     LaunchedEffect(Unit) {
         MusicManager.playTrack(MusicTrack.QUESTION)
+        withContext(Dispatchers.IO) {
+            // Aici folosim logica ta avansata din Repository
+            val loaded = QuizRepository.getRandomQuestionForCounty(context, countyName, category)
+            withContext(Dispatchers.Main) {
+                currentQuestion = loaded
+                isLoading = false
+            }
+        }
     }
 
-    val questions = remember {
-        listOf(
-            // Geography questions adapted with 4 options (added one incorrect where needed)
-            Question(
-                "Care este suprafața aproximativă a României?",
-                listOf("238.000 km²", "338.000 km²", "438.000 km²", "138.000 km²"),
-                0
-            ),
-            Question(
-                "În câte județe este împărțită România (fără București)?",
-                listOf("39 de județe", "40 de județe", "41 de județe", "42 de județe"),
-                2
-            ),
-            Question(
-                "Cu câte țări se învecinează România?",
-                listOf("4 țări", "5 țări", "6 țări", "7 țări"),
-                1
-            ),
-            Question(
-                "Care este cel mai mic județ din România ca suprafață?",
-                listOf("Covasna", "Ilfov", "Giurgiu", "Tulcea"),
-                1
-            ),
-            Question(
-                "Care e cel mai mare județ din România ca suprafață?",
-                listOf("Tulcea", "Suceava", "Timiș", "Iași"),
-                2
-            ),
-            // Întrebări Istorie
-            Question(
-                "În ce an a avut loc Unirea Principatelor Române?",
-                listOf("1848", "1859", "1918", "1947"),
-                1
-            ),
-            Question(
-                "Cine a fost primul rege al României?",
-                listOf("Ferdinand", "Carol I", "Mihai I", "Alexandru Ioan Cuza"),
-                1
-            ),
-            Question(
-                "În ce an a reușit Mihai Viteazul unirea celor trei mari țări medievale?",
-                listOf("1500", "1550", "1600", "1650"),
-                2
-            ),
-            Question(
-                "Când a fost proclamată independența de stat a României?",
-                listOf("1859", "1877", "1918", "1944"),
-                1
-            ),
-            Question(
-                "Cine a fost domnitorul care a construit Castelul Peleș?",
-                listOf("Ștefan cel Mare", "Vlad Țepeș", "Carol I", "Ferdinand I"),
-                2
-            )
-        ).shuffled() // Shuffle questions for randomness
-    }
-
-    var currentQuestionIndex by remember { mutableIntStateOf(0) }
-    var score by remember { mutableIntStateOf(0) }
-    var selectedAnswer by remember { mutableIntStateOf(-1) }
-    var showResult by remember { mutableStateOf(false) }
-
-    // 2. LOGICA DE NAVIGARE ȘI MUTARE PION
-    LaunchedEffect(selectedAnswer) {
-        if (selectedAnswer != -1) {
-            val currentQuestion = questions.getOrNull(currentQuestionIndex) ?: questions[0]
-            val isCorrect = selectedAnswer == currentQuestion.correctIndex
-
+    // Logica de finalizare si trimitere rezultat inapoi la Board
+    LaunchedEffect(quizFinished) {
+        if (quizFinished) {
             delay(1500)
+            val resultType = if (wrongAnswers.isEmpty()) {
+                "PERFECT"
+            } else if (wrongAnswers.size == 1 && selectedAnswerIndex == currentQuestion!!.correctIndex) {
+                "RECOVERY"
+            } else {
+                "FAILURE"
+            }
 
-            // Send back quiz result with timestamp
-            navController.previousBackStackEntry
-                ?.savedStateHandle
-                ?.set("quiz_result_timestamp", System.currentTimeMillis())
-
-            navController.previousBackStackEntry
-                ?.savedStateHandle
-                ?.set("quiz_answer_correct", isCorrect)
-
+            navController.previousBackStackEntry?.savedStateHandle?.set("quiz_result_timestamp", System.currentTimeMillis())
+            navController.previousBackStackEntry?.savedStateHandle?.set("quiz_result_type", resultType)
             navController.popBackStack()
         }
     }
 
+    if (isLoading) {
+        Box(modifier = Modifier.fillMaxSize().background(Color(0xFF212121)), contentAlignment = Alignment.Center) {
+            CircularProgressIndicator(color = Color.White)
+        }
+        return
+    }
 
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(Color(0xFF212121)) // Fundal întunecat
-            .padding(32.dp),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        val currentQuestion = questions.getOrNull(currentQuestionIndex) ?: questions[0]
+    Box(modifier = Modifier.fillMaxSize().background(Color(0xFF212121))) {
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(24.dp)
+                .verticalScroll(rememberScrollState()),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            currentQuestion?.let { question ->
 
-        Text(
-            text = currentQuestion.text,
-            fontSize = 24.sp,
-            fontWeight = FontWeight.Bold,
-            color = Color.White,
-            textAlign = TextAlign.Center,
-            modifier = Modifier.padding(bottom = 32.dp)
-        )
+                Text(
+                    text = category.replaceFirstChar { it.uppercase() },
+                    fontSize = 16.sp,
+                    color = Color.LightGray,
+                    modifier = Modifier.padding(bottom = 24.dp)
+                )
 
-        currentQuestion.answers.forEachIndexed { index, answer ->
-            val isSelected = selectedAnswer == index
-            val isCorrect = index == currentQuestion.correctIndex
+                Text(
+                    text = question.text,
+                    fontSize = 22.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = Color.White,
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier.padding(bottom = 32.dp)
+                )
 
-            val backgroundColor = when {
-                selectedAnswer != -1 && isCorrect -> Color.Green
-                isSelected && !isCorrect -> Color.Red
-                isSelected && isCorrect -> Color.Green
-                else -> Color(0xFF424242)
-            }
+                question.answers.forEachIndexed { index, answer ->
+                    val isSelectedAsFinal = selectedAnswerIndex == index
+                    val isAlreadyWrong = wrongAnswers.contains(index)
+                    val isCorrect = index == question.correctIndex
 
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(vertical = 8.dp)
-                    .background(backgroundColor, RoundedCornerShape(16.dp))
-                    .border(2.dp, Color(0xFF616161), RoundedCornerShape(16.dp))
-                    .clickable(enabled = selectedAnswer == -1) {
-                        selectedAnswer = index
-                        // Play sound effect immediately
-                        if (index == currentQuestion.correctIndex) {
-                            MusicManager.playSoundEffect(SoundEffect.CORRECT)
-                        } else {
-                            MusicManager.playSoundEffect(SoundEffect.WRONG)
+                    val backgroundColor = when {
+                        quizFinished && isCorrect -> Color(0xFF4CAF50)
+                        isSelectedAsFinal && isCorrect -> Color(0xFF4CAF50)
+                        isSelectedAsFinal && !isCorrect -> Color(0xFFF44336)
+                        isAlreadyWrong -> Color(0xFFB71C1C)
+                        else -> Color(0xFF424242)
+                    }
+
+                    val isEnabled = !quizFinished && !isAlreadyWrong
+
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(vertical = 8.dp)
+                            .background(backgroundColor, RoundedCornerShape(12.dp))
+                            .border(1.dp, Color.Gray, RoundedCornerShape(12.dp))
+                            .clickable(enabled = isEnabled) {
+                                if (index == question.correctIndex) {
+                                    selectedAnswerIndex = index
+                                    MusicManager.playSoundEffect(SoundEffect.CORRECT)
+                                    quizFinished = true
+                                } else {
+                                    MusicManager.playSoundEffect(SoundEffect.WRONG)
+
+                                    if (attempts == 0) {
+                                        wrongAnswers.add(index)
+                                        attempts++
+                                    } else {
+                                        selectedAnswerIndex = index
+                                        quizFinished = true
+                                    }
+                                }
+                            }
+                            .padding(16.dp),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Text(
+                            text = answer,
+                            fontSize = 16.sp,
+                            color = if (isAlreadyWrong) Color.Gray else Color.White,
+                            textAlign = TextAlign.Center
+                        )
+                    }
+                }
+
+                // Sectiunea de Hint care apare daca gresesti o data
+                if (attempts > 0) {
+                    val hintText = question.hint ?: "Mai încearcă o dată!"
+                    Spacer(modifier = Modifier.height(32.dp))
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .background(Color(0xFF37474F), RoundedCornerShape(12.dp))
+                            .border(1.dp, Color(0xFFFFC107), RoundedCornerShape(12.dp))
+                            .padding(16.dp)
+                    ) {
+                        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                            Text(
+                                text = "HINT",
+                                color = Color(0xFFFFC107),
+                                fontWeight = FontWeight.Bold,
+                                fontSize = 14.sp,
+                                modifier = Modifier.padding(bottom = 8.dp)
+                            )
+                            Text(
+                                text = hintText,
+                                color = Color.White,
+                                fontSize = 15.sp,
+                                textAlign = TextAlign.Center,
+                                fontStyle = FontStyle.Italic
+                            )
                         }
                     }
-                    .padding(16.dp),
-                contentAlignment = Alignment.Center
+                }
+            }
+        }
+
+        // Afisarea monedelor (consistent cu celelalte ecrane)
+        Card(
+            modifier = Modifier
+                .align(Alignment.TopEnd)
+                .padding(top = 16.dp, end = 16.dp),
+            colors = CardDefaults.cardColors(containerColor = Color.Black.copy(alpha = 0.6f)),
+            shape = RoundedCornerShape(50)
+        ) {
+            Row(
+                modifier = Modifier.padding(horizontal = 12.dp, vertical = 6.dp),
+                verticalAlignment = Alignment.CenterVertically
             ) {
+                Image(
+                    painter = painterResource(id = R.drawable.ic_launcher_foreground),
+                    contentDescription = "Coin",
+                    modifier = Modifier.size(24.dp)
+                )
+
+                Spacer(modifier = Modifier.width(8.dp))
+
                 Text(
-                    text = answer,
-                    fontSize = 18.sp,
-                    color = Color.White
+                    text = "$pendingCoins",
+                    color = Color(0xFFFFD700),
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 18.sp
                 )
             }
         }

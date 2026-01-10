@@ -1,13 +1,14 @@
 package com.ububi.explore_romania.ui.gameboard
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -17,11 +18,13 @@ import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.ububi.explore_romania.R
 import com.ububi.explore_romania.ui.components.CharacterSprite
 import com.ububi.explore_romania.ui.components.ConfettiAnimation
 import com.ububi.explore_romania.MusicManager
@@ -97,7 +100,7 @@ fun GameBoard(
                     if (pendingCoins > 0) {
                         Spacer(modifier = Modifier.height(16.dp))
                         Text(
-                            text = "Ai câștigat $pendingCoins coin-uri! 🪙",
+                            text = "Ai câștigat $pendingCoins coins! 🪙",
                             fontSize = 24.sp,
                             fontWeight = FontWeight.Bold,
                             color = Color(0xFFFFD700),
@@ -111,12 +114,10 @@ fun GameBoard(
             }
         }
 
-
         if (counties.size >= 16) {
             for (index in 0 until 16) {
                 val county = counties[index]
                 val (col, row) = calculateBoardPosition(index)
-
                 val isRevealed = index < pawnPosition
 
                 GameCard(
@@ -128,14 +129,12 @@ fun GameBoard(
                 )
             }
 
-            // Pawn position - instant teleport (no animation)
             val displayPawnPos = if (pawnPosition >= 16) 15 else pawnPosition
             val (pawnCol, pawnRow) = calculateBoardPosition(displayPawnPos)
-
-            // Calculate position directly without animation
             val pawnX = cellWidth * pawnCol
             val pawnY = cellHeight * pawnRow
 
+            // Afișare Pion
             Box(
                 modifier = Modifier
                     .width(cellWidth)
@@ -150,13 +149,10 @@ fun GameBoard(
                 )
             }
 
-            // Confetti animation overlay at character position
             if (showConfetti) {
-                // Calculate center of character in dp then convert to pixels
                 val characterCenterXDp = pawnX.value + cellWidth.value / 2
                 val characterCenterYDp = pawnY.value + cellHeight.value / 2
 
-                // Convert to pixels using density
                 with(density) {
                     val centerXPx = characterCenterXDp.dp.toPx()
                     val centerYPx = characterCenterYDp.dp.toPx()
@@ -168,6 +164,35 @@ fun GameBoard(
                         modifier = Modifier.fillMaxSize()
                     )
                 }
+            }
+        }
+
+        // ELEMENTUL NOU ADAUGAT DE TINE (CONTOR BANI)
+        Card(
+            modifier = Modifier
+                .align(Alignment.TopEnd)
+                .padding(top = 16.dp, end = 16.dp),
+            colors = CardDefaults.cardColors(containerColor = Color.Black.copy(alpha = 0.6f)),
+            shape = RoundedCornerShape(50)
+        ) {
+            Row(
+                modifier = Modifier.padding(horizontal = 12.dp, vertical = 6.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Image(
+                    painter = painterResource(id = R.drawable.ic_launcher_foreground), // Asigura-te ca ai aceasta resursa sau schimba cu una existenta
+                    contentDescription = "Coin",
+                    modifier = Modifier.size(24.dp)
+                )
+
+                Spacer(modifier = Modifier.width(8.dp))
+
+                Text(
+                    text = "$pendingCoins",
+                    color = Color(0xFFFFD700),
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 18.sp
+                )
             }
         }
     }

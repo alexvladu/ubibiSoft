@@ -18,3 +18,8 @@ local.properties
 .idea/copilot.data.migration.ask2agent.xml
 .idea/copilot.data.migration.ask.xml
 .idea/copilot.data.migration.agent.xml
+*.apk
+*.keystore
+/app/release/
+/app/release/app-release.apk
+
