@@ -101,7 +101,7 @@ fun GameBoard(
                     if (pendingCoins > 0) {
                         Spacer(modifier = Modifier.height(16.dp))
                         Text(
-                            text = "Ai câștigat $pendingCoins coins! 🪙",
+                            text = "Ai câștigat $pendingCoins monede! 🪙",
                             fontSize = 24.sp,
                             fontWeight = FontWeight.Bold,
                             color = Color(0xFFFFD700),

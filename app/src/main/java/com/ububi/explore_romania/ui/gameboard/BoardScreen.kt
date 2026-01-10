@@ -52,10 +52,16 @@ fun BoardScreen(navController: NavController) {
     var coinsEarnedThisGame by rememberSaveable { mutableIntStateOf(0) }
     var sessionResetDone by rememberSaveable { mutableStateOf(false) }
 
+    // State-uri pentru fereastra de informații despre județ
     var showInfoDialog by remember { mutableStateOf(false) }
     var selectedInfoCounty by remember { mutableStateOf<County?>(null) }
     var infoText by remember { mutableStateOf("") }
     var locationMapBitmap by remember { mutableStateOf<ImageBitmap?>(null) }
+
+    // --- STATE-URI PENTRU DIALOGURI TUTORIAL ---
+    var showRulesDialog by remember { mutableStateOf(false) }
+    var showCountyInfoTipDialog by remember { mutableStateOf(false) }
+
 
     LaunchedEffect(selectedInfoCounty) {
         locationMapBitmap = null
@@ -73,6 +79,14 @@ fun BoardScreen(navController: NavController) {
 
     LaunchedEffect(Unit) {
         PlayerPreferences.getCharacterId(context).collect { saved -> characterId = saved }
+    }
+
+    // --- LOGICA DE AFIȘARE A REGULILOR (Doar o singură dată) ---
+    LaunchedEffect(Unit) {
+        val seenRules = PlayerPreferences.getSeenRulesTutorial(context).first()
+        if (!seenRules) {
+            showRulesDialog = true
+        }
     }
 
     LaunchedEffect(Unit) {
@@ -151,6 +165,15 @@ fun BoardScreen(navController: NavController) {
 
 
                 pawnPosition++
+
+                // --- VERIFICARE AFIȘARE INFO TIP (După prima întrebare) ---
+                if (pawnPosition == 1) {
+                    val seenInfoTip = PlayerPreferences.getSeenCountyInfoTutorial(context).first()
+                    if (!seenInfoTip) {
+                        delay(500) // Mic delay să nu apară brusc peste confetti
+                        showCountyInfoTipDialog = true
+                    }
+                }
 
                 delay(1500)
                 showConfetti = false
@@ -288,6 +311,92 @@ fun BoardScreen(navController: NavController) {
                             colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF311B92))
                         ) {
                             Text("Închide", color = Color.White)
+                        }
+                    }
+                )
+            }
+
+            // --- DIALOGUL PENTRU REGULI (PRIMUL MESAJ - APARTE DOAR LA PRIMA DESCHIDERE) ---
+            if (showRulesDialog) {
+                AlertDialog(
+                    onDismissRequest = {
+                        showRulesDialog = false
+                        scope.launch(Dispatchers.IO) {
+                            PlayerPreferences.setSeenRulesTutorial(context, true)
+                        }
+                    },
+                    containerColor = Color(0xFFEEEEEE),
+                    title = {
+                        Text(
+                            text = "Regulile Jocului",
+                            fontWeight = FontWeight.Bold,
+                            fontSize = 22.sp,
+                            color = Color(0xFF311B92)
+                        )
+                    },
+                    text = {
+                        Text(
+                            text = "Pentru fiecare întrebare la care ai răspuns corect primești 2 puncte.\n\n" +
+                                    "Dacă răspunzi greșit, nu îți face griji: vei primi un indiciu și ai șansa să mai încerci o dată - pentru un răspuns corect vei primi un punct.\n\n" +
+                                    "Dacă răspunzi corect la minim două întrebări consecutive vei primi un bonus!",
+                            fontSize = 16.sp,
+                            color = Color.Black,
+                            textAlign = androidx.compose.ui.text.style.TextAlign.Justify
+                        )
+                    },
+                    confirmButton = {
+                        Button(
+                            onClick = {
+                                showRulesDialog = false
+                                scope.launch(Dispatchers.IO) {
+                                    PlayerPreferences.setSeenRulesTutorial(context, true)
+                                }
+                            },
+                            colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF311B92))
+                        ) {
+                            Text("Am înțeles", color = Color.White)
+                        }
+                    }
+                )
+            }
+
+            // --- DIALOGUL PENTRU INFO JUDEȚ (APARTE DUPĂ PRIMA ÎNTREBARE) ---
+            if (showCountyInfoTipDialog) {
+                AlertDialog(
+                    onDismissRequest = {
+                        showCountyInfoTipDialog = false
+                        scope.launch(Dispatchers.IO) {
+                            PlayerPreferences.setSeenCountyInfoTutorial(context, true)
+                        }
+                    },
+                    containerColor = Color(0xFFEEEEEE),
+                    title = {
+                        Text(
+                            text = "Sfat util! 💡",
+                            fontWeight = FontWeight.Bold,
+                            fontSize = 22.sp,
+                            color = Color(0xFFF57C00)
+                        )
+                    },
+                    text = {
+                        Text(
+                            text = "Apasă pe un județ după ce ai răspuns la întrebare pentru a descoperi informații despre acesta.",
+                            fontSize = 18.sp,
+                            color = Color.Black,
+                            textAlign = androidx.compose.ui.text.style.TextAlign.Center
+                        )
+                    },
+                    confirmButton = {
+                        Button(
+                            onClick = {
+                                showCountyInfoTipDialog = false
+                                scope.launch(Dispatchers.IO) {
+                                    PlayerPreferences.setSeenCountyInfoTutorial(context, true)
+                                }
+                            },
+                            colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFF57C00))
+                        ) {
+                            Text("Super!", color = Color.White)
                         }
                     }
                 )
