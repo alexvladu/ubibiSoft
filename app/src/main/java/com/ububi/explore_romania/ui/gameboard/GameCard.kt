@@ -17,6 +17,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.foundation.clickable
 
 @Composable
 fun GameCard(
@@ -24,7 +25,8 @@ fun GameCard(
     width: Dp,
     height: Dp,
     isRevealed: Boolean,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onClick: () -> Unit = {}
 ) {
     val cardShape = RoundedCornerShape(12.dp)
 
@@ -34,6 +36,7 @@ fun GameCard(
             .height(height)
             .clip(cardShape)
             .border(2.dp, Color.White, cardShape)
+            .clickable(enabled = isRevealed) { onClick() }
     ) {
         // Imaginea de fundal
         if (county.image != null) {
@@ -48,7 +51,6 @@ fun GameCard(
             Box(modifier = Modifier.fillMaxSize().background(Color.Gray))
         }
 
-        // Strat "ceata"
         if (!isRevealed) {
             Box(
                 modifier = Modifier
@@ -69,7 +71,7 @@ fun GameCard(
                     text = county.name,
                     color = Color.Black,
                     fontWeight = FontWeight.ExtraBold,
-                    fontSize = 20.sp,
+                    fontSize = 30.sp,
                     textAlign = TextAlign.Center,
                     lineHeight = 16.sp
                 )
