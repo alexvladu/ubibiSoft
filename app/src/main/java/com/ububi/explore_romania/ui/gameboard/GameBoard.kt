@@ -39,6 +39,7 @@ fun GameBoard(
     pendingCoins: Int = 0,
     onHistoryClick: () -> Unit,
     onGeographyClick: () -> Unit,
+    onCardClick: (County) -> Unit,
     modifier: Modifier = Modifier
 ) {
     BoxWithConstraints(modifier = modifier) {
@@ -125,7 +126,8 @@ fun GameBoard(
                     width = cellWidth,
                     height = cellHeight,
                     isRevealed = isRevealed,
-                    modifier = Modifier.offset(x = cellWidth * col, y = cellHeight * row)
+                    modifier = Modifier.offset(x = cellWidth * col, y = cellHeight * row),
+                    onClick = { onCardClick(county) }
                 )
             }
 
@@ -134,7 +136,6 @@ fun GameBoard(
             val pawnX = cellWidth * pawnCol
             val pawnY = cellHeight * pawnRow
 
-            // Afișare Pion
             Box(
                 modifier = Modifier
                     .width(cellWidth)
@@ -167,7 +168,7 @@ fun GameBoard(
             }
         }
 
-        // ELEMENTUL NOU ADAUGAT DE TINE (CONTOR BANI)
+        // Contor bani
         Card(
             modifier = Modifier
                 .align(Alignment.TopEnd)
@@ -180,7 +181,7 @@ fun GameBoard(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Image(
-                    painter = painterResource(id = R.drawable.ic_launcher_foreground), // Asigura-te ca ai aceasta resursa sau schimba cu una existenta
+                    painter = painterResource(id = R.drawable.ic_launcher_foreground),
                     contentDescription = "Coin",
                     modifier = Modifier.size(24.dp)
                 )

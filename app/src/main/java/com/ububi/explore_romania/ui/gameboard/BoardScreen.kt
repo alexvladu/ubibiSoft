@@ -1,8 +1,13 @@
 package com.ububi.explore_romania.ui.gameboard
 
+import android.graphics.BitmapFactory
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.*
@@ -10,9 +15,15 @@ import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ImageBitmap
+import androidx.compose.ui.graphics.asImageBitmap
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.ububi.explore_romania.PlayerPreferences
 import com.ububi.explore_romania.Routes
@@ -21,11 +32,14 @@ import com.ububi.explore_romania.MusicTrack
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.io.IOException
 
 @Composable
 fun BoardScreen(navController: NavController) {
     val context = LocalContext.current
+    val scope = rememberCoroutineScope()
 
     var boardCountyIds by rememberSaveable { mutableStateOf<List<Int>>(emptyList()) }
     var countiesOnBoard by remember { mutableStateOf<List<County>>(emptyList()) }
@@ -36,18 +50,29 @@ fun BoardScreen(navController: NavController) {
     var showConfetti by remember { mutableStateOf(false) }
 
     var coinsEarnedThisGame by rememberSaveable { mutableIntStateOf(0) }
-
     var sessionResetDone by rememberSaveable { mutableStateOf(false) }
 
-    // PASTRAT DE PE MASTER: Logica spune ca aici trebuie sa cante muzica de Board
-    LaunchedEffect(Unit) {
-        MusicManager.playTrack(MusicTrack.BOARD)
+    var showInfoDialog by remember { mutableStateOf(false) }
+    var selectedInfoCounty by remember { mutableStateOf<County?>(null) }
+    var infoText by remember { mutableStateOf("") }
+    var locationMapBitmap by remember { mutableStateOf<ImageBitmap?>(null) }
+
+    LaunchedEffect(selectedInfoCounty) {
+        locationMapBitmap = null
+        selectedInfoCounty?.let { county ->
+            withContext(Dispatchers.IO) {
+                val bitmap = loadBitmapFromAssets(context, "localizare_harta/${county.id}.png")
+                withContext(Dispatchers.Main) {
+                    locationMapBitmap = bitmap
+                }
+            }
+        }
     }
 
+    LaunchedEffect(Unit) { MusicManager.playTrack(MusicTrack.BOARD) }
+
     LaunchedEffect(Unit) {
-        PlayerPreferences.getCharacterId(context).collect { saved ->
-            characterId = saved
-        }
+        PlayerPreferences.getCharacterId(context).collect { saved -> characterId = saved }
     }
 
     LaunchedEffect(Unit) {
@@ -60,9 +85,7 @@ fun BoardScreen(navController: NavController) {
         } else {
             withContext(Dispatchers.IO) {
                 val currentPending = PlayerPreferences.getPendingCoins(context).first()
-                withContext(Dispatchers.Main) {
-                    coinsEarnedThisGame = currentPending
-                }
+                withContext(Dispatchers.Main) { coinsEarnedThisGame = currentPending }
             }
         }
     }
@@ -73,7 +96,6 @@ fun BoardScreen(navController: NavController) {
                 context,
                 if (boardCountyIds.isNotEmpty()) boardCountyIds else null
             )
-
             withContext(Dispatchers.Main) {
                 countiesOnBoard = loadedData
                 if (boardCountyIds.isEmpty()) {
@@ -84,75 +106,69 @@ fun BoardScreen(navController: NavController) {
         }
     }
 
+
     val currentBackStackEntry = navController.currentBackStackEntry
-    val quizTimestampState = currentBackStackEntry?.savedStateHandle
+
+    val quizTimestamp by currentBackStackEntry?.savedStateHandle
         ?.getStateFlow<Long>("quiz_result_timestamp", 0L)
-        ?.collectAsState()
-    val quizTimestamp = quizTimestampState?.value ?: 0L
+        ?.collectAsState() ?: remember { mutableStateOf(0L) }
 
-    val quizResultTypeState = currentBackStackEntry?.savedStateHandle
-        ?.getStateFlow<String?>("quiz_result_type", null)
-        ?.collectAsState()
-    val quizResultType = quizResultTypeState?.value
-
-    // PASTRAT DE LA TINE (ALEXANDRA): Logica complexa de scoring si tipuri de raspuns
     LaunchedEffect(quizTimestamp) {
-        if (quizTimestamp != 0L && quizResultType != null) {
+        if (quizTimestamp != 0L) {
+            val resultType = currentBackStackEntry?.savedStateHandle?.get<String>("quiz_result_type")
 
-            withContext(Dispatchers.IO) {
-                var addedCoins = 0
-                when (quizResultType) {
-                    "PERFECT" -> {
-                        val currentStreakValue = PlayerPreferences.getCurrentStreak(context).first()
-                        val newStreak = currentStreakValue + 1
-                        addedCoins = 2 + (newStreak / 2)
-
-                        PlayerPreferences.saveCurrentStreak(context, newStreak)
-                        withContext(Dispatchers.Main) { showConfetti = true }
-                    }
-                    "RECOVERY" -> {
-                        PlayerPreferences.saveCurrentStreak(context, 0)
-                        addedCoins = 1
-                        withContext(Dispatchers.Main) { showConfetti = true }
-                    }
-                    else -> {
-                        PlayerPreferences.saveCurrentStreak(context, 0)
-                        addedCoins = 0
-                    }
-                }
-
-                if (addedCoins > 0) {
-                    val currentPendingCoins = PlayerPreferences.getPendingCoins(context).first()
-                    val newPendingTotal = currentPendingCoins + addedCoins
-                    PlayerPreferences.savePendingCoins(context, newPendingTotal)
-
-                    withContext(Dispatchers.Main) {
-                        coinsEarnedThisGame = newPendingTotal
-                    }
-                }
-            }
-
-            pawnPosition++
-
-            delay(1500)
-            showConfetti = false
-
-            // Logica de final joc si navigare spre CHEST
-            if (countiesOnBoard.isNotEmpty() && pawnPosition >= countiesOnBoard.size) {
-
+            if (resultType != null) {
                 withContext(Dispatchers.IO) {
-                    PlayerPreferences.finalizePendingCoins(context)
+                    var addedCoins = 0
+                    when (resultType) {
+                        "PERFECT" -> {
+                            val currentStreakValue = PlayerPreferences.getCurrentStreak(context).first()
+                            val newStreak = currentStreakValue + 1
+                            addedCoins = 2 + (newStreak / 2)
+                            PlayerPreferences.saveCurrentStreak(context, newStreak)
+                            withContext(Dispatchers.Main) { showConfetti = true }
+                        }
+                        "RECOVERY" -> {
+                            PlayerPreferences.saveCurrentStreak(context, 0)
+                            addedCoins = 1
+                            withContext(Dispatchers.Main) { showConfetti = true }
+                        }
+                        else -> {
+                            PlayerPreferences.saveCurrentStreak(context, 0)
+                            addedCoins = 0
+                        }
+                    }
+
+                    if (addedCoins > 0) {
+                        val currentPendingCoins = PlayerPreferences.getPendingCoins(context).first()
+                        val newPendingTotal = currentPendingCoins + addedCoins
+                        PlayerPreferences.savePendingCoins(context, newPendingTotal)
+                        withContext(Dispatchers.Main) {
+                            coinsEarnedThisGame = newPendingTotal
+                        }
+                    }
                 }
 
-                navController.navigate(Routes.CHEST) {
-                    popUpTo(Routes.GAME_BOARD) { inclusive = true }
+
+                pawnPosition++
+
+                delay(1500)
+                showConfetti = false
+
+                if (countiesOnBoard.isNotEmpty() && pawnPosition >= countiesOnBoard.size) {
+                    withContext(Dispatchers.IO) {
+                        PlayerPreferences.finalizePendingCoins(context)
+                    }
+                    navController.navigate(Routes.CHEST) {
+                        popUpTo(Routes.GAME_BOARD) { inclusive = true }
+                    }
                 }
+
+                currentBackStackEntry.savedStateHandle["quiz_result_timestamp"] = 0L
             }
-
-            currentBackStackEntry?.savedStateHandle?.remove<Long>("quiz_result_timestamp")
-            currentBackStackEntry?.savedStateHandle?.remove<String>("quiz_result_type")
         }
     }
+
 
     if (isLoading) {
         Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
@@ -171,15 +187,21 @@ fun BoardScreen(navController: NavController) {
                     showConfetti = showConfetti,
                     pendingCoins = coinsEarnedThisGame,
                     onHistoryClick = {
-                        // Trimiterea parametrilor catre Quiz (Esential!)
                         navController.currentBackStackEntry?.savedStateHandle?.set("selected_county", currentCounty.name)
+                        navController.currentBackStackEntry?.savedStateHandle?.set("selected_county_id", currentCounty.id)
                         navController.currentBackStackEntry?.savedStateHandle?.set("selected_category", "istorie")
                         navController.navigate(Routes.QUIZ)
                     },
                     onGeographyClick = {
                         navController.currentBackStackEntry?.savedStateHandle?.set("selected_county", currentCounty.name)
+                        navController.currentBackStackEntry?.savedStateHandle?.set("selected_county_id", currentCounty.id)
                         navController.currentBackStackEntry?.savedStateHandle?.set("selected_category", "geografie")
                         navController.navigate(Routes.QUIZ)
+                    },
+                    onCardClick = { clickedCounty ->
+                        selectedInfoCounty = clickedCounty
+                        infoText = InfoRepository.getInfoForCounty(context, clickedCounty.id)
+                        showInfoDialog = true
                     },
                     modifier = Modifier.fillMaxSize()
                 )
@@ -196,6 +218,92 @@ fun BoardScreen(navController: NavController) {
             ) {
                 Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back", tint = Color.Black)
             }
+
+            // --- FEREASTRA INFORMATII (ALERT DIALOG - ORIGINAL) ---
+            if (showInfoDialog && selectedInfoCounty != null) {
+                AlertDialog(
+                    onDismissRequest = { showInfoDialog = false },
+                    containerColor = Color(0xFFEEEEEE),
+                    title = {
+                        Text(
+                            text = selectedInfoCounty!!.name,
+                            fontWeight = FontWeight.Bold,
+                            fontSize = 24.sp,
+                            color = Color.Black
+                        )
+                    },
+                    text = {
+                        Column(
+                            horizontalAlignment = Alignment.CenterHorizontally,
+                            modifier = Modifier.verticalScroll(rememberScrollState())
+                        ) {
+                            if (selectedInfoCounty!!.image != null) {
+                                Image(
+                                    bitmap = selectedInfoCounty!!.image!!,
+                                    contentDescription = null,
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .heightIn(max = 200.dp)
+                                        .clip(RoundedCornerShape(8.dp)),
+                                    contentScale = ContentScale.Fit
+                                )
+                                Spacer(modifier = Modifier.height(16.dp))
+                            }
+
+                            Text(
+                                text = infoText,
+                                fontSize = 16.sp,
+                                color = Color.Black,
+                                lineHeight = 22.sp,
+                                modifier = Modifier.fillMaxWidth(),
+                                textAlign = androidx.compose.ui.text.style.TextAlign.Justify
+                            )
+
+                            if (locationMapBitmap != null) {
+                                Spacer(modifier = Modifier.height(16.dp))
+                                Text(
+                                    text = "Localizare:",
+                                    fontWeight = FontWeight.Bold,
+                                    fontSize = 14.sp,
+                                    color = Color.DarkGray,
+                                    modifier = Modifier.align(Alignment.Start)
+                                )
+                                Spacer(modifier = Modifier.height(8.dp))
+                                Image(
+                                    bitmap = locationMapBitmap!!,
+                                    contentDescription = "Harta localizare",
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .heightIn(max = 200.dp)
+                                        .clip(RoundedCornerShape(8.dp))
+                                        .background(Color.White),
+                                    contentScale = ContentScale.Fit
+                                )
+                            }
+                        }
+                    },
+                    confirmButton = {
+                        Button(
+                            onClick = { showInfoDialog = false },
+                            colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF311B92))
+                        ) {
+                            Text("Închide", color = Color.White)
+                        }
+                    }
+                )
+            }
+        }
+    }
+}
+
+suspend fun loadBitmapFromAssets(context: android.content.Context, path: String): ImageBitmap? {
+    return withContext(Dispatchers.IO) {
+        try {
+            context.assets.open(path).use { inputStream ->
+                BitmapFactory.decodeStream(inputStream)?.asImageBitmap()
+            }
+        } catch (e: IOException) {
+            null
         }
     }
 }

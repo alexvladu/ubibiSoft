@@ -1,5 +1,6 @@
 package com.ububi.explore_romania.ui.quiz
 
+import android.graphics.BitmapFactory
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -15,9 +16,12 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ImageBitmap
+import androidx.compose.ui.graphics.asImageBitmap
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -27,23 +31,10 @@ import androidx.navigation.NavController
 import com.ububi.explore_romania.MusicManager
 import com.ububi.explore_romania.MusicTrack
 import com.ububi.explore_romania.SoundEffect
-import com.ububi.explore_romania.PlayerPreferences
-import com.ububi.explore_romania.R
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.withContext
-
-// Asigură-te că ai clasa Question definită (probabil în Repository sau Model),
-// Dacă nu e importată, o poți decomenta pe cea simplă de mai jos, dar probabil o ai deja în proiect:
-/*
-data class Question(
-    val text: String,
-    val answers: List<String>,
-    val correctIndex: Int,
-    val hint: String? = null
-)
-*/
+import java.io.IOException
 
 @Composable
 fun QuizScreen(navController: NavController) {
@@ -51,19 +42,26 @@ fun QuizScreen(navController: NavController) {
 
     val previousStack = navController.previousBackStackEntry
     val countyName = previousStack?.savedStateHandle?.get<String>("selected_county") ?: "București"
+    val countyId = previousStack?.savedStateHandle?.get<Int>("selected_county_id") ?: 1
     val category = previousStack?.savedStateHandle?.get<String>("selected_category") ?: "geografie"
 
     var currentQuestion by remember { mutableStateOf<Question?>(null) }
     var isLoading by remember { mutableStateOf(true) }
 
-    var pendingCoins by remember { mutableIntStateOf(0) }
 
-    // Incarcam banutii castigati pana acum in sesiune pentru afisare
-    LaunchedEffect(Unit) {
+    var countyImageBitmap by remember { mutableStateOf<ImageBitmap?>(null) }
+
+    LaunchedEffect(countyId) {
         withContext(Dispatchers.IO) {
-            val coins = PlayerPreferences.getPendingCoins(context).first()
-            withContext(Dispatchers.Main) {
-                pendingCoins = coins
+            try {
+                val inputStream = context.assets.open("imagini_judete/$countyId.jpg")
+                val bitmap = BitmapFactory.decodeStream(inputStream)?.asImageBitmap()
+                withContext(Dispatchers.Main) {
+                    countyImageBitmap = bitmap
+                }
+                inputStream.close()
+            } catch (e: IOException) {
+                e.printStackTrace()
             }
         }
     }
@@ -73,11 +71,10 @@ fun QuizScreen(navController: NavController) {
     var attempts by remember { mutableIntStateOf(0) }
     var quizFinished by remember { mutableStateOf(false) }
 
-    // Incarcam intrebarea specifica judetului si categoriei
+
     LaunchedEffect(Unit) {
         MusicManager.playTrack(MusicTrack.QUESTION)
         withContext(Dispatchers.IO) {
-            // Aici folosim logica ta avansata din Repository
             val loaded = QuizRepository.getRandomQuestionForCounty(context, countyName, category)
             withContext(Dispatchers.Main) {
                 currentQuestion = loaded
@@ -86,7 +83,7 @@ fun QuizScreen(navController: NavController) {
         }
     }
 
-    // Logica de finalizare si trimitere rezultat inapoi la Board
+
     LaunchedEffect(quizFinished) {
         if (quizFinished) {
             delay(1500)
@@ -104,148 +101,148 @@ fun QuizScreen(navController: NavController) {
         }
     }
 
-    if (isLoading) {
-        Box(modifier = Modifier.fillMaxSize().background(Color(0xFF212121)), contentAlignment = Alignment.Center) {
-            CircularProgressIndicator(color = Color.White)
-        }
-        return
-    }
 
-    Box(modifier = Modifier.fillMaxSize().background(Color(0xFF212121))) {
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(24.dp)
-                .verticalScroll(rememberScrollState()),
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            currentQuestion?.let { question ->
+    Box(
+        modifier = Modifier.fillMaxSize(),
+        contentAlignment = Alignment.Center
+    ) {
+        if (isLoading) {
+            Card(
+                colors = CardDefaults.cardColors(containerColor = Color(0xFFEEEEEE)),
+                shape = RoundedCornerShape(24.dp),
+                modifier = Modifier.padding(16.dp)
+            ) {
+                Box(modifier = Modifier.padding(32.dp)) {
+                    CircularProgressIndicator(color = Color(0xFF311B92))
+                }
+            }
+        } else {
+            Card(
+                modifier = Modifier
+                    .fillMaxWidth(0.7f)
+                    .fillMaxHeight(0.85f)
+                    .padding(16.dp),
+                shape = RoundedCornerShape(24.dp),
+                colors = CardDefaults.cardColors(containerColor = Color(0xFFEEEEEE)),
+                elevation = CardDefaults.cardElevation(8.dp)
+            ) {
+                Column(
+                    modifier = Modifier
+                        .padding(24.dp)
+                        .verticalScroll(rememberScrollState()),
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.Center
+                ) {
 
-                Text(
-                    text = category.replaceFirstChar { it.uppercase() },
-                    fontSize = 16.sp,
-                    color = Color.LightGray,
-                    modifier = Modifier.padding(bottom = 24.dp)
-                )
-
-                Text(
-                    text = question.text,
-                    fontSize = 22.sp,
-                    fontWeight = FontWeight.Bold,
-                    color = Color.White,
-                    textAlign = TextAlign.Center,
-                    modifier = Modifier.padding(bottom = 32.dp)
-                )
-
-                question.answers.forEachIndexed { index, answer ->
-                    val isSelectedAsFinal = selectedAnswerIndex == index
-                    val isAlreadyWrong = wrongAnswers.contains(index)
-                    val isCorrect = index == question.correctIndex
-
-                    val backgroundColor = when {
-                        quizFinished && isCorrect -> Color(0xFF4CAF50)
-                        isSelectedAsFinal && isCorrect -> Color(0xFF4CAF50)
-                        isSelectedAsFinal && !isCorrect -> Color(0xFFF44336)
-                        isAlreadyWrong -> Color(0xFFB71C1C)
-                        else -> Color(0xFF424242)
+                    // 1. IMAGINE JUDEȚ
+                    if (countyImageBitmap != null) {
+                        Image(
+                            bitmap = countyImageBitmap!!,
+                            contentDescription = countyName,
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .heightIn(max = 200.dp)
+                                .clip(RoundedCornerShape(8.dp)),
+                            contentScale = ContentScale.Fit
+                        )
+                        Spacer(modifier = Modifier.height(24.dp))
                     }
 
-                    val isEnabled = !quizFinished && !isAlreadyWrong
+                    // 2. ÎNTREBAREA ȘI RĂSPUNSURILE
+                    currentQuestion?.let { question ->
 
-                    Box(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(vertical = 8.dp)
-                            .background(backgroundColor, RoundedCornerShape(12.dp))
-                            .border(1.dp, Color.Gray, RoundedCornerShape(12.dp))
-                            .clickable(enabled = isEnabled) {
-                                if (index == question.correctIndex) {
-                                    selectedAnswerIndex = index
-                                    MusicManager.playSoundEffect(SoundEffect.CORRECT)
-                                    quizFinished = true
-                                } else {
-                                    MusicManager.playSoundEffect(SoundEffect.WRONG)
+                        Text(
+                            text = question.text,
+                            fontSize = 20.sp,
+                            fontWeight = FontWeight.Bold,
+                            color = Color.Black,
+                            textAlign = TextAlign.Center,
+                            modifier = Modifier.padding(bottom = 24.dp)
+                        )
 
-                                    if (attempts == 0) {
-                                        wrongAnswers.add(index)
-                                        attempts++
-                                    } else {
-                                        selectedAnswerIndex = index
-                                        quizFinished = true
+                        question.answers.forEachIndexed { index, answer ->
+                            val isSelectedAsFinal = selectedAnswerIndex == index
+                            val isAlreadyWrong = wrongAnswers.contains(index)
+                            val isCorrect = index == question.correctIndex
+
+                            val backgroundColor = when {
+                                quizFinished && isCorrect -> Color(0xFF4CAF50)
+                                isSelectedAsFinal && isCorrect -> Color(0xFF4CAF50)
+                                isSelectedAsFinal && !isCorrect -> Color(0xFFF44336)
+                                isAlreadyWrong -> Color(0xFFE57373)
+                                else -> Color.White
+                            }
+
+                            val textColor = if (backgroundColor == Color.White) Color.Black else Color.White
+                            val borderColor = if (backgroundColor == Color.White) Color.Gray else Color.Transparent
+                            val isEnabled = !quizFinished && !isAlreadyWrong
+
+                            Box(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(vertical = 6.dp)
+                                    .background(backgroundColor, RoundedCornerShape(12.dp))
+                                    .border(1.dp, borderColor, RoundedCornerShape(12.dp))
+                                    .clickable(enabled = isEnabled) {
+                                        if (index == question.correctIndex) {
+                                            selectedAnswerIndex = index
+                                            MusicManager.playSoundEffect(SoundEffect.CORRECT)
+                                            quizFinished = true
+                                        } else {
+                                            MusicManager.playSoundEffect(SoundEffect.WRONG)
+                                            if (attempts == 0) {
+                                                wrongAnswers.add(index)
+                                                attempts++
+                                            } else {
+                                                selectedAnswerIndex = index
+                                                quizFinished = true
+                                            }
+                                        }
                                     }
+                                    .padding(16.dp),
+                                contentAlignment = Alignment.Center
+                            ) {
+                                Text(
+                                    text = answer,
+                                    fontSize = 16.sp,
+                                    color = textColor,
+                                    textAlign = TextAlign.Center,
+                                    fontWeight = FontWeight.Medium
+                                )
+                            }
+                        }
+
+                        // 3. HINT
+                        if (attempts > 0) {
+                            val hintText = question.hint ?: "Mai încearcă o dată!"
+                            Spacer(modifier = Modifier.height(24.dp))
+                            Box(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .background(Color.White, RoundedCornerShape(12.dp))
+                                    .border(1.dp, Color(0xFF141280), RoundedCornerShape(12.dp))
+                                    .padding(12.dp)
+                            ) {
+                                Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                                    Text(
+                                        text = "HINT",
+                                        color = Color(0xFF141280),
+                                        fontWeight = FontWeight.Bold,
+                                        fontSize = 20.sp,
+                                        modifier = Modifier.padding(bottom = 4.dp)
+                                    )
+                                    Text(
+                                        text = hintText,
+                                        color = Color.Black,
+                                        fontSize = 18.sp,
+                                        textAlign = TextAlign.Center,
+                                        fontStyle = FontStyle.Italic
+                                    )
                                 }
                             }
-                            .padding(16.dp),
-                        contentAlignment = Alignment.Center
-                    ) {
-                        Text(
-                            text = answer,
-                            fontSize = 16.sp,
-                            color = if (isAlreadyWrong) Color.Gray else Color.White,
-                            textAlign = TextAlign.Center
-                        )
-                    }
-                }
-
-                // Sectiunea de Hint care apare daca gresesti o data
-                if (attempts > 0) {
-                    val hintText = question.hint ?: "Mai încearcă o dată!"
-                    Spacer(modifier = Modifier.height(32.dp))
-                    Box(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .background(Color(0xFF37474F), RoundedCornerShape(12.dp))
-                            .border(1.dp, Color(0xFFFFC107), RoundedCornerShape(12.dp))
-                            .padding(16.dp)
-                    ) {
-                        Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                            Text(
-                                text = "HINT",
-                                color = Color(0xFFFFC107),
-                                fontWeight = FontWeight.Bold,
-                                fontSize = 14.sp,
-                                modifier = Modifier.padding(bottom = 8.dp)
-                            )
-                            Text(
-                                text = hintText,
-                                color = Color.White,
-                                fontSize = 15.sp,
-                                textAlign = TextAlign.Center,
-                                fontStyle = FontStyle.Italic
-                            )
                         }
                     }
                 }
-            }
-        }
-
-        // Afisarea monedelor (consistent cu celelalte ecrane)
-        Card(
-            modifier = Modifier
-                .align(Alignment.TopEnd)
-                .padding(top = 16.dp, end = 16.dp),
-            colors = CardDefaults.cardColors(containerColor = Color.Black.copy(alpha = 0.6f)),
-            shape = RoundedCornerShape(50)
-        ) {
-            Row(
-                modifier = Modifier.padding(horizontal = 12.dp, vertical = 6.dp),
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                Image(
-                    painter = painterResource(id = R.drawable.ic_launcher_foreground),
-                    contentDescription = "Coin",
-                    modifier = Modifier.size(24.dp)
-                )
-
-                Spacer(modifier = Modifier.width(8.dp))
-
-                Text(
-                    text = "$pendingCoins",
-                    color = Color(0xFFFFD700),
-                    fontWeight = FontWeight.Bold,
-                    fontSize = 18.sp
-                )
             }
         }
     }

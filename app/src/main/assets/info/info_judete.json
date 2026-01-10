@@ -1,0 +1,212 @@
+[
+  {
+    "id": 1,
+    "judet": "București",
+    "descriere": "Capitala României este centrul cultural, industrial și financiar al țării, găzduind impunătorul Palat al Parlamentului. Orașul oferă o viață de noapte vibrantă în Centrul Vechi și numeroase muzee, precum Muzeul Satului. Arhitectura sa diversă îi conferă porecla de „Micul Paris”."
+  },
+  {
+    "id": 2,
+    "judet": "Alba",
+    "descriere": "Aici se află Cetatea Alba Carolina, cea mai mare cetate în stil Vauban din România, locul Marii Uniri de la 1918. Județul găzduiește peisaje spectaculoase în Munții Apuseni, inclusiv Ghețarul de la Scărișoara. Zona este renumită și pentru minele de aur antice de la Roșia Montană."
+  },
+  {
+    "id": 3,
+    "judet": "Arad",
+    "descriere": "Situat la granița de vest, Aradul este un important nod feroviar și rutier, cu o arhitectură impresionantă în stil Secession. Cetatea Aradului și Palatul Administrativ sunt puncte cheie de atracție. Podgoria Miniș-Măderat din apropiere este celebră pentru vinurile sale roșii."
+  },
+  {
+    "id": 4,
+    "judet": "Argeș",
+    "descriere": "Județul este faimos pentru Mănăstirea Curtea de Argeș, locul de odihnă al regilor României. Transfăgărășanul, unul dintre cele mai spectaculoase drumuri din lume, traversează nordul județului pe lângă Barajul Vidraru. Orașul Pitești găzduiește anual Simfonia Lalelelor."
+  },
+  {
+    "id": 5,
+    "judet": "Bacău",
+    "descriere": "Este județul natal al poetului simbolist George Bacovia și al gimnastei Nadia Comăneci. Stațiunile balneoclimaterice Slănic Moldova și Târgu Ocna atrag turiști pentru apele minerale și salină. Relieful este variat, fiind străbătut de râurile Siret și Bistrița."
+  },
+  {
+    "id": 6,
+    "judet": "Bihor",
+    "descriere": "Oradea, reședința de județ, este un muzeu în aer liber al stilului Art Nouveau și Secession. Stațiunea Băile Felix este renumită internațional pentru apele sale termale curative și nuferii termali. Munții Apuseni oferă aici peșteri spectaculoase, cum ar fi Peștera Urșilor."
+  },
+  {
+    "id": 7,
+    "judet": "Bistrița-Năsăud",
+    "descriere": "Este o zonă de tranziție între Transilvania și Bucovina, menționată în romanul „Dracula” al lui Bram Stoker. Lacul Colibița, supranumit „Marea de la Munte”, oferă peisaje de vis și aer pur. Pasul Tihuța este o atracție majoră pentru iubitorii de mister și natură."
+  },
+  {
+    "id": 8,
+    "judet": "Botoșani",
+    "descriere": "Acest județ este leagănul culturii românești, fiind locul natal al lui Mihai Eminescu, George Enescu și Nicolae Iorga. Peisajul este dominat de dealuri domoale și iazuri, specifice Câmpiei Moldovei. Centrul vechi al orașului Botoșani păstrează clădiri istorice valoroase."
+  },
+  {
+    "id": 9,
+    "judet": "Brașov",
+    "descriere": "Este una dintre cele mai populare destinații turistice, având Biserica Neagră și Piața Sfatului în centrul orașului medieval. Stațiunea Poiana Brașov este ideală pentru sporturile de iarnă. În apropiere se află celebrul Castel Bran și Cetatea Râșnov."
+  },
+  {
+    "id": 10,
+    "judet": "Brăila",
+    "descriere": "Orașul a fost un important port la Dunăre, păstrând farmecul epocii comerciale prin centrul său istoric și ceasul-turn. Faleza Dunării este locul preferat de promenadă al localnicilor și turiștilor. Insula Mică a Brăilei este un parc natural cu o biodiversitate bogată."
+  },
+  {
+    "id": 11,
+    "judet": "Buzău",
+    "descriere": "Județul este unic datorită fenomenului Vulcanicilor Noroioși de la Berca, un peisaj selenar rar în Europa. Tot aici se găsesc așezările rupestre din Munții Buzăului și Muzeul Chihlimbarului de la Colți. Zona este renumită și pentru covrigii de Buzău și podgoriile Dealu Mare."
+  },
+  {
+    "id": 12,
+    "judet": "Caraș-Severin",
+    "descriere": "Găzduiește Cascada Bigăr, considerată una dintre cele mai frumoase din lume, și morile de apă de la Rudăria. Parcul Național Cheile Nerei-Beușnița oferă trasee sălbatice și lacuri de o culoare turcoaz ireală. Semmeringul Bănățean este cea mai veche cale ferată montană din țară."
+  },
+  {
+    "id": 13,
+    "judet": "Călărași",
+    "descriere": "Situat în Bărăgan, județul este un important grânar al țării și un nod de trecere a Dunării spre Dobrogea. Brațul Borcea al Dunării oferă locuri excelente pentru pescuit și agrement. Grădina Zoologică din Călărași este una dintre cele mai mari și diverse din România."
+  },
+  {
+    "id": 14,
+    "judet": "Cluj",
+    "descriere": "Cluj-Napoca este inima Transilvaniei, un centru universitar dinamic și gazda festivalului Untold. Salina Turda, un parc de distracții subteran spectaculos, atrage mii de vizitatori anual. Munții Apuseni și Cheile Turzii oferă oportunități excelente pentru drumeții."
+  },
+  {
+    "id": 15,
+    "judet": "Constanța",
+    "descriere": "Este județul litoralului românesc, găzduind stațiuni celebre precum Mamaia și Vama Veche. Cazinoul din Constanța și Portul Tomis sunt simboluri istorice ale orașului de la Marea Neagră. Aici se află și ruinele cetății Histria, cea mai veche așezare urbană de pe teritoriul României."
+  },
+  {
+    "id": 16,
+    "judet": "Covasna",
+    "descriere": "Cunoscut ca „Ținutul Conacelor”, județul are o densitate mare de castele și conace nobiliare. Este renumit pentru apele minerale, mofete și stațiunile balneare precum Covasna și Balvanyos. Cultura secuiască și tradițiile locale sunt foarte bine păstrate aici."
+  },
+  {
+    "id": 17,
+    "judet": "Dâmbovița",
+    "descriere": "Târgoviște, reședința județului, a fost vechea capitală a Țării Românești, unde se poate vizita Turnul Chindiei. Munții Bucegi, cu formațiunile Sfinxul și Babele, sunt parțial accesibili din acest județ. Zona este cunoscută și pentru stațiunea balneară Pucioasa."
+  },
+  {
+    "id": 18,
+    "judet": "Dolj",
+    "descriere": "Craiova, reședința județului, găzduiește un superb Muzeu de Artă și Parcul Nicolae Romanescu, unul dintre cele mai mari din Europa. Este o zonă de câmpie importantă, dar are și tradiții oltenești puternice. Aeroportul din Craiova este un nod important pentru sudul țării."
+  },
+  {
+    "id": 19,
+    "judet": "Galați",
+    "descriere": "Orașul Galați este cel mai mare port fluvial și maritim de pe Dunăre, cu o industrie navală puternică. Faleza Dunării este cea mai lungă din Europa și găzduiește sculpturi în metal unice. Complexul Muzeal de Științele Naturii include o grădină botanică și un planetariu."
+  },
+  {
+    "id": 20,
+    "judet": "Giurgiu",
+    "descriere": "Este principalul punct de trecere a frontierei către Bulgaria, prin Podul Prieteniei peste Dunăre. Parcul Natural Comana este o deltă în miniatură, ideală pentru iubitorii de natură și aventură. Istoria orașului este legată de luptele antiotomane ale lui Mihai Viteazul."
+  },
+  {
+    "id": 21,
+    "judet": "Gorj",
+    "descriere": "Târgu Jiu este casa operelor monumentale ale lui Constantin Brâncuși: Coloana Infinitului, Poarta Sărutului și Masa Tăcerii. Transalpina, cea mai înaltă șosea din România, străbate nordul muntos al județului. Mănăstirea Tismana este unul dintre cele mai vechi așezăminte monahale din țară."
+  },
+  {
+    "id": 22,
+    "judet": "Harghita",
+    "descriere": "Județul este faimos pentru Lacul Roșu și Cheile Bicazului, care oferă peisaje montane dramatice. Salina Praid și stațiunea Băile Tușnad sunt destinații de top pentru sănătate și relaxare. Lacul Sfânta Ana este singurul lac vulcanic din Europa Centrală și de Est."
+  },
+  {
+    "id": 23,
+    "judet": "Hunedoara",
+    "descriere": "Aici se află Castelul Corvinilor, unul dintre cele mai impresionante castele gotice din Europa. Județul găzduiește Sarmizegetusa Regia, vechea capitală a dacilor, în Munții Orăștiei. Parcul Național Retezat este o bijuterie naturală cu zeci de lacuri glaciare."
+  },
+  {
+    "id": 24,
+    "judet": "Ialomița",
+    "descriere": "Situat în Bărăgan, este un județ preponderent agricol, traversat de râul Ialomița. Stațiunea Amara este cunoscută pentru nămolul sapropelic benefic în tratamente reumatice. Muzeul Național al Agriculturii din Slobozia este unic în România."
+  },
+  {
+    "id": 25,
+    "judet": "Iași",
+    "descriere": "Considerat capitala culturală a Moldovei, Iașiul găzduiește prima universitate din România și spectaculosul Palat al Culturii. Grădina Botanică din Iași este una dintre cele mai mari și frumoase din țară. Bojdeuca lui Ion Creangă și Teiul lui Eminescu sunt simboluri literare importante."
+  },
+  {
+    "id": 26,
+    "judet": "Ilfov",
+    "descriere": "Județul înconjoară Bucureștiul și găzduiește Palatul Mogoșoaia, o capodoperă a stilului brâncovenesc. Mănăstirea Snagov, aflată pe o insulă, este presupusul loc de înmormântare al lui Vlad Țepeș. Aeroportul Internațional Henri Coandă (Otopeni) se află pe teritoriul acestui județ."
+  },
+  {
+    "id": 27,
+    "judet": "Maramureș",
+    "descriere": "Este ținutul bisericilor de lemn incluse în patrimoniul UNESCO și al porților monumentale sculptate. Cimitirul Vesel de la Săpânța este faimos în toată lumea pentru abordarea umoristică a morții. Mocănița de pe Valea Vaserului oferă o călătorie unică cu trenul cu aburi prin munți."
+  },
+  {
+    "id": 28,
+    "judet": "Mehedinți",
+    "descriere": "Județul este poarta de intrare a Dunării în țară, la Cazanele Dunării, unde se află sculptura gigantică a chipului lui Decebal. Podul lui Dumnezeu de la Ponoarele este unul dintre puținele poduri naturale circulabile din lume. Drobeta-Turnu Severin păstrează ruinele podului antic construit de Apolodor din Damasc."
+  },
+  {
+    "id": 29,
+    "judet": "Mureș",
+    "descriere": "Sighișoara, aflată aici, este singura cetate medievală locuită din sud-estul Europei și locul natal al lui Vlad Țepeș. Târgu Mureș impresionează prin Palatul Culturii și biblioteca Teleki. Județul este un exemplu de conviețuire multiculturală și arhitectură diversă."
+  },
+  {
+    "id": 30,
+    "judet": "Neamț",
+    "descriere": "Dominat de Masivul Ceahlău, muntele sfânt al românilor, județul este plin de mănăstiri celebre precum Agapia, Văratec și Neamț. Rezervația de zimbri de la Vânători-Neamț protejează aceste animale legendare. Cetatea Neamțului a rezistat multor asedii istorice importante."
+  },
+  {
+    "id": 31,
+    "judet": "Olt",
+    "descriere": "Este un județ cu o puternică tradiție agricolă și industrială (aluminiu la Slatina). Orașul Slatina are un centru istoric renovat cu clădiri de patrimoniu. Valea Oltului oferă peisaje frumoase și lacuri de acumulare importante."
+  },
+  {
+    "id": 32,
+    "judet": "Prahova",
+    "descriere": "Valea Prahovei, cu stațiunile Sinaia, Bușteni și Azuga, este cea mai populară zonă montană din țară. Castelul Peleș din Sinaia, reședința de vară a regilor, este o bijuterie arhitecturală. Zona Dealu Mare este renumită pentru podgoriile și vinurile sale de calitate."
+  },
+  {
+    "id": 33,
+    "judet": "Satu Mare",
+    "descriere": "Situat în nord-vest, este un județ multicultural cu o arhitectură eclectică în reședința de județ. Țara Oașului este faimoasă pentru păstrarea tradițiilor populare și a costumelor viu colorate. Aici se află și castelul Karolyi din Carei, recent restaurat."
+  },
+  {
+    "id": 34,
+    "judet": "Sălaj",
+    "descriere": "Județul găzduiește Castrul Roman Porolissum, unul dintre cele mai bine păstrate situri arheologice din România. Este o zonă renumită pentru producția de pălincă tradițională și peisaje deluroase pitorești. Grădina Botanică din Jibou este una dintre cele mai frumoase din țară."
+  },
+  {
+    "id": 35,
+    "judet": "Sibiu",
+    "descriere": "Sibiul a fost Capitală Culturală Europeană și atrage prin Piața Mare, Podul Minciunilor și Muzeul Brukenthal. Muzeul ASTRA din Dumbrava Sibiului este cel mai mare muzeu în aer liber din Europa. Mărginimea Sibiului este o zonă etnoculturală unică, cu tradiții pastorale vechi."
+  },
+  {
+    "id": 36,
+    "judet": "Suceava",
+    "descriere": "Este inima Bucovinei, faimoasă pentru mănăstirile pictate precum Voroneț, Humor și Sucevița (UNESCO). Cetatea de Scaun a Sucevei amintește de gloria domnitorului Ștefan cel Mare. Tradițiile de încondeiere a ouălor sunt ridicate la rang de artă în această regiune."
+  },
+  {
+    "id": 37,
+    "judet": "Teleorman",
+    "descriere": "Situat în Câmpia Română, este un județ preponderent agricol, cu ieșire la Dunăre. Rezervația naturală Ostrovul Mare este un loc important pentru protecția păsărilor. Alexandria, reședința de județ, are un plan urbanistic rectangular unic în țară."
+  },
+  {
+    "id": 38,
+    "judet": "Timiș",
+    "descriere": "Timișoara, orașul Revoluției din 1989 și Capitală Culturală Europeană, este un simbol al libertății și inovației. Județul are cea mai mare suprafață din țară și o diversitate etnică bogată. Canalul Bega este singurul canal navigabil din interiorul țării, folosit și pentru transport public."
+  },
+  {
+    "id": 39,
+    "judet": "Tulcea",
+    "descriere": "Este poarta de intrare în Delta Dunării, un paradis al biodiversității și sit UNESCO. Munții Măcinului sunt cei mai vechi munți din România, oferind trasee unice prin peisaje aride. Localitățile lipovenești precum Jurilovca păstrează tradiții pescărești autentice."
+  },
+  {
+    "id": 40,
+    "judet": "Vaslui",
+    "descriere": "Județul este cunoscut pentru locurile istorice legate de Ștefan cel Mare, cum ar fi bătălia de la Podul Înalt. Parcul Copou din Vaslui este unul dintre cele mai frumoase parcuri dendrologice din regiune. Zona are un potențial viticol și agricol important."
+  },
+  {
+    "id": 41,
+    "judet": "Vâlcea",
+    "descriere": "Valea Oltului oferă peisaje spectaculoase și mănăstiri istorice precum Cozia și Horezu (cunoscută pentru ceramică). Stațiunile Călimănești-Căciulata și Olănești sunt renumite pentru apele minerale. Transalpina își are punctul de plecare din acest județ pitoresc."
+  },
+  {
+    "id": 42,
+    "judet": "Vrancea",
+    "descriere": "Este cea mai activă zonă seismică a țării, dar și cea mai mare podgorie, renumită pentru vinurile de Panciu și Odobești. Mausoleul de la Mărășești este un monument impresionant dedicat eroilor din Primul Război Mondial. Focul Viu de la Andreiașu de Jos este o rezervație geologică spectaculoasă."
+  }
+]
