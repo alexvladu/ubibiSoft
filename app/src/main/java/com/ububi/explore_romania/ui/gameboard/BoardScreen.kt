@@ -16,11 +16,13 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.paint
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -35,6 +37,8 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.io.IOException
+import androidx.compose.ui.draw.paint
+import androidx.compose.ui.tooling.preview.Preview
 
 @Composable
 fun BoardScreen(navController: NavController) {
@@ -198,7 +202,12 @@ fun BoardScreen(navController: NavController) {
             CircularProgressIndicator()
         }
     } else {
-        Box(modifier = Modifier.fillMaxSize()) {
+        Box(modifier = Modifier
+            .fillMaxSize()
+            .paint(
+                painter = painterResource(id = com.ububi.explore_romania.R.drawable.board),
+                contentScale = ContentScale.Crop
+            )) {
             if (countiesOnBoard.isNotEmpty()) {
                 val safeIndex = pawnPosition % countiesOnBoard.size
                 val currentCounty = countiesOnBoard[safeIndex]
@@ -308,7 +317,7 @@ fun BoardScreen(navController: NavController) {
                     confirmButton = {
                         Button(
                             onClick = { showInfoDialog = false },
-                            colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF311B92))
+                            colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFC27A35))
                         ) {
                             Text("Închide", color = Color.White)
                         }
@@ -414,5 +423,19 @@ suspend fun loadBitmapFromAssets(context: android.content.Context, path: String)
         } catch (e: IOException) {
             null
         }
+    }
+}
+
+@Preview(
+    name = "Board Screen Landscape",
+    showBackground = true,
+    widthDp = 1280, // Lățime tabletă pentru a vedea toată tabla
+    heightDp = 800
+)
+@Composable
+fun BoardScreenPreview() {
+    com.ububi.explore_romania.ui.theme.Explore_romaniaTheme {
+        val dummyNavController = androidx.navigation.compose.rememberNavController()
+        BoardScreen(navController = dummyNavController)
     }
 }

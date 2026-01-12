@@ -6,25 +6,17 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.LocalTextStyle
-import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.OutlinedTextFieldDefaults
-import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
-import androidx.compose.material3.TextFieldDefaults
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableIntStateOf
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
+import androidx.compose.material3.*
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.paint
+import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Shadow
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
@@ -48,9 +40,7 @@ fun HomeScreen(
     onCollectionClick: () -> Unit,
     onTreasureClick: () -> Unit,
 ) {
-    val MarioFont = FontFamily(
-        Font(R.font.retromario)
-    )
+    val MarioFont = FontFamily(Font(R.font.retromario))
     val context = LocalContext.current
     val activity = context as? Activity
 
@@ -59,12 +49,10 @@ fun HomeScreen(
     var coins by remember { mutableIntStateOf(67) }
     var isNameLoaded by remember { mutableStateOf(false) }
 
-    // Play home music when screen appears
     LaunchedEffect(Unit) {
         MusicManager.playTrack(MusicTrack.HOME)
     }
 
-    // Load player name only once on initial load
     LaunchedEffect(Unit) {
         PlayerPreferences.getPlayerName(context).collect { saved ->
             if (!isNameLoaded) {
@@ -86,26 +74,19 @@ fun HomeScreen(
         }
     }
 
-
+    // Box-ul principal care conține fundalul
     Box(
-        modifier = Modifier.fillMaxSize()
+        modifier = Modifier
+            .fillMaxSize()
+            .paint(
+                painter = painterResource(id = R.drawable.start_game),
+                contentScale = ContentScale.Crop
+            )
     ) {
-
-
-        DvdBackground(
-            imageRes = R.drawable.homescreen_bg
-        )
-
-
-        Row(
-            modifier = Modifier.fillMaxSize()
-        ) {
-
-
+        Row(modifier = Modifier.fillMaxSize()) {
+            // Partea stângă: Titlu și Butoane
             Box(
-                modifier = Modifier
-                    .weight(1f)
-                    .fillMaxHeight(),
+                modifier = Modifier.weight(1f).fillMaxHeight(),
                 contentAlignment = Alignment.CenterStart
             ) {
                 Column(
@@ -113,13 +94,19 @@ fun HomeScreen(
                     verticalArrangement = Arrangement.spacedBy(50.dp),
                     horizontalAlignment = Alignment.Start
                 ) {
-
                     Text(
                         text = "Explore Romania",
-                        fontSize = 48.sp,
+                        fontSize = 68.sp, // Mărit pentru un impact mai mare
                         fontFamily = MarioFont,
-                        fontWeight = FontWeight.Bold,
-                        color = Color.White,
+                        fontWeight = FontWeight.Black,
+                        style = androidx.compose.ui.text.TextStyle(
+                            color = Color(0xFFC27A35),
+                            shadow = Shadow(
+                                color = Color(0xFF2D1A12),
+                                offset = Offset(15f, 15f),
+                                blurRadius = 4f
+                            )
+                        ),
                         modifier = Modifier.padding(start = 20.dp)
                     )
 
@@ -127,11 +114,7 @@ fun HomeScreen(
                         verticalArrangement = Arrangement.spacedBy(26.dp),
                         horizontalAlignment = Alignment.Start
                     ) {
-
-                        Row(
-                            horizontalArrangement = Arrangement.spacedBy(26.dp),
-                            verticalAlignment = Alignment.CenterVertically
-                        ) {
+                        Row(horizontalArrangement = Arrangement.spacedBy(26.dp)) {
                             HomeButton("Start Joc") {
                                 MusicManager.playSoundEffect(SoundEffect.BUTTON)
                                 CoroutineScope(Dispatchers.IO).launch {
@@ -140,30 +123,19 @@ fun HomeScreen(
                                 }
                                 onPlayClick()
                             }
-
                             HomeButton("Colecție") {
                                 MusicManager.playSoundEffect(SoundEffect.BUTTON)
                                 onCollectionClick()
                             }
                         }
 
-                        Row(
-                            horizontalArrangement = Arrangement.spacedBy(26.dp),
-                            verticalAlignment = Alignment.CenterVertically
-                        ) {
-
+                        Row(horizontalArrangement = Arrangement.spacedBy(26.dp)) {
                             HomeButton("Cufere") {
                                 MusicManager.playSoundEffect(SoundEffect.BUTTON)
                                 onTreasureClick()
                             }
-
-
                             HomeButton("Ieșire") {
                                 MusicManager.playSoundEffect(SoundEffect.BUTTON)
-                                CoroutineScope(Dispatchers.IO).launch {
-                                    PlayerPreferences.savePlayerName(context, playerName)
-                                    PlayerPreferences.saveCharacterId(context, characterId)
-                                }
                                 activity?.finishAffinity()
                             }
                         }
@@ -171,51 +143,28 @@ fun HomeScreen(
                 }
             }
 
+            // Partea dreaptă: Input nume și Carusel
             Box(
-                modifier = Modifier
-                    .weight(1f)
-                    .fillMaxHeight(),
+                modifier = Modifier.weight(1f).fillMaxHeight(),
                 contentAlignment = Alignment.Center
             ) {
-
                 Column(
                     horizontalAlignment = Alignment.CenterHorizontally,
                     verticalArrangement = Arrangement.spacedBy(30.dp)
                 ) {
-
-                    // Name input field - now with transparent gray background
                     OutlinedTextField(
                         value = playerName,
                         onValueChange = { playerName = it },
-                        placeholder = {
-                            Text(
-                                "Nume",
-                                fontSize = 20.sp,
-                                color = Color.Gray,
-                                textAlign = TextAlign.Center,
-                                modifier = Modifier.fillMaxWidth()
-                            )
-                        },
+                        placeholder = { Text("Nume", color = Color.Gray, modifier = Modifier.fillMaxWidth(), textAlign = TextAlign.Center) },
                         singleLine = true,
                         shape = RoundedCornerShape(16.dp),
-                        textStyle = LocalTextStyle.current.copy(
-                            textAlign = TextAlign.Center,
-                            fontSize = 28.sp,
-                            color = Color.Black
-                        ),
                         colors = OutlinedTextFieldDefaults.colors(
-                            focusedBorderColor = Color.White,
-                            unfocusedBorderColor = Color.White,
                             focusedContainerColor = Color(0x99CCCCCC),
-                            unfocusedContainerColor = Color(0x99CCCCCC),
-                            cursorColor = Color.Black
+                            unfocusedContainerColor = Color(0x99CCCCCC)
                         ),
-                        modifier = Modifier
-                            .width(300.dp)
-                            .height(60.dp)
+                        modifier = Modifier.width(300.dp).height(60.dp)
                     )
 
-                    // Character carousel selector
                     CharacterCarousel(
                         characterId = characterId,
                         onCharacterChange = { newId ->
@@ -229,86 +178,48 @@ fun HomeScreen(
             }
         }
 
-        // Coin display in bottom-right corner
+        // Indicator monede
         Row(
             modifier = Modifier
                 .align(Alignment.BottomEnd)
                 .padding(bottom = 30.dp, end = 30.dp)
-                .background(
-                    color = Color(0xFFFFB74D),
-                    shape = RoundedCornerShape(20.dp)
-                )
+                .background(color = Color(0xFF43271B), shape = RoundedCornerShape(20.dp))
                 .padding(horizontal = 16.dp, vertical = 10.dp),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(8.dp)
         ) {
-            // Circle placeholder for coin image
             Box(
-                modifier = Modifier
-                    .size(32.dp)
-                    .background(
-                        color = Color(0xFFF57C00),
-                        shape = CircleShape
-                    ),
+                modifier = Modifier.size(32.dp).background(Color(0xFFC27A35), CircleShape),
                 contentAlignment = Alignment.Center
             ) {
-                Text(
-                    text = "C",
-                    fontSize = 18.sp,
-                    fontWeight = FontWeight.Bold,
-                    color = Color.White
-                )
+                Text(text = "C", fontSize = 18.sp, fontWeight = FontWeight.Bold, color = Color.White)
             }
-
-            Text(
-                text = coins.toString(),
-                fontSize = 24.sp,
-                fontWeight = FontWeight.Bold,
-                color = Color.Black
-            )
+            Text(text = coins.toString(), fontSize = 24.sp, fontWeight = FontWeight.Bold, color = Color.White)
         }
     }
-}
+} // AICI se închide HomeScreen
 
+// FUNCȚIE SEPARATĂ (Top-level)
 @Composable
 fun HomeButton(text: String, onClick: () -> Unit) {
     Button(
         onClick = onClick,
-        modifier = Modifier
-            .width(200.dp)
-            .height(80.dp),
+        modifier = Modifier.width(200.dp).height(80.dp),
         shape = RoundedCornerShape(16.dp),
-        border = BorderStroke(5.dp, Color(0xFFF57C00)),
-        colors = ButtonDefaults.buttonColors(
-            containerColor = Color(0xFFFFB74D)
-        )
+        border = BorderStroke(5.dp, Color(0xFF43271B)),
+        colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFC27A35))
     ) {
-        Text(
-            text = text,
-            fontSize = 25.sp,
-            fontWeight = FontWeight.SemiBold,
-            color = Color.Black
-        )
+        Text(text = text, fontSize = 25.sp, fontWeight = FontWeight.SemiBold, color = Color.White)
     }
 }
 
-@Preview(
-    name = "Phone Landscape",
-    showBackground = true,
-    widthDp = 720,
-    heightDp = 360
-)
+@Preview(name = "Phone Landscape", showBackground = true, widthDp = 720, heightDp = 360)
 @Composable
 fun PreviewHomeScreenPhone() {
     HomeScreen({}, {}, {})
 }
 
-@Preview(
-    name = "Tablet Landscape",
-    showBackground = true,
-    widthDp = 1280,
-    heightDp = 800
-)
+@Preview(name = "Tablet Landscape", showBackground = true, widthDp = 1280, heightDp = 800)
 @Composable
 fun PreviewHomeScreenTablet() {
     HomeScreen({}, {}, {})

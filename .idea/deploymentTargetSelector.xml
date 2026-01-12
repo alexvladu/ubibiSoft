@@ -4,10 +4,10 @@
     <selectionStates>
       <SelectionState runConfigName="app">
         <option name="selectionMode" value="DROPDOWN" />
-        <DropdownSelection timestamp="2025-12-08T01:28:54.125306800Z">
+        <DropdownSelection timestamp="2026-01-12T21:49:52.825817500Z">
           <Target type="DEFAULT_BOOT">
             <handle>
-              <DeviceId pluginId="LocalEmulator" identifier="path=C:\Users\Alexandra\.android\avd\Tableta_Lenovo_TB-8505X.avd" />
+              <DeviceId pluginId="LocalEmulator" identifier="path=C:\Users\emato\.android\avd\tableta_lenovo.avd" />
             </handle>
           </Target>
         </DropdownSelection>

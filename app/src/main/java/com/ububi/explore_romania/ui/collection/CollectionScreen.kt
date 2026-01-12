@@ -12,13 +12,18 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.paint
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ImageBitmap
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.ububi.explore_romania.MusicManager
+import com.ububi.explore_romania.MusicTrack
 import com.ububi.explore_romania.R
 import com.ububi.explore_romania.ui.stickers.Sticker
 import com.ububi.explore_romania.ui.collection.CollectionViewModel.OwnershipFilter
@@ -41,63 +46,79 @@ fun CollectionScreen(
 ) {
     val MarioFont = FontFamily(Font(R.font.retromario))
 
-    Column(
+    val DarkGreenBorder = Color(0xFF192E29)
+    val LightGreenBg = Color(0xFFE8FCE6)
+
+    LaunchedEffect(Unit) {
+        MusicManager.playTrack(MusicTrack.COLLECTION)
+    }
+    Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(ScreenBackground)
-            .padding(16.dp)
+            .paint(
+                painter = painterResource(id = R.drawable.sticker),
+                contentScale = ContentScale.Crop
+            )
     ) {
-
-        Row(
+        Column(
             modifier = Modifier
-                .fillMaxWidth()
-                .padding(bottom = 8.dp),
-            verticalAlignment = Alignment.CenterVertically
+                .fillMaxSize()
+                .padding(16.dp)
         ) {
 
-            Button(
-                onClick = onBackClick,
-                colors = ButtonDefaults.buttonColors(
-                    containerColor = BackButtonColor
-                ),
-                modifier = Modifier.size(52.dp),
-                shape = CircleShape,
-                contentPadding = PaddingValues(0.dp)
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(bottom = 8.dp),
+                verticalAlignment = Alignment.CenterVertically
             ) {
+
+                Button(
+                    onClick = onBackClick,
+                    colors = ButtonDefaults.buttonColors(containerColor = DarkGreenBorder),
+                    modifier = Modifier.size(52.dp),
+                    shape = CircleShape,
+                    contentPadding = PaddingValues(0.dp)
+                ) {
+                    Text("←", fontFamily = MarioFont, fontSize = 28.sp, color = LightGreenBg)
+                }
+
+                Spacer(modifier = Modifier.width(8.dp))
+
                 Text(
-                    text = "←",
+                    text = "Colecție de Stickere",
                     fontFamily = MarioFont,
-                    fontSize = 28.sp,
-                    color = Color.White
+                    fontSize = 40.sp,
+                    color = Color.White,
+                    style = androidx.compose.ui.text.TextStyle(
+                        shadow = androidx.compose.ui.graphics.Shadow(
+                            color = DarkGreenBorder,
+                            offset = androidx.compose.ui.geometry.Offset(4f, 4f),
+                            blurRadius = 2f
+                        )
+                    ),
+                    modifier = Modifier.weight(1f)
                 )
             }
 
-            Spacer(modifier = Modifier.width(8.dp))
+            Spacer(modifier = Modifier.height(16.dp))
 
-            Text(
-                text = "Colecție de Stickere",
-                fontFamily = MarioFont,
-                fontSize = 40.sp,
-                color = Color.White,
-                modifier = Modifier.weight(1f)
+            FilterRow(
+                ownershipFilter = ownershipFilter,
+                rarityFilter = rarityFilter,
+                onOwnershipFilterChange = onOwnershipFilterChange,
+                onRarityFilterChange = onRarityFilterChange,
+                buttonColor = DarkGreenBorder,
+                dropdownColor = LightGreenBg
+            )
+
+            Spacer(modifier = Modifier.height(12.dp))
+
+            StickerGrid(
+                stickers = stickers,
+                ownedIds = ownedIds
             )
         }
-
-        Spacer(modifier = Modifier.height(16.dp))
-
-        FilterRow(
-            ownershipFilter = ownershipFilter,
-            rarityFilter = rarityFilter,
-            onOwnershipFilterChange = onOwnershipFilterChange,
-            onRarityFilterChange = onRarityFilterChange
-        )
-
-        Spacer(modifier = Modifier.height(12.dp))
-
-        StickerGrid(
-            stickers = stickers,
-            ownedIds = ownedIds
-        )
     }
 }
 
@@ -108,7 +129,9 @@ fun FilterRow(
     ownershipFilter: OwnershipFilter,
     rarityFilter: RarityFilter,
     onOwnershipFilterChange: (OwnershipFilter) -> Unit,
-    onRarityFilterChange: (RarityFilter) -> Unit
+    onRarityFilterChange: (RarityFilter) -> Unit,
+    buttonColor: Color,
+    dropdownColor: Color
 ) {
     Row(
         modifier = Modifier.fillMaxWidth(),
@@ -116,12 +139,15 @@ fun FilterRow(
     ) {
         OwnershipFilterDropdown(
             selected = ownershipFilter,
-            onSelected = onOwnershipFilterChange
+            onSelected = onOwnershipFilterChange,
+            buttonColor = buttonColor,
+            dropdownColor = dropdownColor
         )
-
         RarityFilterDropdown(
             selected = rarityFilter,
-            onSelected = onRarityFilterChange
+            onSelected = onRarityFilterChange,
+            buttonColor = buttonColor,
+            dropdownColor = dropdownColor
         )
     }
 }
@@ -129,70 +155,44 @@ fun FilterRow(
 @Composable
 fun OwnershipFilterDropdown(
     selected: OwnershipFilter,
-    onSelected: (OwnershipFilter) -> Unit
+    onSelected: (OwnershipFilter) -> Unit,
+    buttonColor: Color,    // Parametru adăugat
+    dropdownColor: Color   // Parametru adăugat
 ) {
     var expanded by remember { mutableStateOf(false) }
-
     Box {
         Button(
             onClick = { expanded = true },
-            colors = ButtonDefaults.buttonColors(containerColor = FilterButtonColor),
+            colors = ButtonDefaults.buttonColors(containerColor = buttonColor),
             shape = RoundedCornerShape(10.dp)
         ) {
-            Text(
-                text = when (selected) {
-                    OwnershipFilter.OWNED -> "Deținute"
-                    OwnershipFilter.MISSING -> "Negăsite"
-                    OwnershipFilter.ALL -> "Toate"
-                },
-                color = Color.White
-            )
+            Text(text = when (selected) {
+                OwnershipFilter.OWNED -> "Deținute"
+                OwnershipFilter.MISSING -> "Negăsite"
+                OwnershipFilter.ALL -> "Toate"
+            }, color = Color.White)
         }
-
-        DropdownMenu(
-            expanded = expanded,
-            onDismissRequest = { expanded = false },
-            containerColor = FilterDropdownColor
-        ) {
-            DropdownMenuItem(
-                text = { Text("Deținute", color = Color.White) },
-                onClick = {
-                    expanded = false
-                    onSelected(OwnershipFilter.OWNED)
-                }
-            )
-            DropdownMenuItem(
-                text = { Text("Negăsite", color = Color.White) },
-                onClick = {
-                    expanded = false
-                    onSelected(OwnershipFilter.MISSING)
-                }
-            )
-            DropdownMenuItem(
-                text = { Text("Toate", color = Color.White) },
-                onClick = {
-                    expanded = false
-                    onSelected(OwnershipFilter.ALL)
-                }
-            )
+        DropdownMenu(expanded = expanded, onDismissRequest = { expanded = false }, containerColor = dropdownColor) {
+            DropdownMenuItem(text = { Text("Deținute", color = Color(0xFF192E29)) }, onClick = { expanded = false; onSelected(OwnershipFilter.OWNED) })
+            DropdownMenuItem(text = { Text("Negăsite", color = Color(0xFF192E29)) }, onClick = { expanded = false; onSelected(OwnershipFilter.MISSING) })
+            DropdownMenuItem(text = { Text("Toate", color = Color(0xFF192E29)) }, onClick = { expanded = false; onSelected(OwnershipFilter.ALL) })
         }
     }
 }
 
-
-
 @Composable
 fun RarityFilterDropdown(
     selected: RarityFilter,
-    onSelected: (RarityFilter) -> Unit
+    onSelected: (RarityFilter) -> Unit,
+    buttonColor: Color,    // Parametru adăugat
+    dropdownColor: Color   // Parametru adăugat
 ) {
     var expanded by remember { mutableStateOf(false) }
-
     Box {
         Button(
             onClick = { expanded = true },
-            colors = ButtonDefaults.buttonColors(containerColor = FilterButtonColor),
-            shape = androidx.compose.foundation.shape.RoundedCornerShape(10.dp)
+            colors = ButtonDefaults.buttonColors(containerColor = buttonColor),
+            shape = RoundedCornerShape(10.dp)
         ) {
             Text(text = when (selected) {
                 RarityFilter.ALL -> "Toate"
@@ -200,40 +200,17 @@ fun RarityFilterDropdown(
                 RarityFilter.RARE -> "Rare"
                 RarityFilter.EPIC -> "Epice"
                 RarityFilter.LEGENDARY -> "Legendare"
-            },
-                color = Color.White
-            )
+            }, color = Color.White)
         }
-
-        DropdownMenu(
-            expanded = expanded,
-            onDismissRequest = { expanded = false },
-            containerColor = FilterDropdownColor
-        ) {
-            DropdownMenuItem(
-                text = { Text("Toate", color = Color.White) },
-                onClick = { expanded = false; onSelected(RarityFilter.ALL) }
-            )
-            DropdownMenuItem(
-                text = { Text("Comune", color = Color.White) },
-                onClick = { expanded = false; onSelected(RarityFilter.COMMON) }
-            )
-            DropdownMenuItem(
-                text = { Text("Rare", color = Color.White) },
-                onClick = { expanded = false; onSelected(RarityFilter.RARE) }
-            )
-            DropdownMenuItem(
-                text = { Text("Epice", color = Color.White) },
-                onClick = { expanded = false; onSelected(RarityFilter.EPIC) }
-            )
-            DropdownMenuItem(
-                text = { Text("Legendare", color = Color.White) },
-                onClick = { expanded = false; onSelected(RarityFilter.LEGENDARY) }
-            )
+        DropdownMenu(expanded = expanded, onDismissRequest = { expanded = false }, containerColor = dropdownColor) {
+            DropdownMenuItem(text = { Text("Toate", color = Color(0xFF192E29)) }, onClick = { expanded = false; onSelected(RarityFilter.ALL) })
+            DropdownMenuItem(text = { Text("Comune", color = Color(0xFF192E29)) }, onClick = { expanded = false; onSelected(RarityFilter.COMMON) })
+            DropdownMenuItem(text = { Text("Rare", color = Color(0xFF192E29)) }, onClick = { expanded = false; onSelected(RarityFilter.RARE) })
+            DropdownMenuItem(text = { Text("Epice", color = Color(0xFF192E29)) }, onClick = { expanded = false; onSelected(RarityFilter.EPIC) })
+            DropdownMenuItem(text = { Text("Legendare", color = Color(0xFF192E29)) }, onClick = { expanded = false; onSelected(RarityFilter.LEGENDARY) })
         }
     }
 }
-
 
 @Preview(
     name = "Collection Screen – Tablet Landscape",

@@ -32,12 +32,14 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.paint
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -46,6 +48,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.ububi.explore_romania.PlayerPreferences
+import com.ububi.explore_romania.R
 import com.ububi.explore_romania.ui.stickers.StickerRarity
 import com.ububi.explore_romania.ui.stickers.StickerRepository
 import kotlinx.coroutines.Dispatchers
@@ -104,28 +107,28 @@ fun ChestScreen(navController: NavController) {
             "Comun",
             Rarity.COMUN,
             Color(0xFFB0BEC5),
-            com.ububi.explore_romania.R.drawable.chest
+            com.ububi.explore_romania.R.drawable.chest_final
         ),
         ChestModel(
             2,
             "Rar",
             Rarity.RAR,
             Color(0xFF29B6F6),
-            com.ububi.explore_romania.R.drawable.chest
+            com.ububi.explore_romania.R.drawable.chest_final
         ),
         ChestModel(
             3,
             "Epic",
             Rarity.EPIC,
             Color(0xFFAB47BC),
-            com.ububi.explore_romania.R.drawable.chest
+            com.ububi.explore_romania.R.drawable.chest_final
         ),
         ChestModel(
             4,
             "Legendar",
             Rarity.LEGENDAR,
             Color(0xFFFFA726),
-            com.ububi.explore_romania.R.drawable.chest
+            com.ububi.explore_romania.R.drawable.chest_final
         )
     )
 
@@ -190,14 +193,9 @@ fun ChestScreen(navController: NavController) {
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(
-                Brush.radialGradient(
-                    colors = listOf(
-                        Color(0xFF311B92),
-                        Color(0xFF000000)
-                    ),
-                    radius = 1500f
-                )
+            .paint(
+                painter = painterResource(id = R.drawable.cave_image),
+                contentScale = ContentScale.Crop
             ),
         contentAlignment = Alignment.Center
     ) {
@@ -211,20 +209,30 @@ fun ChestScreen(navController: NavController) {
             Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back", tint = Color.Black)
         }
 
-        Row(
+        Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(horizontal = 18.dp),
-            horizontalArrangement = Arrangement.spacedBy(8.dp),
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            chests.forEach { chest ->
-                ChestItemCard(
-                    chest = chest,
-                    userPoints = points,
-                    onOpen = { openChest(chest) },
-                    modifier = Modifier.weight(1f)
+                .padding(horizontal = 14.dp) // Distanța față de marginile ecranului
+                .background(
+                    color = Color(0xFFC27A35).copy(alpha = 0.5f), // Culoarea ta deschisă cu transparență
+                    shape = RoundedCornerShape(24.dp)
                 )
+                .padding(16.dp), // Spațiul din interiorul panoului până la cufere
+            contentAlignment = Alignment.Center
+        ) {
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                chests.forEach { chest ->
+                    ChestItemCard(
+                        chest = chest,
+                        userPoints = points,
+                        onOpen = { openChest(chest) },
+                        modifier = Modifier.weight(1f)
+                    )
+                }
             }
         }
 
@@ -360,10 +368,13 @@ fun ChestScreen(navController: NavController) {
 @Preview(
     name = "Chest Screen – Tablet Landscape",
     showBackground = true,
-    widthDp = 1280,
-    heightDp = 800
+    widthDp = 1280, // Lățime tabletă
+    heightDp = 800  // Înălțime tabletă
 )
 @Composable
 fun PreviewChestScreenTablet() {
-    ChestScreen(navController = rememberNavController())
+    com.ububi.explore_romania.ui.theme.Explore_romaniaTheme {
+
+        ChestScreen(navController = rememberNavController())
+    }
 }

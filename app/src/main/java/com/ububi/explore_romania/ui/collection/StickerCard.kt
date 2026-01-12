@@ -17,6 +17,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -25,7 +26,6 @@ import coil.request.ImageRequest
 import com.ububi.explore_romania.R
 import com.ububi.explore_romania.ui.stickers.StickerRarity
 import com.ububi.explore_romania.ui.theme.*
-
 
 
 @Composable
@@ -38,40 +38,29 @@ fun StickerCard(
 ) {
     val finalPath = if (owned) imagePath else grayImagePath
 
-    val outlineColor = when (rarity) {
-        StickerRarity.COMMON -> CommonOutline
-        StickerRarity.RARE -> RareOutline
-        StickerRarity.EPIC -> EpicOutline
-        StickerRarity.LEGENDARY -> LegendaryOutline
-    }
+
+    val DarkGreenBorder = Color(0xFF192E29)
+    val LightGreenBg = Color(0xFFE8FCE6)
 
     Card(
-        modifier = Modifier
-            .width(180.dp)
-            .height(220.dp),
+        modifier = Modifier.width(180.dp).height(220.dp),
         shape = RoundedCornerShape(16.dp),
-        border = BorderStroke(4.dp, outlineColor),
-        colors = CardDefaults.cardColors(containerColor = CardBackground)
+        border = BorderStroke(4.dp, DarkGreenBorder),
+        colors = CardDefaults.cardColors(containerColor = LightGreenBg)
     ) {
         Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(12.dp),
+            modifier = Modifier.fillMaxSize().padding(12.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.SpaceBetween
         ) {
-
             Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(150.dp),
+                modifier = Modifier.fillMaxWidth().height(150.dp),
                 contentAlignment = Alignment.Center
             ) {
                 AsyncImage(
                     model = ImageRequest.Builder(LocalContext.current)
                         .data("file:///android_asset/$finalPath")
-                        .crossfade(true)
-                        .build(),
+                        .crossfade(true).build(),
                     contentDescription = name,
                     contentScale = ContentScale.Fit,
                     modifier = Modifier.fillMaxSize()
@@ -81,6 +70,8 @@ fun StickerCard(
             Text(
                 text = name,
                 fontSize = 18.sp,
+                fontWeight = FontWeight.Bold,
+                color = DarkGreenBorder,
                 textAlign = TextAlign.Center
             )
         }

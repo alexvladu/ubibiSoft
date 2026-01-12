@@ -14,9 +14,13 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.paint
 import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.graphics.BlendMode
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -70,8 +74,8 @@ fun GameBoard(
                             MusicManager.playSoundEffect(SoundEffect.BUTTON)
                             onHistoryClick()
                         },
-                        width = 160.dp,
-                        height = 90.dp,
+                        width = 200.dp,
+                        height = 130.dp,
                         fontSize = 18.sp
                     )
                     StackedButton(
@@ -82,8 +86,8 @@ fun GameBoard(
                             MusicManager.playSoundEffect(SoundEffect.BUTTON)
                             onGeographyClick()
                         },
-                        width = 160.dp,
-                        height = 90.dp,
+                        width = 200.dp,
+                        height = 130.dp,
                         fontSize = 18.sp
                     )
                 }
@@ -210,7 +214,6 @@ private fun StackedButton(
     fontSize: androidx.compose.ui.unit.TextUnit
 ) {
     val shape = RoundedCornerShape(16.dp)
-    val darkerColor = baseColor.copy(alpha = 0.8f)
 
     Box(
         modifier = Modifier
@@ -219,20 +222,36 @@ private fun StackedButton(
             .rotate(rotation),
         contentAlignment = Alignment.TopStart
     ) {
-        Surface(modifier = Modifier.offset(12.dp, 12.dp).size(width, height), color = darkerColor, shape = shape, shadowElevation = 2.dp) {}
-        Surface(modifier = Modifier.offset(6.dp, 6.dp).size(width, height), color = darkerColor, shape = shape, shadowElevation = 4.dp) {}
+        Surface(modifier = Modifier.offset(12.dp, 12.dp).size(width, height), color = baseColor.copy(alpha = 0.7f), shape = shape) {}
+
         Button(
             onClick = onClick,
-            colors = ButtonDefaults.buttonColors(containerColor = baseColor),
+            colors = ButtonDefaults.buttonColors(containerColor = Color.Transparent),
             shape = shape,
-            elevation = ButtonDefaults.buttonElevation(8.dp),
-            modifier = Modifier.size(width, height)
+            modifier = Modifier
+                .size(width, height)
+                .paint(
+                    painter = painterResource(id = com.ububi.explore_romania.R.drawable.texture),
+                    contentScale = ContentScale.FillBounds,
+                    colorFilter = ColorFilter.tint(baseColor, BlendMode.Modulate)
+                )
         ) {
-            Text(text, fontSize = fontSize, fontWeight = FontWeight.Bold, color = Color.White)
+            Text(
+                text = text,
+                fontSize = fontSize,
+                fontWeight = FontWeight.Bold,
+                color = Color.White,
+                style = androidx.compose.ui.text.TextStyle(
+                    shadow = androidx.compose.ui.graphics.Shadow(
+                        color = Color.Black.copy(alpha = 0.8f),
+                        offset = androidx.compose.ui.geometry.Offset(3f, 3f),
+                        blurRadius = 2f
+                    )
+                )
+            )
         }
     }
 }
-
 
 fun calculateBoardPosition(index: Int): Pair<Int, Int> {
     return when (index) {
