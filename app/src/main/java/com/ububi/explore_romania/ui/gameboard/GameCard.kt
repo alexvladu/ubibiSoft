@@ -68,12 +68,18 @@ fun GameCard(
                 contentAlignment = Alignment.Center
             ) {
                 Text(
-                    text = county.name,
-                    color = Color.Black,
-                    fontWeight = FontWeight.ExtraBold,
-                    fontSize = 28.sp,
+                    text = county.name.uppercase(),
+                    color = Color(0xFFC27A35),
+                    fontWeight = FontWeight.Black,
+                    fontSize = 24.sp,
                     textAlign = TextAlign.Center,
-                    lineHeight = 16.sp
+                    style = androidx.compose.ui.text.TextStyle(
+                        shadow = androidx.compose.ui.graphics.Shadow(
+                            color = Color(0xFF43271B), // Outline închis (maro)
+                            offset = androidx.compose.ui.geometry.Offset(5f, 5f), // Distanța umbrei
+                            blurRadius = 2f
+                        )
+                    )
                 )
             }
         }

@@ -22,63 +22,44 @@ fun CharacterCarousel(
     onCharacterChange: (Int) -> Unit,
     modifier: Modifier = Modifier
 ) {
+    val maxCharacters = 30 // 20 vechi + 10 noi
+
     Row(
         modifier = modifier,
         horizontalArrangement = Arrangement.Center,
         verticalAlignment = Alignment.CenterVertically
     ) {
-        // Left arrow button
         IconButton(
             onClick = {
                 MusicManager.playSoundEffect(SoundEffect.BUTTON)
-                val newId = if (characterId > 1) characterId - 1 else 20
+                val newId = if (characterId > 1) characterId - 1 else maxCharacters
                 onCharacterChange(newId)
             },
-            modifier = Modifier
-                .size(48.dp)
-                .background(Color(0xFFFFB74D), CircleShape)
+            modifier = Modifier.size(48.dp).background(Color(0xFFC27A35), CircleShape)
         ) {
-            Icon(
-                imageVector = Icons.AutoMirrored.Filled.KeyboardArrowLeft,
-                contentDescription = "Previous Character",
-                tint = Color.Black,
-                modifier = Modifier.size(32.dp)
-            )
+            Icon(Icons.AutoMirrored.Filled.KeyboardArrowLeft, "Prev", tint = Color.White)
         }
 
         Spacer(modifier = Modifier.width(16.dp))
 
-        // Character display - instant change, no animation
         Box(
-            modifier = Modifier.size(200.dp),
+            modifier = Modifier.size(220.dp),
             contentAlignment = Alignment.Center
         ) {
-            CharacterSprite(
-                characterId = characterId,
-                size = 180
-            )
+            CharacterSprite(characterId = characterId, size = 200)
         }
 
         Spacer(modifier = Modifier.width(16.dp))
 
-        // Right arrow button
         IconButton(
             onClick = {
                 MusicManager.playSoundEffect(SoundEffect.BUTTON)
-                val newId = if (characterId < 20) characterId + 1 else 1
+                val newId = if (characterId < maxCharacters) characterId + 1 else 1
                 onCharacterChange(newId)
             },
-            modifier = Modifier
-                .size(48.dp)
-                .background(Color(0xFFFFB74D), CircleShape)
+            modifier = Modifier.size(48.dp).background(Color(0xFFC27A35), CircleShape)
         ) {
-            Icon(
-                imageVector = Icons.AutoMirrored.Filled.KeyboardArrowRight,
-                contentDescription = "Next Character",
-                tint = Color.Black,
-                modifier = Modifier.size(32.dp)
-            )
+            Icon(Icons.AutoMirrored.Filled.KeyboardArrowRight, "Next", tint = Color.White)
         }
     }
 }
-
