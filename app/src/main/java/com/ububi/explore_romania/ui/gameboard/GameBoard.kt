@@ -76,7 +76,7 @@ fun GameBoard(
                         },
                         width = 200.dp,
                         height = 130.dp,
-                        fontSize = 18.sp
+                        fontSize = 23.sp
                     )
                     StackedButton(
                         text = "GEOGRAFIE",
@@ -88,7 +88,7 @@ fun GameBoard(
                         },
                         width = 200.dp,
                         height = 130.dp,
-                        fontSize = 18.sp
+                        fontSize = 23.sp
                     )
                 }
             } else {
@@ -184,11 +184,19 @@ fun GameBoard(
                 modifier = Modifier.padding(horizontal = 12.dp, vertical = 6.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Image(
-                    painter = painterResource(id = R.drawable.ic_launcher_foreground),
-                    contentDescription = "Coin",
-                    modifier = Modifier.size(24.dp)
-                )
+                Box(
+                    modifier = Modifier
+                        .size(32.dp)
+                        .background(Color(0xFFC27A35), CircleShape),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Text(
+                        text = "C",
+                        fontSize = 18.sp,
+                        fontWeight = FontWeight.Bold,
+                        color = Color.White
+                    )
+                }
 
                 Spacer(modifier = Modifier.width(8.dp))
 

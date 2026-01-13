@@ -69,7 +69,7 @@ fun GameCard(
             ) {
                 Text(
                     text = county.name.uppercase(),
-                    color = Color(0xFFC27A35),
+                    color = Color(0xFFf2b722),
                     fontWeight = FontWeight.Black,
                     fontSize = 24.sp,
                     textAlign = TextAlign.Center,

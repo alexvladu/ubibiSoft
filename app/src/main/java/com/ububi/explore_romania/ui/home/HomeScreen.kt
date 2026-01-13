@@ -162,6 +162,11 @@ fun HomeScreen(
                             focusedContainerColor = Color(0x99CCCCCC),
                             unfocusedContainerColor = Color(0x99CCCCCC)
                         ),
+                        textStyle = androidx.compose.ui.text.TextStyle(
+                            textAlign = TextAlign.Center,
+                            fontWeight = FontWeight.Bold,
+                            fontSize = 25.sp
+                        ),
                         modifier = Modifier.width(300.dp).height(60.dp)
                     )
 

@@ -526,15 +526,15 @@
             },
             {
                 "id": 48,
-                "text": "Cum se numește grădina zoologică importantă din Vestul tarii",
+                "text": "De la ce provine numele orașului Călărași",
                 "raspunsuri": [
-                    "Zoo Călărași",
-                    "Zoo București",
-                    "Zoo Brașov"
+                    "De la călăreții care duceau poșta (mesajele) pe vremuri",
+                    "De la cultivatorii de grâu din Bărăgan",
+                    "De la pescarii de pe Dunăre"
                 ],
-                "raspuns_corect": "Zoo Călărași",
+                "raspuns_corect": "De la călăreții care duceau poșta (mesajele) pe vremuri",
                 "locatie": "Călărași",
-                "hint": "Este cea mai mare din zona Bărăganului"
+                "hint": "Numele este legat de cuvântul \"cal\""
             },
             {
                 "id": 49,
