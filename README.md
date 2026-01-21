@@ -30,27 +30,43 @@ Proiectul este o aplicație Android modernă, construită pe următoarea stivă:
 
 #### A. Meniul Principal
 Utilizatorul pornește aventura din ecranul de start, având acces la secțiunile: Start Joc, Colecție, Cufere și Ieșire.
+<<<<<<< HEAD
 <p style="align: center;">
+=======
+<div style="align: center;">
+>>>>>>> 21e686c50988eeb1ad8f4e8b8aee1b18db8b7dcd
 <img src="./resources/home-screen.png" alt="Meniu Principal" width="300">
 </p>
 
 #### B. Tabla de Joc (Model Monopoly)
 Traseul este reprezentat prin județele României. Utilizatorul alege între geografie și istorie, iar avansarea depinde de corectitudinea răspunsurilor.
+<<<<<<< HEAD
 <p style="align: center;">
+=======
+<div style="align: center;">
+>>>>>>> 21e686c50988eeb1ad8f4e8b8aee1b18db8b7dcd
 <img src="./resources/in-game-screen-start.png" alt="Tabela de Joc" width="300">
 </p>
 
 
 #### C. Motorul de Quiz și Sistemul de Indicii
 Fiecare județ oferă o întrebare. În caz de eroare, utilizatorul primește un indiciu vizual pentru a încuraja învățarea.
+<<<<<<< HEAD
 <p style="align: center;">
+=======
+<div style="align: center;">
+>>>>>>> 21e686c50988eeb1ad8f4e8b8aee1b18db8b7dcd
 <img src="./resources/in-game-question-hint.png" alt="Quiz cu Indiciu" width="300">
 </p>
 
 
 #### D. Sistemul de Recompense (Cufere și Stickere)
 Punctele acumulate permit achiziționarea de cufere. Stickerele colectabile sunt împărțite pe rarități: comun, rar, epic, legendar. Stickerele necolectate apar blurate pentru a stimula curiozitatea.
+<<<<<<< HEAD
 <p style="align: center;display:column;">
+=======
+<div style="align: center;display:column;">
+>>>>>>> 21e686c50988eeb1ad8f4e8b8aee1b18db8b7dcd
 <img src="./resources/sticker-collection-owned.png" alt="Colecție Stickere" width="300">
 <img src="./resources/sticker-collection-unknown.png" alt="Stickere Necunoscute" width="300">
 </p>
