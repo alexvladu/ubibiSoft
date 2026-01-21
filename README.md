@@ -1,9 +1,9 @@
 # Explore România - Proiect HCI
 **Echipa Ubibisoft**
 
-![People](https://metrics.lecoq.io/alexvladu/ubibisoft?template=classic&plugin_people=true)
-
----
+<a>
+  <img src="https://contrib.rocks/image?repo=alexvladu/ubibisoft" />
+</a>
 
 ## 🇷🇴 Română
 
