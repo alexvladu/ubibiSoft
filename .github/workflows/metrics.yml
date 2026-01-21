@@ -1,0 +1,16 @@
+name: Metrics
+on:
+  workflow_dispatch:
+  schedule: [{cron: "0 */24 * * *"}]
+
+jobs:
+  metrics:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: lowlighter/metrics@latest
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          repository: alexvladu/ubibisoft
+          plugin_people: yes
+          plugin_people_types: contributors
+          plugin_people_limit: 30

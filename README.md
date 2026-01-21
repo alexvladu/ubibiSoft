@@ -28,33 +28,64 @@ Proiectul este o aplicație Android modernă, construită pe următoarea stivă:
 
 ### 4. Implementare Prototip Executabil (Screenshots)
 
-#### A. Meniul Principal
-Utilizatorul pornește aventura din ecranul de start, având acces la secțiunile: Start Joc, Colecție, Cufere și Ieșire.
+#### A. Meniul Principal și Personalizarea Profilului
+Utilizatorul pornește aventura din ecranul de start, având acces la secțiunile principale: Start Joc, Colecție, Cufere și Ieșire. Înainte de a începe explorarea, aplicația permite configurarea identității jucătorului:
+
 <p align="center">
-<img src="./resources/home-screen.png" alt="Meniu Principal" width="300">
+    <img src="./resources/home-screen.png" alt="Meniu Principal" width="500">
 </p>
+
+- **Alegerea Numelui**: Utilizatorul își poate introduce numele pentru a personaliza experiența de învățare și tabelul de scor.
+- **Selecția Caracterului**: Răspunzând preferințelor elevilor pentru „jocuri cu personificarea unui caracter”, utilizatorul poate alege un avatar care să îl reprezinte pe harta interactivă.
+- **Salvarea Progresului**: Datele profilului (numele și caracterul ales) sunt stocate local pentru a menține continuitatea între sesiunile de joc.
+
+<p align="center">
+    <img src="./resources/home-screen-character-1.png" alt="Caracter 1" width="150">
+    <img src="./resources/home-screen-character-2.png" alt="Caracter 2" width="150">
+    <img src="./resources/home-screen-character-3.png" alt="Caracter 3" width="150">
+    <img src="./resources/home-screen-character-4.png" alt="Caracter 4" width="150">
+</p>
+Selecția personajului este realizată printr-un mecanism interactiv de tip „carousel”, care permite utilizatorului să parcurgă pe rând toate avatarurile disponibile. Navigarea între personaje se face prin acțiuni intuitive (de exemplu, butoane de tip stânga/dreapta sau glisare), fiecare caracter fiind afișat pe ecran în mod individual pentru o vizualizare clară.
+
+Utilizatorul poate explora toate opțiunile disponibile înainte de a face o alegere, ceea ce îi oferă control asupra identității sale virtuale. La selectarea unui personaj, acesta este evidențiat vizual pentru a confirma opțiunea curentă.
+
+După confirmarea selecției, avatarul ales este asociat profilului jucătorului și salvat local, urmând să fie utilizat pe parcursul întregii experiențe de joc, atât pe harta interactivă, cât și în cadrul celorlalte interfețe ale aplicației.
+
+
+
+Prin intermediul acestui meniu principal și al opțiunilor de personalizare, aplicația oferă utilizatorului un prim contact intuitiv și atractiv, facilitând integrarea într-un mediu educațional interactiv și motivant.
+
+
+**Resurse grafice personaje:**
+Sistemul utilizează sprite-sheet-uri și ilustrații personalizate pentru a asigura animații fluide și un stil vizual unitar.
+Ilustrațiile sunt concepute astfel încât să fie atractive pentru utilizatori și să se integreze armonios în mediul educațional al jocului. 
+<p align="center">
+    <img src="./resources/sprite_sheet_character-1.png">
+    <img src="./resources/sprite_sheet_character-2.png">
+    <img src="./resources/sprite_sheet_character-3.png">
+</p>
+
+
 
 #### B. Tabla de Joc (Model Monopoly)
 Traseul este reprezentat prin județele României. Utilizatorul alege între geografie și istorie, iar avansarea depinde de corectitudinea răspunsurilor.
 <p align="center">
-<img src="./resources/in-game-screen-start.png" alt="Tabela de Joc" width="300">
+<img src="./resources/in-game-screen-start.png" alt="Tabela de Joc" width="500">
 </p>
 
 
 #### C. Motorul de Quiz și Sistemul de Indicii
 Fiecare județ oferă o întrebare. În caz de eroare, utilizatorul primește un indiciu vizual pentru a încuraja învățarea.
 <p align="center">
-<img src="./resources/in-game-question-hint.png" alt="Quiz cu Indiciu" width="300">
+<img src="./resources/in-game-question-hint.png" alt="Quiz cu Indiciu" width="500">
 </p>
 
 
 #### D. Sistemul de Recompense (Cufere și Stickere)
 Punctele acumulate permit achiziționarea de cufere. Stickerele colectabile sunt împărțite pe rarități: comun, rar, epic, legendar. Stickerele necolectate apar blurate pentru a stimula curiozitatea.
-<p align="center">
-<div style="display: column;">
-<img src="./resources/sticker-collection-owned.png" alt="Colecție Stickere" width="300">
-<img src="./resources/sticker-collection-unknown.png" alt="Stickere Necunoscute" width="300">
-</div>
+<p align="center" style="display: column;">
+<img src="./resources/sticker-collection-owned.png" alt="Colecție Stickere" width="500">
+<img src="./resources/sticker-collection-unknown.png" alt="Stickere Necunoscute" width="500">
 </p>
 
 ### 5. Accesibilitate și Evaluare
